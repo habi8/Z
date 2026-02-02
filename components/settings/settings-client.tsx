@@ -23,7 +23,7 @@ import type { User as SupabaseUser } from '@supabase/supabase-js'
 
 interface Profile {
   id: string
-  display_name: string | null
+  full_name: string | null
   preferred_language: string | null
 }
 
@@ -47,7 +47,7 @@ const LANGUAGES = [
 
 export function SettingsClient({ user, profile }: SettingsClientProps) {
   const router = useRouter()
-  const [displayName, setDisplayName] = useState(profile?.display_name || user.user_metadata?.full_name || '')
+  const [displayName, setDisplayName] = useState(profile?.full_name || user.user_metadata?.full_name || '')
   const [preferredLanguage, setPreferredLanguage] = useState(profile?.preferred_language || 'en')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -64,7 +64,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
         .from('profiles')
         .upsert({
           id: user.id,
-          display_name: displayName,
+          full_name: displayName,
           preferred_language: preferredLanguage,
         })
 
