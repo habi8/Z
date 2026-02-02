@@ -67,7 +67,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
         .insert({
           name: newWorkspaceName,
           description: newWorkspaceDescription || null,
-          owner_id: user.id,
+          user_id: user.id,
         })
         .select()
         .single()
