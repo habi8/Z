@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -27,7 +28,7 @@
   --chart-3: #6b6b6b;
   --chart-4: #a5a5a5;
   --chart-5: #d4d3d1;
-  --radius: 0.5rem;
+  --radius: 0.5rem; /* Preserve existing radius */
   --sidebar: #fdfcfb;
   --sidebar-foreground: #1a1a1a;
   --sidebar-primary: #1a1a1a;
@@ -74,7 +75,8 @@
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --font-sans: 'Geist', 'Geist Fallback'; /* Preserve existing font definitions */
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback'; /* Preserve existing font definitions */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
