@@ -1,6 +1,17 @@
--- Add source_language column to documents table
-alter table public.documents 
-add column if not exists source_language text not null default 'en';
+-- Add source_language column to documents table if it doesn't exist
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns 
+    WHERE table_schema = 'public' 
+    AND table_name = 'documents' 
+    AND column_name = 'source_language'
+  ) THEN
+    ALTER TABLE public.documents ADD COLUMN source_language text DEFAULT 'en';
+  END IF;
+END $$;
 
--- Add comment explaining the column
-comment on column public.documents.source_language is 'ISO 639-1 language code for the source language of the document';
+-- Update any existing documents without source_language
+UPDATE public.documents 
+SET source_language = 'en' 
+WHERE source_language IS NULL;
