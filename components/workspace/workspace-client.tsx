@@ -187,7 +187,7 @@ export function WorkspaceClient({
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Dashboard
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push('/settings')}>
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
               </DropdownMenuItem>

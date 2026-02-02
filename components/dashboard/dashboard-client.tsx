@@ -26,7 +26,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Plus, FileText, Settings, LogOut, Folder } from 'lucide-react'
+import { Plus, FileText, Settings, LogOut, Folder, User } from 'lucide-react'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 
 interface Workspace {
@@ -111,7 +111,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-full">
-                <Folder className="h-5 w-5" />
+                <User className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -122,7 +122,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push('/settings')}>
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
               </DropdownMenuItem>
