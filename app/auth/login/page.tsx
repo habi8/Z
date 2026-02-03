@@ -34,8 +34,8 @@ export default function LoginPage() {
 
       if (error) throw error
 
-      router.push('/dashboard')
-      router.refresh()
+      // Force a hard redirect to ensure auth state is properly refreshed
+      window.location.href = '/dashboard'
     } catch (err: any) {
       setError(err.message || 'Failed to sign in')
     } finally {
