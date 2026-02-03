@@ -23,7 +23,7 @@ export default function LandingPage() {
               height={40}
               className="object-contain"
             />
-            <span className="text-2xl font-bold">Home</span>
+            <span className="text-2xl font-bold">Z Workspace</span>
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
