@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import { Globe2, Languages, Zap, Shield, Users, Workflow } from 'lucide-react'
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Globe2, Languages, Zap, Shield, Users, Workflow } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -23,17 +23,26 @@ export default function LandingPage() {
               height={40}
               className="object-contain"
             />
-            <span className="text-2xl font-bold">Z</span>
+            <span className="text-2xl font-bold">Home</span>
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="#features" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link
+              href="#features"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
               Features
             </Link>
-            <Link href="#how-it-works" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link
+              href="#how-it-works"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
               How it works
             </Link>
-            <Link href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link
+              href="#pricing"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
               Pricing
             </Link>
           </nav>
@@ -71,7 +80,12 @@ export default function LandingPage() {
             <Button asChild size="lg" className="text-lg px-8">
               <Link href="/auth/sign-up">Start building free</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg px-8 bg-transparent">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="text-lg px-8 bg-transparent"
+            >
               <Link href="#how-it-works">See how it works</Link>
             </Button>
           </div>
@@ -89,8 +103,8 @@ export default function LandingPage() {
             Everything you need to go global
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Built-in features that help you create, translate, and manage content
-            across languages and markets.
+            Built-in features that help you create, translate, and manage
+            content across languages and markets.
           </p>
         </div>
 
@@ -98,39 +112,39 @@ export default function LandingPage() {
           {[
             {
               icon: Languages,
-              title: 'Lingo.dev Ready',
+              title: "Lingo.dev Ready",
               description:
-                'Seamlessly integrate with Lingo.dev for powerful translation workflows and glossary management.',
+                "Seamlessly integrate with Lingo.dev for powerful translation workflows and glossary management.",
             },
             {
               icon: Globe2,
-              title: 'Multi-language Support',
+              title: "Multi-language Support",
               description:
-                'Create content in one language and distribute it globally with built-in translation tools.',
+                "Create content in one language and distribute it globally with built-in translation tools.",
             },
             {
               icon: Zap,
-              title: 'Real-time Collaboration',
+              title: "Real-time Collaboration",
               description:
-                'Work together with your team in real-time, with changes synced instantly across all users.',
+                "Work together with your team in real-time, with changes synced instantly across all users.",
             },
             {
               icon: Workflow,
-              title: 'Rich Text Editor',
+              title: "Rich Text Editor",
               description:
-                'Powerful block-based editor with support for text, images, code, and custom content blocks.',
+                "Powerful block-based editor with support for text, images, code, and custom content blocks.",
             },
             {
               icon: Users,
-              title: 'Team Workspaces',
+              title: "Team Workspaces",
               description:
-                'Organize your content in workspaces, collaborate with team members, and manage permissions.',
+                "Organize your content in workspaces, collaborate with team members, and manage permissions.",
             },
             {
               icon: Shield,
-              title: 'Secure & Private',
+              title: "Secure & Private",
               description:
-                'Enterprise-grade security with row-level access control and encrypted data storage.',
+                "Enterprise-grade security with row-level access control and encrypted data storage.",
             },
           ].map((feature) => (
             <div
@@ -146,7 +160,10 @@ export default function LandingPage() {
       </section>
 
       {/* How it Works */}
-      <section id="how-it-works" className="container mx-auto px-4 py-20 bg-muted/30">
+      <section
+        id="how-it-works"
+        className="container mx-auto px-4 py-20 bg-muted/30"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -160,22 +177,22 @@ export default function LandingPage() {
           <div className="space-y-12">
             {[
               {
-                step: '01',
-                title: 'Create your workspace',
+                step: "01",
+                title: "Create your workspace",
                 description:
-                  'Set up your workspace and invite your team. Organize your content with flexible document structures.',
+                  "Set up your workspace and invite your team. Organize your content with flexible document structures.",
               },
               {
-                step: '02',
-                title: 'Build your content',
+                step: "02",
+                title: "Build your content",
                 description:
-                  'Use our rich editor to create documents with text, images, code blocks, and more. Structure ready for translation.',
+                  "Use our rich editor to create documents with text, images, code blocks, and more. Structure ready for translation.",
               },
               {
-                step: '03',
-                title: 'Go global with Lingo.dev',
+                step: "03",
+                title: "Go global with Lingo.dev",
                 description:
-                  'Add Lingo.dev integration to enable translation workflows, glossary management, and multi-language distribution.',
+                  "Add Lingo.dev integration to enable translation workflows, glossary management, and multi-language distribution.",
               },
             ].map((item) => (
               <div key={item.step} className="flex gap-6">
@@ -186,7 +203,9 @@ export default function LandingPage() {
                 </div>
                 <div className="flex-1 pt-2">
                   <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-lg text-muted-foreground">{item.description}</p>
+                  <p className="text-lg text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -224,7 +243,7 @@ export default function LandingPage() {
                 className="object-contain"
               />
               <span className="text-sm text-muted-foreground">
-                © 2024 Z. Built for global teams.
+                © 2026 Z. Built for global teams.
               </span>
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
@@ -242,5 +261,5 @@ export default function LandingPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

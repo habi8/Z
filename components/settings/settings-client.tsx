@@ -62,11 +62,11 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
       
       const { error } = await supabase
         .from('profiles')
-        .upsert({
-          id: user.id,
+        .update({
           full_name: displayName,
           preferred_language: preferredLanguage,
         })
+        .eq('id', user.id)
 
       if (error) throw error
 
