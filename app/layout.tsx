@@ -1,11 +1,9 @@
-'use client'
 import React from "react"
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { I18nextProvider } from 'react-i18next'
-import i18n from '../lib/i18n'
+import I18nProvider from './i18n-provider'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -28,9 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans antialiased`}>
-        <I18nextProvider i18n={i18n}>
+        <I18nProvider>
           {children}
-        </I18nextProvider>
+        </I18nProvider>
         <Analytics />
       </body>
     </html>

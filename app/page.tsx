@@ -1,9 +1,9 @@
-'use client'
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Globe2, Languages, Zap, Shield, Users, Workflow } from "lucide-react";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function LandingPage() {
   const { t } = useTranslation();
@@ -27,7 +27,7 @@ export default function LandingPage() {
               height={40}
               className="object-contain"
             />
-            <span className="text-2xl font-bold">{t('home')}</span>
+            <span className="text-2xl font-bold">{t("home")}</span>
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
@@ -35,28 +35,28 @@ export default function LandingPage() {
               href="#features"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {t('features')}
+              {t("features")}
             </Link>
             <Link
               href="#how-it-works"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {t('how_it_works')}
+              {t("how_it_works")}
             </Link>
             <Link
               href="#pricing"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {t('pricing')}
+              {t("pricing")}
             </Link>
           </nav>
 
           <div className="flex items-center gap-3">
             <Button asChild variant="ghost">
-              <Link href="/auth/login">{t('sign_in')}</Link>
+              <Link href="/auth/login">{t("sign_in")}</Link>
             </Button>
             <Button asChild>
-              <Link href="/auth/sign-up">{t('get_started')}</Link>
+              <Link href="/auth/sign-up">{t("get_started")}</Link>
             </Button>
           </div>
         </div>
@@ -66,20 +66,20 @@ export default function LandingPage() {
       <section className="container mx-auto px-4 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="inline-block px-4 py-2 rounded-full bg-muted border border-border text-sm font-medium">
-            {t('built_for_global_teams')}
+            {t("built_for_global_teams")}
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance">
-            {t('build_once_ship_everywhere')}
+            {t("build_once_ship_everywhere")}
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance">
-            {t('workspace_platform_description')}
+            {t("workspace_platform_description")}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Button asChild size="lg" className="text-lg px-8">
-              <Link href="/auth/sign-up">{t('start_building_free')}</Link>
+              <Link href="/auth/sign-up">{t("start_building_free")}</Link>
             </Button>
             <Button
               asChild
@@ -87,12 +87,12 @@ export default function LandingPage() {
               variant="outline"
               className="text-lg px-8 bg-transparent"
             >
-              <Link href="#how-it-works">{t('see_how_it_works')}</Link>
+              <Link href="#how-it-works">{t("see_how_it_works")}</Link>
             </Button>
           </div>
 
           <p className="text-sm text-muted-foreground">
-            {t('no_credit_card_required')}
+            {t("no_credit_card_required")}
           </p>
         </div>
       </section>
@@ -101,10 +101,10 @@ export default function LandingPage() {
       <section id="features" className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            {t('everything_you_need_to_go_global')}
+            {t("everything_you_need_to_go_global")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('builtin_features_description')}
+            {t("builtin_features_description")}
           </p>
         </div>
 
@@ -112,33 +112,33 @@ export default function LandingPage() {
           {[
             {
               icon: Languages,
-              title: t('lingo_dev_ready'),
-              description: t('lingo_dev_description'),
+              title: t("lingo_dev_ready"),
+              description: t("lingo_dev_description"),
             },
             {
               icon: Globe2,
-              title: t('multi_language_support'),
-              description: t('multi_language_description'),
+              title: t("multi_language_support"),
+              description: t("multi_language_description"),
             },
             {
               icon: Zap,
-              title: t('real_time_collaboration'),
-              description: t('real_time_collaboration_description'),
+              title: t("real_time_collaboration"),
+              description: t("real_time_collaboration_description"),
             },
             {
               icon: Workflow,
-              title: t('rich_text_editor'),
-              description: t('rich_text_editor_description'),
+              title: t("rich_text_editor"),
+              description: t("rich_text_editor_description"),
             },
             {
               icon: Users,
-              title: t('team_workspaces'),
-              description: t('team_workspaces_description'),
+              title: t("team_workspaces"),
+              description: t("team_workspaces_description"),
             },
             {
               icon: Shield,
-              title: t('secure_and_private'),
-              description: t('secure_and_private_description'),
+              title: t("secure_and_private"),
+              description: t("secure_and_private_description"),
             },
           ].map((feature) => (
             <div
@@ -161,10 +161,10 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('simple_powerful_workflow')}
+              {t("simple_powerful_workflow")}
             </h2>
             <p className="text-lg text-muted-foreground">
-              {t('workflow_description')}
+              {t("workflow_description")}
             </p>
           </div>
 
@@ -172,18 +172,18 @@ export default function LandingPage() {
             {[
               {
                 step: "01",
-                title: t('create_your_workspace'),
-                description: t('create_your_workspace_description'),
+                title: t("create_your_workspace"),
+                description: t("create_your_workspace_description"),
               },
               {
                 step: "02",
-                title: t('build_your_content'),
-                description: t('build_your_content_description'),
+                title: t("build_your_content"),
+                description: t("build_your_content_description"),
               },
               {
                 step: "03",
-                title: t('go_global_with_lingo_dev'),
-                description: t('go_global_with_lingo_dev_description'),
+                title: t("go_global_with_lingo_dev"),
+                description: t("go_global_with_lingo_dev_description"),
               },
             ].map((item) => (
               <div key={item.step} className="flex gap-6">
@@ -208,14 +208,14 @@ export default function LandingPage() {
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-3xl mx-auto text-center space-y-8 p-12 rounded-2xl border border-border bg-card shadow-xl">
           <h2 className="text-3xl md:text-5xl font-bold text-balance">
-            {t('ready_to_build_for_global_audience')}
+            {t("ready_to_build_for_global_audience")}
           </h2>
           <p className="text-xl text-muted-foreground">
-            {t('join_teams_description')}
+            {t("join_teams_description")}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" className="text-lg px-8">
-              <Link href="/auth/sign-up">{t('start_for_free')}</Link>
+              <Link href="/auth/sign-up">{t("start_for_free")}</Link>
             </Button>
           </div>
         </div>
@@ -234,18 +234,18 @@ export default function LandingPage() {
                 className="object-contain"
               />
               <span className="text-sm text-muted-foreground">
-                {t('footer_text')}
+                {t("footer_text")}
               </span>
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <Link href="#" className="hover:text-primary transition-colors">
-                {t('privacy')}
+                {t("privacy")}
               </Link>
               <Link href="#" className="hover:text-primary transition-colors">
-                {t('terms')}
+                {t("terms")}
               </Link>
               <Link href="#" className="hover:text-primary transition-colors">
-                {t('contact')}
+                {t("contact")}
               </Link>
             </div>
           </div>
