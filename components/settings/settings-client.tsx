@@ -90,8 +90,8 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               <Image
                 src="/z-logo.png"
                 alt="Z Logo"
-                width={40}
-                height={40}
+                width={60}
+                height={60}
                 className="object-contain"
               />
               <span className="text-2xl font-bold">{t('title')}</span>

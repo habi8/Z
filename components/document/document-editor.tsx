@@ -130,8 +130,8 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
               <Image
                 src="/z-logo.png"
                 alt="Z Logo"
-                width={32}
-                height={32}
+                width={60}
+                height={60}
                 className="object-contain"
               />
               <div className="flex items-center gap-2 text-sm text-muted-foreground">

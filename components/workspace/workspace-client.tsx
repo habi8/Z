@@ -197,8 +197,8 @@ export function WorkspaceClient({
               <Image
                 src="/z-logo.png"
                 alt="Z Logo"
-                width={40}
-                height={40}
+                width={60}
+                height={60}
                 className="object-contain"
               />
               <div>

@@ -10,7 +10,7 @@ export async function POST(request: Request) {
         const { data, error } = await resend.emails.send({
             from: 'Z App <onboarding@resend.dev>',
             to: email,
-            subject: `Z workspace invitation from ${inviterName}`,
+            subject: `ZED workspace invitation from ${inviterName}`,
             html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h1 style="color: #333;">You've been invited to join ${workspaceName}</h1>

@@ -54,8 +54,8 @@ export default function LoginPage() {
             <Image
               src="/z-logo.png"
               alt="Z Logo"
-              width={80}
-              height={80}
+              width={120}
+              height={120}
               className="object-contain cursor-pointer hover:opacity-80 transition-opacity"
             />
           </Link>

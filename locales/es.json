@@ -5,7 +5,7 @@
     },
     "header": {
         "logo_alt": "Logo de Z",
-        "workspace": "Espacio de Trabajo Z",
+        "workspace": "Espacio de Trabajo ZED",
         "features": "Características",
         "how_it_works": "Cómo funciona",
         "pricing": "Precios",
@@ -88,7 +88,7 @@
     "auth": {
         "login": {
             "title": "Bienvenido de nuevo",
-            "subtitle": "Inicia sesión en tu espacio de trabajo Z",
+            "subtitle": "Inicia sesión en tu espacio de trabajo ZED",
             "email": "Correo electrónico",
             "password": "Contraseña",
             "submit": "Iniciar sesión",

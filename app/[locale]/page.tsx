@@ -74,8 +74,8 @@ export default function LandingPage() {
             <Image
               src="/z-logo.png"
               alt={t('header.logo_alt')}
-              width={40}
-              height={40}
+              width={70}
+              height={70}
               className="object-contain"
             />
             <span className="text-2xl font-bold">{t('header.workspace')}</span>
@@ -115,10 +115,36 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-32 md:py-48">
+      <section className="container mx-auto px-4 pt-16 pb-32 md:pt-20 md:pb-40">
         <div className="max-w-4xl mx-auto text-center space-y-10">
-          <div className="inline-block px-4 py-2 rounded-full bg-muted border border-border text-sm font-medium animate-fade-in-up opacity-0 fill-mode-forwards">
-            {t('hero.badge')}
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex items-center gap-3 text-xs sm:text-base font-semibold tracking-[0.15em] text-muted-foreground/70 items-center gap-2 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-muted-foreground/60 uppercase animate-fade-in-up opacity-0 fill-mode-forwards">
+              <span>powered by</span>
+              <Link
+                href="https://lingo.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex"
+              />
+              <Image
+                src="/lingo.dev-logo.png"
+                alt="Lingo.dev"
+                width={110}
+                height={28}
+                className="
+                    opacity-90
+                    grayscale 
+                    cursor-pointer
+                    hover:grayscale-0
+                    hover:scale-105
+                    transition-all
+                    duration-300
+                    ease-out
+                    "/>
+            </div>
+            <div className="inline-block px-4 py-2 rounded-full bg-muted border border-border text-xs sm:text-sm font-medium animate-fade-in-up delay-150 opacity-0 fill-mode-forwards">
+              {t('hero.badge')}
+            </div>
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance animate-fade-in-up delay-200 opacity-0 fill-mode-forwards">
@@ -236,8 +262,8 @@ export default function LandingPage() {
               <Image
                 src="/z-logo.png"
                 alt={t('footer.logo_alt')}
-                width={32}
-                height={32}
+                width={48}
+                height={48}
                 className="object-contain"
               />
               <span className="text-sm text-muted-foreground">

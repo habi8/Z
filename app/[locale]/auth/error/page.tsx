@@ -12,8 +12,8 @@ export default function AuthErrorPage() {
           <Image
             src="/z-logo.png"
             alt="Z Logo"
-            width={80}
-            height={80}
+            width={120}
+            height={120}
             className="object-contain"
           />
         </div>

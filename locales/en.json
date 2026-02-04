@@ -5,7 +5,7 @@
     },
     "header": {
         "logo_alt": "Z Logo",
-        "workspace": "Z Workspace",
+        "workspace": "ZED Workspace",
         "features": "Features",
         "how_it_works": "How it works",
         "pricing": "Pricing",
@@ -70,7 +70,7 @@
         "step3": {
             "number": "03",
             "title": "Go global with Lingo.dev",
-            "description": "Add Lingo.dev integration to enable translation workflows, glossary management, and multi-language distribution."
+            "description": "Lingo.dev integrated to enable translation workflows, glossary management, and multi-language distribution."
         }
     },
     "cta": {
@@ -88,7 +88,7 @@
     "auth": {
         "login": {
             "title": "Welcome back",
-            "subtitle": "Sign in to your Z workspace",
+            "subtitle": "Sign in to your ZED workspace",
             "email": "Email",
             "password": "Password",
             "submit": "Sign in",
