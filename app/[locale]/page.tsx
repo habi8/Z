@@ -120,21 +120,21 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="inline-block px-4 py-2 rounded-full bg-muted border border-border text-sm font-medium">
+          <div className="inline-block px-4 py-2 rounded-full bg-muted border border-border text-sm font-medium animate-fade-in-up opacity-0 fill-mode-forwards">
             {t('hero.badge')}
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance animate-fade-in-up delay-200 opacity-0 fill-mode-forwards">
             {t('hero.title_line1')}
             <br />
             <span className="text-muted-foreground">{t('hero.title_line2')}</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance">
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in-up delay-400 opacity-0 fill-mode-forwards">
             {t('hero.subtitle')}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in-up delay-600 opacity-0 fill-mode-forwards">
             <Button asChild size="lg" className="text-lg px-8">
               <Link href={`/${locale}/auth/sign-up`}>{t('hero.cta_primary')}</Link>
             </Button>
@@ -223,7 +223,7 @@ export default function LandingPage() {
           <p className="text-xl text-muted-foreground">
             {t('cta.subheading')}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-600 opacity-0 fill-mode-forwards">
             <Button asChild size="lg" className="text-lg px-8">
               <Link href={`/${locale}/auth/sign-up`}>{t('cta.button')}</Link>
             </Button>
