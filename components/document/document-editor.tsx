@@ -8,7 +8,7 @@ import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { RichTextEditor } from '@/components/editor/editor'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -211,11 +211,9 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
 
           {/* Content Editor */}
           <div className="min-h-[600px]">
-            <Textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder={t('editor_placeholder')}
-              className="min-h-[600px] text-lg leading-relaxed border-none focus-visible:ring-0 px-0 resize-none"
+            <RichTextEditor
+              content={content}
+              onChange={setContent}
             />
           </div>
 
@@ -224,7 +222,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
             <div>
               {t('created_at', { date: new Date(document.created_at).toLocaleDateString() })}
             </div>
-            <div>{t('words', { count: content.split(/\s+/).filter(Boolean).length })}</div>
+            <div>{t('words', { count: content.replace(/<[^>]*>/g, ' ').split(/\s+/).filter(Boolean).length })}</div>
           </div>
         </div>
       </main>
