@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { locales } from '@/i18n/request'
+import { Toaster } from 'sonner'
 import '../globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <Toaster position="top-center" richColors />
         <Analytics />
       </body>
     </html>

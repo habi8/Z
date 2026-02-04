@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/client'
+import { toast } from 'sonner'
 
 export async function uploadFile(file: File): Promise<string> {
     const supabase = createClient()
@@ -40,13 +41,13 @@ export function triggerFileUpload(accept: string, onUpload: (url: string) => voi
     input.onchange = async (e) => {
         const file = (e.target as HTMLInputElement).files?.[0]
         if (file) {
+            const toastId = toast.loading(`Uploading ${file.type.startsWith('image/') ? 'image' : 'file'}...`)
             try {
-                // In a real app we might want to show a loading state here
-                // For now we just wait for the promise
                 const url = await uploadFile(file)
+                toast.success('Upload complete', { id: toastId })
                 onUpload(url)
-            } catch (error) {
-                alert('Failed to upload file. Please try again or check console for details.')
+            } catch (error: any) {
+                toast.error(`Upload failed: ${error.message || 'Unknown error'}`, { id: toastId })
             }
         }
     }
