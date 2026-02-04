@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Globe2, Languages, Zap, Shield, Users, Workflow } from "lucide-react";
 import { useTranslations, useLocale } from 'next-intl';
 import { LocaleSwitcher } from '@/components/locale-switcher';
+import { AnimatedBackground } from "@/components/ui/animated-background";
 
 export default function LandingPage() {
   const t = useTranslations();
@@ -63,12 +64,8 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Animated background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-muted/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
+    <div className="min-h-screen relative selection:bg-primary/10">
+      <AnimatedBackground />
 
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
@@ -118,8 +115,8 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 md:py-32">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+      <section className="container mx-auto px-4 py-32 md:py-48">
+        <div className="max-w-4xl mx-auto text-center space-y-10">
           <div className="inline-block px-4 py-2 rounded-full bg-muted border border-border text-sm font-medium animate-fade-in-up opacity-0 fill-mode-forwards">
             {t('hero.badge')}
           </div>
@@ -135,14 +132,14 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in-up delay-600 opacity-0 fill-mode-forwards">
-            <Button asChild size="lg" className="text-lg px-8">
+            <Button asChild size="lg" className="text-lg px-8 h-12">
               <Link href={`/${locale}/auth/sign-up`}>{t('hero.cta_primary')}</Link>
             </Button>
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="text-lg px-8 bg-transparent"
+              className="text-lg px-8 h-12 bg-transparent"
             >
               <Link href="#how-it-works">{t('hero.cta_secondary')}</Link>
             </Button>
@@ -155,7 +152,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features Grid */}
-      <section id="features" className="container mx-auto px-4 py-20">
+      <section id="features" className="container mx-auto px-4 py-32">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {t('features.heading')}
@@ -182,10 +179,10 @@ export default function LandingPage() {
       {/* How it Works */}
       <section
         id="how-it-works"
-        className="container mx-auto px-4 py-20 bg-muted/30"
+        className="container mx-auto px-4 py-16 bg-muted/30"
       >
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               {t('how_it_works.heading')}
             </h2>
@@ -215,8 +212,8 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="max-w-3xl mx-auto text-center space-y-8 p-12 rounded-2xl border border-border bg-card shadow-xl">
+      <section className="container mx-auto px-4 py-16">
+        <div className="max-w-3xl mx-auto text-center space-y-8 p-10 rounded-2xl border border-border bg-card shadow-xl">
           <h2 className="text-3xl md:text-5xl font-bold text-balance">
             {t('cta.heading')}
           </h2>
