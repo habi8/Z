@@ -1,0 +1,83 @@
+{
+    "metadata": {
+        "title": "Z - Plataforma de Espacio de Trabajo Global",
+        "description": "Construye, colabora y escala tu contenido globalmente con Z - la plataforma de espacio de trabajo con traducción y localización integradas."
+    },
+    "header": {
+        "logo_alt": "Logo de Z",
+        "workspace": "Espacio de Trabajo Z",
+        "features": "Características",
+        "how_it_works": "Cómo funciona",
+        "pricing": "Precios",
+        "sign_in": "Iniciar sesión",
+        "get_started": "Comenzar"
+    },
+    "hero": {
+        "badge": "Construido para equipos globales",
+        "title_line1": "Construye una vez.",
+        "title_line2": "Envía a todas partes.",
+        "subtitle": "La plataforma de espacio de trabajo con traducción y localización integradas. Crea, colabora y escala tu contenido globalmente.",
+        "cta_primary": "Comienza a construir gratis",
+        "cta_secondary": "Ver cómo funciona",
+        "no_credit_card": "No se requiere tarjeta de crédito • Gratis para siempre para individuos"
+    },
+    "features": {
+        "heading": "Todo lo que necesitas para ser global",
+        "subheading": "Características integradas que te ayudan a crear, traducir y gestionar contenido en diferentes idiomas y mercados.",
+        "lingo_ready": {
+            "title": "Listo para Lingo.dev",
+            "description": "Integración perfecta con Lingo.dev para flujos de trabajo de traducción potentes y gestión de glosarios."
+        },
+        "multi_language": {
+            "title": "Soporte Multi-idioma",
+            "description": "Crea contenido en un idioma y distribúyelo globalmente con herramientas de traducción integradas."
+        },
+        "real_time": {
+            "title": "Colaboración en Tiempo Real",
+            "description": "Trabaja junto con tu equipo en tiempo real, con cambios sincronizados instantáneamente entre todos los usuarios."
+        },
+        "rich_editor": {
+            "title": "Editor de Texto Enriquecido",
+            "description": "Potente editor basado en bloques con soporte para texto, imágenes, código y bloques de contenido personalizados."
+        },
+        "team_workspaces": {
+            "title": "Espacios de Trabajo en Equipo",
+            "description": "Organiza tu contenido en espacios de trabajo, colabora con miembros del equipo y gestiona permisos."
+        },
+        "secure": {
+            "title": "Seguro y Privado",
+            "description": "Seguridad de nivel empresarial con control de acceso a nivel de fila y almacenamiento de datos cifrado."
+        }
+    },
+    "how_it_works": {
+        "heading": "Flujo de trabajo simple y potente",
+        "subheading": "Desde la creación de contenido hasta la distribución global en tres sencillos pasos",
+        "step1": {
+            "number": "01",
+            "title": "Crea tu espacio de trabajo",
+            "description": "Configura tu espacio de trabajo e invita a tu equipo. Organiza tu contenido con estructuras de documentos flexibles."
+        },
+        "step2": {
+            "number": "02",
+            "title": "Construye tu contenido",
+            "description": "Usa nuestro editor enriquecido para crear documentos con texto, imágenes, bloques de código y más. Estructura lista para traducción."
+        },
+        "step3": {
+            "number": "03",
+            "title": "Hazte global con Lingo.dev",
+            "description": "Agrega la integración de Lingo.dev para habilitar flujos de trabajo de traducción, gestión de glosarios y distribución multi-idioma."
+        }
+    },
+    "cta": {
+        "heading": "¿Listo para construir para una audiencia global?",
+        "subheading": "Únete a los equipos que usan Z para crear y distribuir contenido en todo el mundo.",
+        "button": "Comenzar gratis"
+    },
+    "footer": {
+        "logo_alt": "Logo de Z",
+        "copyright": "© 2026 Z. Construido para equipos globales.",
+        "privacy": "Privacidad",
+        "terms": "Términos",
+        "contact": "Contacto"
+    }
+}

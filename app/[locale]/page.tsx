@@ -1,9 +1,67 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Globe2, Languages, Zap, Shield, Users, Workflow } from "lucide-react";
+import { useTranslations, useLocale } from 'next-intl';
+import { LocaleSwitcher } from '@/components/locale-switcher';
 
 export default function LandingPage() {
+  const t = useTranslations();
+  const locale = useLocale();
+
+  const features = [
+    {
+      icon: Languages,
+      title: t('features.lingo_ready.title'),
+      description: t('features.lingo_ready.description'),
+    },
+    {
+      icon: Globe2,
+      title: t('features.multi_language.title'),
+      description: t('features.multi_language.description'),
+    },
+    {
+      icon: Zap,
+      title: t('features.real_time.title'),
+      description: t('features.real_time.description'),
+    },
+    {
+      icon: Workflow,
+      title: t('features.rich_editor.title'),
+      description: t('features.rich_editor.description'),
+    },
+    {
+      icon: Users,
+      title: t('features.team_workspaces.title'),
+      description: t('features.team_workspaces.description'),
+    },
+    {
+      icon: Shield,
+      title: t('features.secure.title'),
+      description: t('features.secure.description'),
+    },
+  ];
+
+  const steps = [
+    {
+      step: t('how_it_works.step1.number'),
+      title: t('how_it_works.step1.title'),
+      description: t('how_it_works.step1.description'),
+    },
+    {
+      step: t('how_it_works.step2.number'),
+      title: t('how_it_works.step2.title'),
+      description: t('how_it_works.step2.description'),
+    },
+    {
+      step: t('how_it_works.step3.number'),
+      title: t('how_it_works.step3.title'),
+      description: t('how_it_works.step3.description'),
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Animated background */}
@@ -18,12 +76,12 @@ export default function LandingPage() {
           <div className="flex items-center gap-3">
             <Image
               src="/z-logo.png"
-              alt="Z Logo"
+              alt={t('header.logo_alt')}
               width={40}
               height={40}
               className="object-contain"
             />
-            <span className="text-2xl font-bold">Z Workspace</span>
+            <span className="text-2xl font-bold">{t('header.workspace')}</span>
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
@@ -31,28 +89,29 @@ export default function LandingPage() {
               href="#features"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              Features
+              {t('header.features')}
             </Link>
             <Link
               href="#how-it-works"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              How it works
+              {t('header.how_it_works')}
             </Link>
             <Link
               href="#pricing"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              Pricing
+              {t('header.pricing')}
             </Link>
           </nav>
 
           <div className="flex items-center gap-3">
+            <LocaleSwitcher />
             <Button asChild variant="ghost">
-              <Link href="/auth/login">Sign in</Link>
+              <Link href={`/${locale}/auth/login`}>{t('header.sign_in')}</Link>
             </Button>
             <Button asChild>
-              <Link href="/auth/sign-up">Get started</Link>
+              <Link href={`/${locale}/auth/sign-up`}>{t('header.get_started')}</Link>
             </Button>
           </div>
         </div>
@@ -62,23 +121,22 @@ export default function LandingPage() {
       <section className="container mx-auto px-4 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="inline-block px-4 py-2 rounded-full bg-muted border border-border text-sm font-medium">
-            Built for global teams
+            {t('hero.badge')}
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance">
-            Build once.
+            {t('hero.title_line1')}
             <br />
-            <span className="text-muted-foreground">Ship everywhere.</span>
+            <span className="text-muted-foreground">{t('hero.title_line2')}</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance">
-            The workspace platform with translation and localization built in.
-            Create, collaborate, and scale your content globally.
+            {t('hero.subtitle')}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Button asChild size="lg" className="text-lg px-8">
-              <Link href="/auth/sign-up">Start building free</Link>
+              <Link href={`/${locale}/auth/sign-up`}>{t('hero.cta_primary')}</Link>
             </Button>
             <Button
               asChild
@@ -86,12 +144,12 @@ export default function LandingPage() {
               variant="outline"
               className="text-lg px-8 bg-transparent"
             >
-              <Link href="#how-it-works">See how it works</Link>
+              <Link href="#how-it-works">{t('hero.cta_secondary')}</Link>
             </Button>
           </div>
 
           <p className="text-sm text-muted-foreground">
-            No credit card required • Free forever for individuals
+            {t('hero.no_credit_card')}
           </p>
         </div>
       </section>
@@ -100,53 +158,15 @@ export default function LandingPage() {
       <section id="features" className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Everything you need to go global
+            {t('features.heading')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Built-in features that help you create, translate, and manage
-            content across languages and markets.
+            {t('features.subheading')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              icon: Languages,
-              title: "Lingo.dev Ready",
-              description:
-                "Seamlessly integrate with Lingo.dev for powerful translation workflows and glossary management.",
-            },
-            {
-              icon: Globe2,
-              title: "Multi-language Support",
-              description:
-                "Create content in one language and distribute it globally with built-in translation tools.",
-            },
-            {
-              icon: Zap,
-              title: "Real-time Collaboration",
-              description:
-                "Work together with your team in real-time, with changes synced instantly across all users.",
-            },
-            {
-              icon: Workflow,
-              title: "Rich Text Editor",
-              description:
-                "Powerful block-based editor with support for text, images, code, and custom content blocks.",
-            },
-            {
-              icon: Users,
-              title: "Team Workspaces",
-              description:
-                "Organize your content in workspaces, collaborate with team members, and manage permissions.",
-            },
-            {
-              icon: Shield,
-              title: "Secure & Private",
-              description:
-                "Enterprise-grade security with row-level access control and encrypted data storage.",
-            },
-          ].map((feature) => (
+          {features.map((feature) => (
             <div
               key={feature.title}
               className="p-6 rounded-lg border border-border bg-card hover:shadow-lg transition-shadow"
@@ -167,34 +187,15 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Simple, powerful workflow
+              {t('how_it_works.heading')}
             </h2>
             <p className="text-lg text-muted-foreground">
-              From content creation to global distribution in three easy steps
+              {t('how_it_works.subheading')}
             </p>
           </div>
 
           <div className="space-y-12">
-            {[
-              {
-                step: "01",
-                title: "Create your workspace",
-                description:
-                  "Set up your workspace and invite your team. Organize your content with flexible document structures.",
-              },
-              {
-                step: "02",
-                title: "Build your content",
-                description:
-                  "Use our rich editor to create documents with text, images, code blocks, and more. Structure ready for translation.",
-              },
-              {
-                step: "03",
-                title: "Go global with Lingo.dev",
-                description:
-                  "Add Lingo.dev integration to enable translation workflows, glossary management, and multi-language distribution.",
-              },
-            ].map((item) => (
+            {steps.map((item) => (
               <div key={item.step} className="flex gap-6">
                 <div className="flex-shrink-0">
                   <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold">
@@ -217,14 +218,14 @@ export default function LandingPage() {
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-3xl mx-auto text-center space-y-8 p-12 rounded-2xl border border-border bg-card shadow-xl">
           <h2 className="text-3xl md:text-5xl font-bold text-balance">
-            Ready to build for a global audience?
+            {t('cta.heading')}
           </h2>
           <p className="text-xl text-muted-foreground">
-            Join teams using Z to create and distribute content worldwide.
+            {t('cta.subheading')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" className="text-lg px-8">
-              <Link href="/auth/sign-up">Start for free</Link>
+              <Link href={`/${locale}/auth/sign-up`}>{t('cta.button')}</Link>
             </Button>
           </div>
         </div>
@@ -237,24 +238,24 @@ export default function LandingPage() {
             <div className="flex items-center gap-3">
               <Image
                 src="/z-logo.png"
-                alt="Z Logo"
+                alt={t('footer.logo_alt')}
                 width={32}
                 height={32}
                 className="object-contain"
               />
               <span className="text-sm text-muted-foreground">
-                © 2026 Z. Built for global teams.
+                {t('footer.copyright')}
               </span>
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <Link href="#" className="hover:text-primary transition-colors">
-                Privacy
+                {t('footer.privacy')}
               </Link>
               <Link href="#" className="hover:text-primary transition-colors">
-                Terms
+                {t('footer.terms')}
               </Link>
               <Link href="#" className="hover:text-primary transition-colors">
-                Contact
+                {t('footer.contact')}
               </Link>
             </div>
           </div>

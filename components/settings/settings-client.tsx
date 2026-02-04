@@ -4,10 +4,12 @@ import React from "react"
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
+import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -24,7 +26,6 @@ import type { User as SupabaseUser } from '@supabase/supabase-js'
 interface Profile {
   id: string
   full_name: string | null
-  preferred_language: string | null
 }
 
 interface SettingsClientProps {
@@ -32,23 +33,11 @@ interface SettingsClientProps {
   profile: Profile | null
 }
 
-const LANGUAGES = [
-  { code: 'en', name: 'English' },
-  { code: 'es', name: 'Spanish' },
-  { code: 'fr', name: 'French' },
-  { code: 'de', name: 'German' },
-  { code: 'it', name: 'Italian' },
-  { code: 'pt', name: 'Portuguese' },
-  { code: 'zh', name: 'Chinese' },
-  { code: 'ja', name: 'Japanese' },
-  { code: 'ko', name: 'Korean' },
-  { code: 'ar', name: 'Arabic' },
-]
 
 export function SettingsClient({ user, profile }: SettingsClientProps) {
   const router = useRouter()
+  const locale = useLocale()
   const [displayName, setDisplayName] = useState(profile?.full_name || user.user_metadata?.full_name || '')
-  const [preferredLanguage, setPreferredLanguage] = useState(profile?.preferred_language || 'en')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
@@ -59,12 +48,11 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
 
     try {
       const supabase = createClient()
-      
+
       const { error } = await supabase
         .from('profiles')
         .update({
           full_name: displayName,
-          preferred_language: preferredLanguage,
         })
         .eq('id', user.id)
 
@@ -90,22 +78,25 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
 
       {/* Header */}
       <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center gap-4">
-          <Link href="/dashboard">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Image
-              src="/z-logo.png"
-              alt="Z Logo"
-              width={40}
-              height={40}
-              className="object-contain"
-            />
-            <span className="text-2xl font-bold">Settings</span>
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Link href={`/${locale}/dashboard`}>
+              <Button variant="ghost" size="icon">
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+            </Link>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/z-logo.png"
+                alt="Z Logo"
+                width={40}
+                height={40}
+                className="object-contain"
+              />
+              <span className="text-2xl font-bold">Settings</span>
+            </div>
           </div>
+          <LocaleSwitcher />
         </div>
       </header>
 
@@ -145,24 +136,6 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="language">Preferred Language</Label>
-                  <Select value={preferredLanguage} onValueChange={setPreferredLanguage}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select language" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {LANGUAGES.map((lang) => (
-                        <SelectItem key={lang.code} value={lang.code}>
-                          {lang.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <p className="text-xs text-muted-foreground">
-                    This will be your default language for new documents
-                  </p>
-                </div>
 
                 {message && (
                   <p className={`text-sm ${message.includes('Error') ? 'text-destructive' : 'text-green-600'}`}>

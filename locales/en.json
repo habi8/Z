@@ -1,0 +1,83 @@
+{
+    "metadata": {
+        "title": "Z - Global Workspace Platform",
+        "description": "Build, collaborate, and scale your content globally with Z - the workspace platform with built-in translation and localization."
+    },
+    "header": {
+        "logo_alt": "Z Logo",
+        "workspace": "Z Workspace",
+        "features": "Features",
+        "how_it_works": "How it works",
+        "pricing": "Pricing",
+        "sign_in": "Sign in",
+        "get_started": "Get started"
+    },
+    "hero": {
+        "badge": "Built for global teams",
+        "title_line1": "Build once.",
+        "title_line2": "Ship everywhere.",
+        "subtitle": "The workspace platform with translation and localization built in. Create, collaborate, and scale your content globally.",
+        "cta_primary": "Start building free",
+        "cta_secondary": "See how it works",
+        "no_credit_card": "No credit card required • Free forever for individuals"
+    },
+    "features": {
+        "heading": "Everything you need to go global",
+        "subheading": "Built-in features that help you create, translate, and manage content across languages and markets.",
+        "lingo_ready": {
+            "title": "Lingo.dev Ready",
+            "description": "Seamlessly integrate with Lingo.dev for powerful translation workflows and glossary management."
+        },
+        "multi_language": {
+            "title": "Multi-language Support",
+            "description": "Create content in one language and distribute it globally with built-in translation tools."
+        },
+        "real_time": {
+            "title": "Real-time Collaboration",
+            "description": "Work together with your team in real-time, with changes synced instantly across all users."
+        },
+        "rich_editor": {
+            "title": "Rich Text Editor",
+            "description": "Powerful block-based editor with support for text, images, code, and custom content blocks."
+        },
+        "team_workspaces": {
+            "title": "Team Workspaces",
+            "description": "Organize your content in workspaces, collaborate with team members, and manage permissions."
+        },
+        "secure": {
+            "title": "Secure & Private",
+            "description": "Enterprise-grade security with row-level access control and encrypted data storage."
+        }
+    },
+    "how_it_works": {
+        "heading": "Simple, powerful workflow",
+        "subheading": "From content creation to global distribution in three easy steps",
+        "step1": {
+            "number": "01",
+            "title": "Create your workspace",
+            "description": "Set up your workspace and invite your team. Organize your content with flexible document structures."
+        },
+        "step2": {
+            "number": "02",
+            "title": "Build your content",
+            "description": "Use our rich editor to create documents with text, images, code blocks, and more. Structure ready for translation."
+        },
+        "step3": {
+            "number": "03",
+            "title": "Go global with Lingo.dev",
+            "description": "Add Lingo.dev integration to enable translation workflows, glossary management, and multi-language distribution."
+        }
+    },
+    "cta": {
+        "heading": "Ready to build for a global audience?",
+        "subheading": "Join teams using Z to create and distribute content worldwide.",
+        "button": "Start for free"
+    },
+    "footer": {
+        "logo_alt": "Z Logo",
+        "copyright": "© 2026 Z. Built for global teams.",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "contact": "Contact"
+    }
+}

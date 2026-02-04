@@ -4,9 +4,11 @@ import React from "react"
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
+import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -43,6 +45,7 @@ interface DashboardClientProps {
 
 export function DashboardClient({ user, initialWorkspaces }: DashboardClientProps) {
   const router = useRouter()
+  const locale = useLocale()
   const [workspaces, setWorkspaces] = useState<Workspace[]>(initialWorkspaces)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
   const [newWorkspaceName, setNewWorkspaceName] = useState('')
@@ -52,7 +55,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
   const handleSignOut = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
-    router.push('/auth/login')
+    router.push(`/${locale}/auth/login`)
     router.refresh()
   }
 
@@ -108,30 +111,33 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
             <span className="text-2xl font-bold">Z</span>
           </div>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <User className="h-5 w-5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium">{user.user_metadata?.full_name || 'User'}</p>
-                  <p className="text-xs text-muted-foreground">{user.email}</p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => router.push('/settings')}>
-                <Settings className="mr-2 h-4 w-4" />
-                Settings
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleSignOut}>
-                <LogOut className="mr-2 h-4 w-4" />
-                Sign out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="flex items-center gap-3">
+            <LocaleSwitcher />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <User className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel>
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium">{user.user_metadata?.full_name || 'User'}</p>
+                    <p className="text-xs text-muted-foreground">{user.email}</p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => router.push(`/${locale}/settings`)}>
+                  <Settings className="mr-2 h-4 w-4" />
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </header>
 
@@ -223,7 +229,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                 <Card
                   key={workspace.id}
                   className="hover:shadow-lg transition-all cursor-pointer border-border group"
-                  onClick={() => router.push(`/workspace/${workspace.id}`)}
+                  onClick={() => router.push(`/${locale}/workspace/${workspace.id}`)}
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
