@@ -142,10 +142,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
               </div>
             )}
 
-            <Badge variant="secondary" className="gap-1">
-              <Languages className="h-3 w-3" />
-              <span className="uppercase text-xs">{document.source_language}</span>
-            </Badge>
+
 
             <Button onClick={handleSave} disabled={isSaving} className="gap-2">
               <Save className="h-4 w-4" />
@@ -154,7 +151,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
+                <Button variant="ghost" size="icon" className="rounded-full" suppressHydrationWarning>
                   <User className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
@@ -188,26 +185,19 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
       </header>
 
       {/* Editor */}
-      <main className="flex-1 container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto space-y-6">
+      <main className="flex-1 container mx-auto px-4 py-12 max-w-5xl">
+        <div className="max-w-4xl mx-auto space-y-8">
           {/* Title */}
-          <Input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder={t('title_placeholder')}
-            className="text-4xl font-bold border-none focus-visible:ring-0 px-0 h-auto py-2"
-          />
-
-          {/* Lingo.dev Integration Notice */}
-          <div className="bg-muted/50 border border-border rounded-lg p-4 space-y-2">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <Languages className="h-4 w-4 text-primary" />
-              <span>{t('translation_ready')}</span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              {t('lingo_description')}
-            </p>
+          <div className="group relative">
+            <Input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder={t('title_placeholder')}
+              className="!text-5xl !font-black tracking-tight border-transparent px-2 !h-auto py-4 bg-transparent placeholder:text-muted-foreground/30 focus-visible:ring-2 focus-visible:border-input hover:bg-muted/30 transition-all rounded-md"
+            />
           </div>
+
+
 
           {/* Content Editor */}
           <div className="min-h-[600px]">

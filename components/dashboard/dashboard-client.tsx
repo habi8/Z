@@ -93,14 +93,14 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Animated background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/4 right-1/3 w-[500px] h-[500px] bg-muted/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-background">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.05]" />
+        <div className="absolute top-1/4 right-1/3 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       {/* Header */}
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border/50 bg-background/60 backdrop-blur-xl sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Image
@@ -117,7 +117,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
             <LocaleSwitcher />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
+                <Button variant="ghost" size="icon" className="rounded-full" suppressHydrationWarning>
                   <User className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
@@ -229,9 +229,10 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
               {workspaces.map((workspace) => (
                 <Card
                   key={workspace.id}
-                  className="hover:shadow-lg transition-all cursor-pointer border-border group"
+                  className="hover:shadow-xl transition-all duration-300 cursor-pointer border-border/50 bg-card/50 hover:bg-card group relative overflow-hidden"
                   onClick={() => router.push(`/${locale}/workspace/${workspace.id}`)}
                 >
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">

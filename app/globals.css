@@ -143,76 +143,85 @@
   animation: fade-in-up 0.8s ease-out forwards;
 }
 
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
 .delay-200 {
   animation-delay: 200ms;
 }
 
 .delay-400 {
   animation-delay: 400ms;
-}/* Basic styles for Tiptap editor content to mimic Tailwind Typography */
+}
+
+/* Basic styles for Tiptap editor content to mimic Tailwind Typography */
 .tiptap {
-    outline: none;
+  outline: none;
 }
 
 .tiptap p {
-    margin-top: 1.25em;
-    margin-bottom: 1.25em;
-    line-height: 1.6;
+  margin-top: 0.2em !important;
+  margin-bottom: 0.2em !important;
+  line-height: 1.3 !important;
 }
 
 .tiptap h1 {
-    margin-top: 0;
-    margin-bottom: 0.8em;
-    font-size: 2.25em;
-    font-weight: 800;
-    line-height: 1.1;
+  margin-top: 0;
+  margin-bottom: 0.8em;
+  font-size: 2.25em;
+  font-weight: 800;
+  line-height: 1.1;
 }
 
 .tiptap h2 {
-    margin-top: 1.5em;
-    margin-bottom: 0.8em;
-    font-size: 1.5em;
-    font-weight: 700;
-    line-height: 1.3;
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .tiptap h3 {
-    margin-top: 1.5em;
-    margin-bottom: 0.6em;
-    font-size: 1.25em;
-    font-weight: 600;
-    line-height: 1.6;
+  margin-top: 1.5em;
+  margin-bottom: 0.6em;
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.6;
 }
 
 .tiptap ul,
 .tiptap ol {
-    margin-top: 1.25em;
-    margin-bottom: 1.25em;
-    padding-left: 1.625em;
-    list-style-type: disc;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+  list-style-type: disc;
 }
 
 .tiptap ol {
-    list-style-type: decimal;
+  list-style-type: decimal;
 }
 
 .tiptap ul li,
 .tiptap ol li {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    padding-left: 0.375em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-left: 0.375em;
 }
 
 .tiptap img {
-    margin-top: 2em;
-    margin-bottom: 2em;
-    border-radius: 0.5rem;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 0.5rem;
 }
 
 .tiptap .is-editor-empty:first-child::before {
-    color: #adb5bd;
-    content: attr(data-placeholder);
-    float: left;
-    height: 0;
-    pointer-events: none;
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
 }

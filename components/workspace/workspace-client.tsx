@@ -137,13 +137,14 @@ export function WorkspaceClient({
   return (
     <div className="min-h-screen bg-background">
       {/* Animated background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/4 right-1/3 w-[500px] h-[500px] bg-muted/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-background">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.05]" />
+        <div className="absolute top-1/4 right-1/3 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       {/* Header */}
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border/50 bg-background/60 backdrop-blur-xl sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button
@@ -172,37 +173,39 @@ export function WorkspaceClient({
             </div>
           </div>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <User className="h-5 w-5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium">
-                    {user.user_metadata?.full_name || 'User'}
-                  </p>
-                  <p className="text-xs text-muted-foreground">{user.email}</p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => router.push(`/${locale}/dashboard`)}>
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                {t('back_to_dashboard')}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push(`/${locale}/settings`)}>
-                <Settings className="mr-2 h-4 w-4" />
-                {th('user_menu.settings')}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleSignOut}>
-                <LogOut className="mr-2 h-4 w-4" />
-                {th('user_menu.sign_out')}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <LocaleSwitcher />
+          <div className="flex items-center gap-3">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full" suppressHydrationWarning>
+                  <User className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel>
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium">
+                      {user.user_metadata?.full_name || 'User'}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{user.email}</p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => router.push(`/${locale}/dashboard`)}>
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  {t('back_to_dashboard')}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push(`/${locale}/settings`)}>
+                  <Settings className="mr-2 h-4 w-4" />
+                  {th('user_menu.settings')}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  {th('user_menu.sign_out')}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <LocaleSwitcher />
+          </div>
         </div>
       </header>
 
@@ -261,22 +264,7 @@ export function WorkspaceClient({
             </Dialog>
           </div>
 
-          {/* Lingo.dev Integration Notice */}
-          <Card className="border-primary/50 bg-primary/5">
-            <CardHeader>
-              <div className="flex items-start gap-3">
-                <Languages className="h-5 w-5 text-primary mt-1" />
-                <div>
-                  <CardTitle className="text-lg">Lingo.dev Integration Ready</CardTitle>
-                  <CardDescription>
-                    This workspace is structured for Lingo.dev integration. Add Lingo.dev locally
-                    to enable translation workflows, glossary management, and multi-language
-                    distribution.
-                  </CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-          </Card>
+
 
           {/* Documents Grid */}
           {documents.length === 0 ? (
@@ -298,9 +286,10 @@ export function WorkspaceClient({
               {documents.map((doc) => (
                 <Card
                   key={doc.id}
-                  className="hover:shadow-lg transition-all cursor-pointer border-border group"
+                  className="hover:shadow-xl transition-all duration-300 cursor-pointer border-border/50 bg-card/50 hover:bg-card group relative overflow-hidden"
                   onClick={() => router.push(`/${locale}/document/${doc.id}`)}
                 >
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3 flex-1 min-w-0">
