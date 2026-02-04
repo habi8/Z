@@ -134,7 +134,9 @@
         "no_workspaces_description": "Crea tu primer espacio de trabajo para comenzar a organizar tus documentos y colaborar con tu equipo.",
         "create_first": "Crea tu primer espacio de trabajo",
         "docs_count": "{count} docs",
-        "created_at": "Creado el {date}"
+        "created_at": "Creado el {date}",
+        "confirm_delete": "¿Estás seguro de que quieres eliminar este espacio de trabajo? Esta acción no se puede deshacer.",
+        "delete_failed": "Error al eliminar el espacio de trabajo"
     },
     "workspace": {
         "title": "Documentos",

@@ -28,7 +28,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Plus, FileText, Settings, LogOut, Folder, User } from 'lucide-react'
+import { Plus, FileText, Settings, LogOut, Folder, User, MoreHorizontal, Trash, Share, Send } from 'lucide-react'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 
 interface Workspace {
@@ -50,6 +50,9 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
   const th = useTranslations('header')
   const [workspaces, setWorkspaces] = useState<Workspace[]>(initialWorkspaces)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
+  const [isShareDialogOpen, setIsShareDialogOpen] = useState(false)
+  const [selectedWorkspace, setSelectedWorkspace] = useState<Workspace | null>(null)
+  const [inviteEmail, setInviteEmail] = useState('')
   const [newWorkspaceName, setNewWorkspaceName] = useState('')
   const [newWorkspaceDescription, setNewWorkspaceDescription] = useState('')
   const [loading, setLoading] = useState(false)
@@ -89,6 +92,42 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleDeleteWorkspace = async (workspaceId: string) => {
+    if (!confirm(t('confirm_delete'))) return
+
+    try {
+      const supabase = createClient()
+      const { error } = await supabase
+        .from('workspaces')
+        .delete()
+        .eq('id', workspaceId)
+
+      if (error) throw error
+
+      setWorkspaces(workspaces.filter(w => w.id !== workspaceId))
+    } catch (error: any) {
+      console.error('Error deleting workspace:', error)
+      alert(t('delete_failed'))
+    }
+  }
+
+  const handleShareWorkspace = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    // Mock invite sending
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    setLoading(false)
+    setIsShareDialogOpen(false)
+    setInviteEmail('')
+    alert(`Invite sent to ${inviteEmail}`)
+  }
+
+  const openShareDialog = (workspace: Workspace, e: React.MouseEvent) => {
+    e.stopPropagation()
+    setSelectedWorkspace(workspace)
+    setIsShareDialogOpen(true)
   }
 
   return (
@@ -207,7 +246,46 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                 </form>
               </DialogContent>
             </Dialog>
-          </div>
+          </div> {/* This closes the div containing the welcome section and create dialog */}
+
+          <Dialog open={isShareDialogOpen} onOpenChange={setIsShareDialogOpen}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Share Workspace</DialogTitle>
+                <DialogDescription>
+                  Invite collaborators to <strong>{selectedWorkspace?.name}</strong> via email.
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleShareWorkspace} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="colleague@company.com"
+                    value={inviteEmail}
+                    onChange={(e) => setInviteEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="flex justify-end gap-3">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setIsShareDialogOpen(false)}
+                    disabled={loading}
+                  >
+                    Cancel
+                  </Button>
+                  <Button type="submit" disabled={loading} className="gap-2">
+                    <Send className="h-4 w-4" />
+                    {loading ? 'Sending...' : 'Send Invite'}
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
+
 
           {/* Workspaces Grid */}
           {workspaces.length === 0 ? (
@@ -240,17 +318,35 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                           <Folder className="h-6 w-6 text-primary" />
                         </div>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="opacity-0 group-hover:opacity-100 transition-opacity"
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          // Handle settings
-                        }}
-                      >
-                        <Settings className="h-4 w-4" />
-                      </Button>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="opacity-0 group-hover:opacity-100 transition-opacity"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem onClick={(e) => openShareDialog(workspace, e)}>
+                            <Share className="mr-2 h-4 w-4" />
+                            Share Workspace
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              handleDeleteWorkspace(workspace.id)
+                            }}
+                            className="text-destructive focus:text-destructive"
+                          >
+                            <Trash className="mr-2 h-4 w-4" />
+                            Delete Workspace
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     </div>
                     <CardTitle className="mt-4">{workspace.name}</CardTitle>
                     {workspace.description && (
