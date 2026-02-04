@@ -1,30 +1,110 @@
-# Build Z SaaS
+# Z — Global-Ready Notion-Lite Workspace
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+Z is a lightweight, Notion-inspired collaborative workspace application built with a strong focus on internationalization, localization correctness, and scalable SaaS architecture.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/new215531-8615s-projects/v0-build-z-saa-s)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/sWYSiF7xpmv)
+Unlike typical productivity apps that treat localization as an afterthought, Z is designed to be global-ready from day one by combining runtime i18n with compile-time localization enforcement using Lingo.dev.
 
-## Overview
+## Introduction
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+Z allows users to create workspaces, manage pages, and collaboratively edit documents through a minimal block editor. Team members can be invited via email using a workspace link and collaborate seamlessly.
 
-## Deployment
+The core goal of Z is to demonstrate how modern developer tooling can turn localization from a manual, error-prone task into an automated, enforceable part of the development workflow.
 
-Your project is live at:
+## Key Features
 
-**[https://vercel.com/new215531-8615s-projects/v0-build-z-saa-s](https://vercel.com/new215531-8615s-projects/v0-build-z-saa-s)**
+- Email-based authentication using Supabase
+- Workspace creation, renaming, and deletion
+- Shareable workspace invite links for collaboration
+- Page management inside workspaces
+- Minimal block editor (Text and Heading blocks)
+- Runtime language switching
+- Localization-safe architecture with compile-time guarantees
 
-## Build your app
+## Tech Stack
 
-Continue building your app on:
+- Next.js (App Router)
+- React
+- TypeScript (strict)
+- Supabase (Auth + Database)
+- Runtime i18n (next-intl)
+- Lingo.dev (CLI + Compiler)
+- Tailwind CSS
 
-**[https://v0.app/chat/sWYSiF7xpmv](https://v0.app/chat/sWYSiF7xpmv)**
+## Project Structure
 
-## How It Works
+src/
+├─ app/
+│  ├─ (auth)/
+│  ├─ dashboard/
+│  ├─ workspace/
+│  └─ page.tsx
+├─ components/
+│  ├─ editor/
+│  ├─ layout/
+│  └─ ui/
+├─ lib/
+│  ├─ supabase/
+│  ├─ i18n/
+│  └─ utils.ts
+├─ messages/
+│  ├─ en.json
+│  └─ bn.json
+└─ styles/
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Internationalization vs Localization
+
+Z clearly separates responsibilities:
+
+- Runtime i18n handles language switching and rendering translated strings.
+- Localization correctness is enforced at compile time using Lingo.dev.
+
+All user-facing text is referenced through translation keys. No hardcoded UI strings are allowed.
+
+## Lingo.dev Integration
+
+Lingo.dev is used to enforce localization as infrastructure, not as a manual process.
+
+Lingo.dev CLI
+- Extracts user-facing strings from the codebase
+- Keeps translation files in sync
+- Supports adding new languages safely
+
+Lingo.dev Compiler
+- Runs at build time
+- Fails the build if translations are missing or invalid
+- Prevents hardcoded strings
+- Detects unused translation keys
+
+CI/CD Readiness
+- Localization checks are designed to run in CI
+- Prevents localization regressions before deployment
+
+Lingo.dev complements runtime i18n by providing compile-time guarantees that the application is fully and correctly localized.
+
+## Adding New Languages
+
+Z starts with two languages, but the architecture supports adding more languages at any time.
+
+When a new language is added:
+- Translation files are generated and validated
+- All keys are guaranteed to exist
+- No UI refactoring is required
+
+## Why This Project
+
+Z demonstrates:
+- Real-world SaaS collaboration patterns
+- Correct separation of runtime and compile-time responsibilities
+- Scalable localization architecture
+- Strong execution with controlled scope
+
+This project shows how global-ready applications should be built using modern developer tooling.
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies
+3. Configure Supabase environment variables
+4. Run the development server
+5. Optionally install and run Lingo.dev locally to enforce localization checks
+
