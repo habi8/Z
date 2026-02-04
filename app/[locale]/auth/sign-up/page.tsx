@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useLocale, useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -15,6 +16,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 
 export default function SignUpPage() {
   const router = useRouter()
+  const locale = useLocale()
+  const t = useTranslations('auth.signup')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
@@ -34,7 +37,7 @@ export default function SignUpPage() {
         options: {
           emailRedirectTo:
             process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ||
-            `${window.location.origin}/dashboard`,
+            `${window.location.origin}/${locale}/dashboard`,
           data: {
             full_name: fullName,
           },
@@ -43,9 +46,9 @@ export default function SignUpPage() {
 
       if (error) throw error
 
-      router.push('/auth/sign-up-success')
+      router.push(`/${locale}/auth/sign-up-success`)
     } catch (err: any) {
-      setError(err.message || 'Failed to create account')
+      setError(err.message || t('error_default'))
     } finally {
       setLoading(false)
     }
@@ -67,10 +70,10 @@ export default function SignUpPage() {
         <Card className="border-border shadow-lg">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">
-              Create your account
+              {t('title')}
             </CardTitle>
             <CardDescription className="text-center">
-              Start building your global workspace
+              {t('subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -82,7 +85,7 @@ export default function SignUpPage() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="fullName">Full name</Label>
+                <Label htmlFor="fullName">{t('full_name')}</Label>
                 <Input
                   id="fullName"
                   type="text"
@@ -95,7 +98,7 @@ export default function SignUpPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('email')}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -108,7 +111,7 @@ export default function SignUpPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('password')}</Label>
                 <Input
                   id="password"
                   type="password"
@@ -120,7 +123,7 @@ export default function SignUpPage() {
                   className="border-border"
                 />
                 <p className="text-xs text-muted-foreground">
-                  Must be at least 6 characters
+                  {t('password_hint', { min: 6 })}
                 </p>
               </div>
 
@@ -129,16 +132,16 @@ export default function SignUpPage() {
                 className="w-full"
                 disabled={loading}
               >
-                {loading ? 'Creating account...' : 'Create account'}
+                {loading ? t('submitting') : t('submit')}
               </Button>
 
               <div className="text-center text-sm text-muted-foreground">
-                Already have an account?{' '}
+                {t('has_account')}
                 <Link
-                  href="/auth/login"
+                  href={`/${locale}/auth/login`}
                   className="text-primary hover:underline font-medium"
                 >
-                  Sign in
+                  {t('sign_in')}
                 </Link>
               </div>
             </form>

@@ -4,10 +4,12 @@ import React from "react"
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
+import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -69,6 +71,9 @@ export function WorkspaceClient({
   initialDocuments,
 }: WorkspaceClientProps) {
   const router = useRouter()
+  const locale = useLocale()
+  const t = useTranslations('workspace')
+  const th = useTranslations('header')
   const [documents, setDocuments] = useState<Document[]>(initialDocuments)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
   const [newDocTitle, setNewDocTitle] = useState('')
@@ -77,7 +82,7 @@ export function WorkspaceClient({
   const handleSignOut = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
-    router.push('/auth/login')
+    router.push(`/${locale}/auth/login`)
     router.refresh()
   }
 
@@ -114,7 +119,7 @@ export function WorkspaceClient({
   }
 
   const handleDeleteDocument = async (docId: string) => {
-    if (!confirm('Are you sure you want to delete this document?')) return
+    if (!confirm(t('delete_confirm'))) return
 
     try {
       const supabase = createClient()
@@ -144,7 +149,7 @@ export function WorkspaceClient({
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => router.push('/dashboard')}
+              onClick={() => router.push(`/${locale}/dashboard`)}
             >
               <ArrowLeft className="h-5 w-5" />
             </Button>
@@ -183,20 +188,21 @@ export function WorkspaceClient({
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => router.push('/dashboard')}>
+              <DropdownMenuItem onClick={() => router.push(`/${locale}/dashboard`)}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Dashboard
+                {t('back_to_dashboard')}
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push(`/${locale}/settings`)}>
                 <Settings className="mr-2 h-4 w-4" />
-                Settings
+                {th('user_menu.settings')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleSignOut}>
                 <LogOut className="mr-2 h-4 w-4" />
-                Sign out
+                {th('user_menu.sign_out')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          <LocaleSwitcher />
         </div>
       </header>
 
@@ -206,9 +212,9 @@ export function WorkspaceClient({
           {/* Actions Bar */}
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-2xl font-bold">Documents</h2>
+              <h2 className="text-2xl font-bold">{t('title')}</h2>
               <p className="text-muted-foreground">
-                {documents.length} {documents.length === 1 ? 'document' : 'documents'}
+                {t('subtitle', { count: documents.length })}
               </p>
             </div>
 
@@ -216,22 +222,22 @@ export function WorkspaceClient({
               <DialogTrigger asChild>
                 <Button size="lg" className="gap-2">
                   <Plus className="h-4 w-4" />
-                  New Document
+                  {t('new_document')}
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Create new document</DialogTitle>
+                  <DialogTitle>{t('create_title')}</DialogTitle>
                   <DialogDescription>
-                    Start writing your content. You can add translations later.
+                    {t('create_description')}
                   </DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleCreateDocument} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="title">Document title</Label>
+                    <Label htmlFor="title">{t('doc_title')}</Label>
                     <Input
                       id="title"
-                      placeholder="Untitled Document"
+                      placeholder={t('title_placeholder')}
                       value={newDocTitle}
                       onChange={(e) => setNewDocTitle(e.target.value)}
                       required
@@ -244,10 +250,10 @@ export function WorkspaceClient({
                       onClick={() => setIsCreateDialogOpen(false)}
                       disabled={loading}
                     >
-                      Cancel
+                      {t('cancel')}
                     </Button>
                     <Button type="submit" disabled={loading}>
-                      {loading ? 'Creating...' : 'Create document'}
+                      {loading ? t('creating') : t('create')}
                     </Button>
                   </div>
                 </form>
@@ -277,14 +283,13 @@ export function WorkspaceClient({
             <Card className="border-dashed">
               <CardContent className="flex flex-col items-center justify-center py-16 text-center">
                 <FileText className="h-16 w-16 text-muted-foreground mb-4" />
-                <h3 className="text-xl font-semibold mb-2">No documents yet</h3>
+                <h3 className="text-xl font-semibold mb-2">{t('no_documents')}</h3>
                 <p className="text-muted-foreground mb-6 max-w-sm">
-                  Create your first document to start writing content that's ready for global
-                  distribution.
+                  {t('no_documents_description')}
                 </p>
                 <Button onClick={() => setIsCreateDialogOpen(true)} className="gap-2">
                   <Plus className="h-4 w-4" />
-                  Create your first document
+                  {t('create_first')}
                 </Button>
               </CardContent>
             </Card>
@@ -294,7 +299,7 @@ export function WorkspaceClient({
                 <Card
                   key={doc.id}
                   className="hover:shadow-lg transition-all cursor-pointer border-border group"
-                  onClick={() => router.push(`/document/${doc.id}`)}
+                  onClick={() => router.push(`/${locale}/document/${doc.id}`)}
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -323,14 +328,14 @@ export function WorkspaceClient({
                             }}
                           >
                             <Trash2 className="mr-2 h-4 w-4" />
-                            Delete
+                            {t('delete')}
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </div>
                     <CardTitle className="mt-4 line-clamp-2">{doc.title}</CardTitle>
                     <CardDescription className="line-clamp-2">
-                      Last updated {new Date(doc.updated_at).toLocaleDateString()}
+                      {t('last_updated', { date: new Date(doc.updated_at).toLocaleDateString() })}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>

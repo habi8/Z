@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
+import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import {
@@ -49,6 +51,9 @@ interface DocumentEditorProps {
 
 export function DocumentEditor({ user, document: initialDocument }: DocumentEditorProps) {
   const router = useRouter()
+  const locale = useLocale()
+  const t = useTranslations('document')
+  const th = useTranslations('header')
   const [document, setDocument] = useState(initialDocument)
   const [title, setTitle] = useState(initialDocument.title)
   const [content, setContent] = useState(
@@ -60,7 +65,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
   const handleSignOut = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
-    router.push('/auth/login')
+    router.push(`/${locale}/auth/login`)
     router.refresh()
   }
 
@@ -83,7 +88,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
       console.log('[v0] Document saved successfully')
     } catch (error: any) {
       console.error('[v0] Error saving document:', error)
-      alert('Failed to save document')
+      alert(t('save_failed'))
     } finally {
       setIsSaving(false)
     }
@@ -109,7 +114,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => router.push(`/workspace/${document.workspace_id}`)}
+              onClick={() => router.push(`/${locale}/workspace/${document.workspace_id}`)}
             >
               <ArrowLeft className="h-5 w-5" />
             </Button>
@@ -133,7 +138,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
             {lastSaved && (
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Clock className="h-4 w-4" />
-                <span>Saved {lastSaved.toLocaleTimeString()}</span>
+                <span>{t('saved_at', { time: lastSaved.toLocaleTimeString() })}</span>
               </div>
             )}
 
@@ -144,7 +149,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
 
             <Button onClick={handleSave} disabled={isSaving} className="gap-2">
               <Save className="h-4 w-4" />
-              {isSaving ? 'Saving...' : 'Save'}
+              {isSaving ? t('saving') : t('save')}
             </Button>
 
             <DropdownMenu>
@@ -163,20 +168,21 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => router.push('/dashboard')}>
+                <DropdownMenuItem onClick={() => router.push(`/${locale}/dashboard`)}>
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Dashboard
+                  {th('how_it_works')}
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push(`/${locale}/settings`)}>
                   <Settings className="mr-2 h-4 w-4" />
-                  Settings
+                  {th('user_menu.settings')}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleSignOut}>
                   <LogOut className="mr-2 h-4 w-4" />
-                  Sign out
+                  {th('user_menu.sign_out')}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            <LocaleSwitcher />
           </div>
         </div>
       </header>
@@ -188,7 +194,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
           <Input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Untitled Document"
+            placeholder={t('title_placeholder')}
             className="text-4xl font-bold border-none focus-visible:ring-0 px-0 h-auto py-2"
           />
 
@@ -196,11 +202,10 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
           <div className="bg-muted/50 border border-border rounded-lg p-4 space-y-2">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Languages className="h-4 w-4 text-primary" />
-              <span>Translation Ready</span>
+              <span>{t('translation_ready')}</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              This document is structured for Lingo.dev integration. Add Lingo.dev locally to
-              enable translation workflows, context management, and multi-language variants.
+              {t('lingo_description')}
             </p>
           </div>
 
@@ -209,7 +214,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
             <Textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Start writing your content here..."
+              placeholder={t('editor_placeholder')}
               className="min-h-[600px] text-lg leading-relaxed border-none focus-visible:ring-0 px-0 resize-none"
             />
           </div>
@@ -217,9 +222,9 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
           {/* Footer Info */}
           <div className="flex items-center justify-between text-sm text-muted-foreground pt-8 border-t border-border">
             <div>
-              Created {new Date(document.created_at).toLocaleDateString()}
+              {t('created_at', { date: new Date(document.created_at).toLocaleDateString() })}
             </div>
-            <div>{content.split(/\s+/).filter(Boolean).length} words</div>
+            <div>{t('words', { count: content.split(/\s+/).filter(Boolean).length })}</div>
           </div>
         </div>
       </main>

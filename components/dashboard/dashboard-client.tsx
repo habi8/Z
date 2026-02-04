@@ -4,7 +4,7 @@ import React from "react"
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
@@ -46,6 +46,8 @@ interface DashboardClientProps {
 export function DashboardClient({ user, initialWorkspaces }: DashboardClientProps) {
   const router = useRouter()
   const locale = useLocale()
+  const t = useTranslations('dashboard')
+  const th = useTranslations('header')
   const [workspaces, setWorkspaces] = useState<Workspace[]>(initialWorkspaces)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
   const [newWorkspaceName, setNewWorkspaceName] = useState('')
@@ -129,11 +131,11 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => router.push(`/${locale}/settings`)}>
                   <Settings className="mr-2 h-4 w-4" />
-                  Settings
+                  {th('user_menu.settings')}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleSignOut}>
                   <LogOut className="mr-2 h-4 w-4" />
-                  Sign out
+                  {th('user_menu.sign_out')}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -148,10 +150,10 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold mb-2">
-                Welcome back, {user.user_metadata?.full_name?.split(' ')[0] || 'there'}
+                {t('welcome', { name: user.user_metadata?.full_name?.split(' ')[0] || 'there' })}
               </h1>
               <p className="text-muted-foreground">
-                Manage your workspaces and collaborate with your team
+                {t('subtitle')}
               </p>
             </div>
 
@@ -159,32 +161,32 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
               <DialogTrigger asChild>
                 <Button size="lg" className="gap-2">
                   <Plus className="h-4 w-4" />
-                  New Workspace
+                  {t('new_workspace')}
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Create new workspace</DialogTitle>
+                  <DialogTitle>{t('create_title')}</DialogTitle>
                   <DialogDescription>
-                    Workspaces help you organize your documents and collaborate with your team.
+                    {t('create_description')}
                   </DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleCreateWorkspace} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Workspace name</Label>
+                    <Label htmlFor="name">{t('workspace_name')}</Label>
                     <Input
                       id="name"
-                      placeholder="My Awesome Project"
+                      placeholder={t('name_placeholder')}
                       value={newWorkspaceName}
                       onChange={(e) => setNewWorkspaceName(e.target.value)}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="description">Description (optional)</Label>
+                    <Label htmlFor="description">{t('workspace_description')}</Label>
                     <Input
                       id="description"
-                      placeholder="What is this workspace for?"
+                      placeholder={t('desc_placeholder')}
                       value={newWorkspaceDescription}
                       onChange={(e) => setNewWorkspaceDescription(e.target.value)}
                     />
@@ -196,10 +198,10 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                       onClick={() => setIsCreateDialogOpen(false)}
                       disabled={loading}
                     >
-                      Cancel
+                      {t('cancel')}
                     </Button>
                     <Button type="submit" disabled={loading}>
-                      {loading ? 'Creating...' : 'Create workspace'}
+                      {loading ? t('creating') : t('create')}
                     </Button>
                   </div>
                 </form>
@@ -212,14 +214,13 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
             <Card className="border-dashed">
               <CardContent className="flex flex-col items-center justify-center py-16 text-center">
                 <Folder className="h-16 w-16 text-muted-foreground mb-4" />
-                <h3 className="text-xl font-semibold mb-2">No workspaces yet</h3>
+                <h3 className="text-xl font-semibold mb-2">{t('no_workspaces')}</h3>
                 <p className="text-muted-foreground mb-6 max-w-sm">
-                  Create your first workspace to start organizing your documents and collaborating
-                  with your team.
+                  {t('no_workspaces_description')}
                 </p>
                 <Button onClick={() => setIsCreateDialogOpen(true)} className="gap-2">
                   <Plus className="h-4 w-4" />
-                  Create your first workspace
+                  {t('create_first')}
                 </Button>
               </CardContent>
             </Card>
@@ -261,10 +262,10 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <FileText className="h-4 w-4" />
-                        <span>0 docs</span>
+                        <span>{t('docs_count', { count: 0 })}</span>
                       </div>
                       <div className="text-xs">
-                        Created {new Date(workspace.created_at).toLocaleDateString()}
+                        {t('created_at', { date: new Date(workspace.created_at).toLocaleDateString() })}
                       </div>
                     </div>
                   </CardContent>

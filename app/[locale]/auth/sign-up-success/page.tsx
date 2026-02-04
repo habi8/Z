@@ -1,10 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { useLocale, useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { CheckCircle2 } from 'lucide-react'
 
 export default function SignUpSuccessPage() {
+  const locale = useLocale()
+  const t = useTranslations('auth.signup_success')
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="w-full max-w-md">
@@ -24,21 +27,19 @@ export default function SignUpSuccessPage() {
               <CheckCircle2 className="h-16 w-16 text-primary" />
             </div>
             <CardTitle className="text-2xl font-bold text-center">
-              Check your email
+              {t('title')}
             </CardTitle>
             <CardDescription className="text-center">
-              We've sent you a confirmation link. Click the link in your email to
-              activate your account and start using Z.
+              {t('subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <Button asChild className="w-full">
-              <Link href="/auth/login">Return to sign in</Link>
+              <Link href={`/${locale}/auth/login`}>{t('button')}</Link>
             </Button>
 
             <p className="text-xs text-center text-muted-foreground">
-              Didn't receive the email? Check your spam folder or try signing up
-              again.
+              {t('footer')}
             </p>
           </CardContent>
         </Card>

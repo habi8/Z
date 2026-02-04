@@ -5,9 +5,9 @@ import { WorkspaceClient } from '@/components/workspace/workspace-client'
 export default async function WorkspacePage({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string; locale: string }>
 }) {
-  const { id } = await params
+  const { id, locale } = await params
   const supabase = await createClient()
 
   const {
@@ -15,7 +15,7 @@ export default async function WorkspacePage({
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect('/auth/login')
+    redirect(`/${locale}/auth/login`)
   }
 
   // Fetch workspace
@@ -26,7 +26,7 @@ export default async function WorkspacePage({
     .single()
 
   if (workspaceError || !workspace) {
-    redirect('/dashboard')
+    redirect(`/${locale}/dashboard`)
   }
 
   // Fetch documents in this workspace

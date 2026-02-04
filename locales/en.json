@@ -10,7 +10,12 @@
         "how_it_works": "How it works",
         "pricing": "Pricing",
         "sign_in": "Sign in",
-        "get_started": "Get started"
+        "get_started": "Get started",
+        "user_menu": {
+            "profile": "Profile",
+            "settings": "Settings",
+            "sign_out": "Sign out"
+        }
     },
     "hero": {
         "badge": "Built for global teams",
@@ -79,5 +84,103 @@
         "privacy": "Privacy",
         "terms": "Terms",
         "contact": "Contact"
+    },
+    "auth": {
+        "login": {
+            "title": "Welcome back",
+            "subtitle": "Sign in to your Z workspace",
+            "email": "Email",
+            "password": "Password",
+            "submit": "Sign in",
+            "submitting": "Signing in...",
+            "no_account": "Don't have an account?",
+            "sign_up": "Sign up",
+            "error_default": "Failed to sign in"
+        },
+        "signup": {
+            "title": "Create an account",
+            "subtitle": "Start building for a global audience today",
+            "full_name": "Full Name",
+            "email": "Email",
+            "password": "Password",
+            "submit": "Create account",
+            "submitting": "Creating account...",
+            "password_hint": "Must be at least {min} characters",
+            "has_account": "Already have an account?",
+            "sign_in": "Sign in",
+            "error_default": "Failed to sign up"
+        },
+        "signup_success": {
+            "title": "Check your email",
+            "subtitle": "We've sent you a confirmation link. Click the link in your email to activate your account and start using Z.",
+            "button": "Return to sign in",
+            "footer": "Didn't receive the email? Check your spam folder or try signing up again."
+        }
+    },
+    "dashboard": {
+        "welcome": "Welcome back, {name}",
+        "subtitle": "Manage your workspaces and collaborate with your team",
+        "new_workspace": "New Workspace",
+        "create_title": "Create new workspace",
+        "create_description": "Workspaces help you organize your documents and collaborate with your team.",
+        "workspace_name": "Workspace name",
+        "name_placeholder": "My Awesome Project",
+        "workspace_description": "Description (optional)",
+        "desc_placeholder": "What is this workspace for?",
+        "cancel": "Cancel",
+        "create": "Create workspace",
+        "creating": "Creating...",
+        "no_workspaces": "No workspaces yet",
+        "no_workspaces_description": "Create your first workspace to start organizing your documents and collaborating with your team.",
+        "create_first": "Create your first workspace",
+        "docs_count": "{count} docs",
+        "created_at": "Created {date}"
+    },
+    "workspace": {
+        "title": "Documents",
+        "subtitle": "{count, plural, =1 {1 document} other {{count} documents}}",
+        "new_document": "New Document",
+        "create_title": "Create new document",
+        "create_description": "Start writing your content. You can add translations later.",
+        "doc_title": "Document title",
+        "title_placeholder": "Untitled Document",
+        "cancel": "Cancel",
+        "create": "Create document",
+        "creating": "Creating...",
+        "no_documents": "No documents yet",
+        "no_documents_description": "Create your first document to start writing content that's ready for global distribution.",
+        "create_first": "Create your first document",
+        "last_updated": "Last updated {date}",
+        "delete": "Delete",
+        "delete_confirm": "Are you sure you want to delete this document?",
+        "back_to_dashboard": "Back to Dashboard"
+    },
+    "document": {
+        "title_placeholder": "Untitled Document",
+        "save": "Save",
+        "saving": "Saving...",
+        "saved_at": "Saved {time}",
+        "save_failed": "Failed to save document",
+        "translation_ready": "Translation Ready",
+        "lingo_description": "This document is structured for Lingo.dev integration. Add Lingo.dev locally to enable translation workflows, context management, and multi-language variants.",
+        "editor_placeholder": "Start writing your content here...",
+        "words": "{count} {count, plural, =1 {word} other {words}}",
+        "created_at": "Created {date}"
+    },
+    "settings": {
+        "title": "Settings",
+        "profile_settings": "Profile Settings",
+        "profile_description": "Manage your profile information and preferences",
+        "email": "Email",
+        "email_description": "Email cannot be changed",
+        "display_name": "Display Name",
+        "display_name_placeholder": "Your name",
+        "save_changes": "Save Changes",
+        "saving": "Saving...",
+        "success": "Settings saved successfully!",
+        "lingo_integration": "Lingo.dev Integration",
+        "lingo_description": "Translation and localization settings",
+        "lingo_configured": "Lingo.dev integration is configured at the project level.",
+        "lingo_docs": "See LINGO_INTEGRATION.md for setup instructions."
     }
 }

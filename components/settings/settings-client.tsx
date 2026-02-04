@@ -4,7 +4,7 @@ import React from "react"
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
@@ -37,6 +37,7 @@ interface SettingsClientProps {
 export function SettingsClient({ user, profile }: SettingsClientProps) {
   const router = useRouter()
   const locale = useLocale()
+  const t = useTranslations('settings')
   const [displayName, setDisplayName] = useState(profile?.full_name || user.user_metadata?.full_name || '')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -58,7 +59,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
 
       if (error) throw error
 
-      setMessage('Settings saved successfully!')
+      setMessage(t('success'))
       router.refresh()
     } catch (error: any) {
       console.error('[v0] Error saving settings:', error)
@@ -93,7 +94,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
                 height={40}
                 className="object-contain"
               />
-              <span className="text-2xl font-bold">Settings</span>
+              <span className="text-2xl font-bold">{t('title')}</span>
             </div>
           </div>
           <LocaleSwitcher />
@@ -105,15 +106,15 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
         <div className="max-w-2xl mx-auto space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Profile Settings</CardTitle>
+              <CardTitle>{t('profile_settings')}</CardTitle>
               <CardDescription>
-                Manage your profile information and preferences
+                {t('profile_description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSaveProfile} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t('email')}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -122,15 +123,15 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
                     className="bg-muted"
                   />
                   <p className="text-xs text-muted-foreground">
-                    Email cannot be changed
+                    {t('email_description')}
                   </p>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="displayName">Display Name</Label>
+                  <Label htmlFor="displayName">{t('display_name')}</Label>
                   <Input
                     id="displayName"
-                    placeholder="Your name"
+                    placeholder={t('display_name_placeholder')}
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
                   />
@@ -145,7 +146,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
 
                 <Button type="submit" disabled={loading} className="gap-2">
                   <Save className="h-4 w-4" />
-                  {loading ? 'Saving...' : 'Save Changes'}
+                  {loading ? t('saving') : t('save_changes')}
                 </Button>
               </form>
             </CardContent>
@@ -153,18 +154,18 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
 
           <Card>
             <CardHeader>
-              <CardTitle>Lingo.dev Integration</CardTitle>
+              <CardTitle>{t('lingo_integration')}</CardTitle>
               <CardDescription>
-                Translation and localization settings
+                {t('lingo_description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="rounded-lg border border-dashed border-border p-6 text-center">
                 <p className="text-muted-foreground mb-2">
-                  Lingo.dev integration is configured at the project level.
+                  {t('lingo_configured')}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  See LINGO_INTEGRATION.md for setup instructions.
+                  {t('lingo_docs')}
                 </p>
               </div>
             </CardContent>

@@ -5,9 +5,9 @@ import { DocumentEditor } from '@/components/document/document-editor'
 export default async function DocumentPage({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string; locale: string }>
 }) {
-  const { id } = await params
+  const { id, locale } = await params
   const supabase = await createClient()
 
   const {
@@ -15,7 +15,7 @@ export default async function DocumentPage({
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect('/auth/login')
+    redirect(`/${locale}/auth/login`)
   }
 
   // Fetch document
@@ -26,7 +26,7 @@ export default async function DocumentPage({
     .single()
 
   if (documentError || !document) {
-    redirect('/dashboard')
+    redirect(`/${locale}/dashboard`)
   }
 
   return <DocumentEditor user={user} document={document} />

@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useLocale, useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -15,6 +16,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 
 export default function LoginPage() {
   const router = useRouter()
+  const locale = useLocale()
+  const t = useTranslations('auth.login')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -35,9 +38,9 @@ export default function LoginPage() {
       if (error) throw error
 
       // Force a hard redirect to ensure auth state is properly refreshed
-      window.location.href = '/dashboard'
+      window.location.href = `/${locale}/dashboard`
     } catch (err: any) {
-      setError(err.message || 'Failed to sign in')
+      setError(err.message || t('error_default'))
     } finally {
       setLoading(false)
     }
@@ -59,10 +62,10 @@ export default function LoginPage() {
         <Card className="border-border shadow-lg">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">
-              Welcome back
+              {t('title')}
             </CardTitle>
             <CardDescription className="text-center">
-              Sign in to your Z workspace
+              {t('subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -74,7 +77,7 @@ export default function LoginPage() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('email')}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -87,7 +90,7 @@ export default function LoginPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('password')}</Label>
                 <Input
                   id="password"
                   type="password"
@@ -104,16 +107,16 @@ export default function LoginPage() {
                 className="w-full"
                 disabled={loading}
               >
-                {loading ? 'Signing in...' : 'Sign in'}
+                {loading ? t('submitting') : t('submit')}
               </Button>
 
               <div className="text-center text-sm text-muted-foreground">
-                {'Don\'t have an account? '}
+                {t('no_account')}
                 <Link
-                  href="/auth/sign-up"
+                  href={`/${locale}/auth/sign-up`}
                   className="text-primary hover:underline font-medium"
                 >
-                  Sign up
+                  {t('sign_up')}
                 </Link>
               </div>
             </form>
