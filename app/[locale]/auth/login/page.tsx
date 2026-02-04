@@ -41,7 +41,6 @@ export default function LoginPage() {
       window.location.href = `/${locale}/dashboard`
     } catch (err: any) {
       setError(err.message || t('error_default'))
-    } finally {
       setLoading(false)
     }
   }
@@ -50,13 +49,15 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="w-full max-w-md">
         <div className="flex justify-center mb-8">
-          <Image
-            src="/z-logo.png"
-            alt="Z Logo"
-            width={80}
-            height={80}
-            className="object-contain"
-          />
+          <Link href={`/${locale}`}>
+            <Image
+              src="/z-logo.png"
+              alt="Z Logo"
+              width={80}
+              height={80}
+              className="object-contain cursor-pointer hover:opacity-80 transition-opacity"
+            />
+          </Link>
         </div>
 
         <Card className="border-border shadow-lg">

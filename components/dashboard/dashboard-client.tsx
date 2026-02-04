@@ -110,7 +110,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
               height={40}
               className="object-contain"
             />
-            <span className="text-2xl font-bold">Z</span>
+            <span className="text-2xl font-bold">Dashboard</span>
           </div>
 
           <div className="flex items-center gap-3">
