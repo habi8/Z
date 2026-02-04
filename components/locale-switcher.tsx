@@ -1,5 +1,4 @@
-'use client';
-
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -17,9 +16,21 @@ const locales = [
 ];
 
 export function LocaleSwitcher() {
+    const [mounted, setMounted] = useState(false);
     const locale = useLocale();
     const router = useRouter();
     const pathname = usePathname();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return (
+        <Button variant="ghost" size="sm" className="gap-2 opacity-0">
+            <Globe className="h-4 w-4" />
+            <span className="hidden sm:inline">English</span>
+        </Button>
+    );
 
     const switchLocale = (newLocale: string) => {
         // Remove current locale from pathname if it exists

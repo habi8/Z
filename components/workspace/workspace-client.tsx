@@ -39,8 +39,10 @@ import {
   MoreVertical,
   Trash2,
   Languages,
+  Upload,
 } from 'lucide-react'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
+import { triggerFileUpload } from '@/components/editor/upload-handler'
 
 interface Workspace {
   id: string
@@ -78,6 +80,11 @@ export function WorkspaceClient({
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
   const [newDocTitle, setNewDocTitle] = useState('')
   const [loading, setLoading] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleSignOut = async () => {
     const supabase = createClient()
@@ -116,6 +123,38 @@ export function WorkspaceClient({
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleFileUpload = async () => {
+    triggerFileUpload('*/*', async (url) => {
+      setLoading(true)
+      try {
+        const supabase = createClient()
+        // Extract filename from URL (it has the random prefix)
+        const fileName = url.split('/').pop()?.split('_').slice(1).join('_') || 'Uploaded File'
+
+        const { data, error } = await supabase
+          .from('documents')
+          .insert({
+            title: fileName,
+            content: { text: `<p>File uploaded: <a href="${url}" target="_blank" data-type="file-link" class="text-blue-600 hover:underline cursor-pointer">${fileName}</a></p>` },
+            workspace_id: workspace.id,
+            user_id: user.id,
+            source_language: 'en',
+          })
+          .select()
+          .single()
+
+        if (error) throw error
+
+        setDocuments([data, ...documents])
+      } catch (error: any) {
+        console.error('Error creating document from upload:', error)
+        alert('Failed to save document reference: ' + error.message)
+      } finally {
+        setLoading(false)
+      }
+    })
   }
 
   const handleDeleteDocument = async (docId: string) => {
@@ -177,7 +216,7 @@ export function WorkspaceClient({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full" suppressHydrationWarning>
-                  <User className="h-5 w-5" />
+                  {mounted ? <User className="h-5 w-5" /> : <div className="h-5 w-5" />}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
@@ -221,47 +260,59 @@ export function WorkspaceClient({
               </p>
             </div>
 
-            <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-              <DialogTrigger asChild>
-                <Button size="lg" className="gap-2">
-                  <Plus className="h-4 w-4" />
-                  {t('new_document')}
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>{t('create_title')}</DialogTitle>
-                  <DialogDescription>
-                    {t('create_description')}
-                  </DialogDescription>
-                </DialogHeader>
-                <form onSubmit={handleCreateDocument} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="title">{t('doc_title')}</Label>
-                    <Input
-                      id="title"
-                      placeholder={t('title_placeholder')}
-                      value={newDocTitle}
-                      onChange={(e) => setNewDocTitle(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="flex justify-end gap-3">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setIsCreateDialogOpen(false)}
-                      disabled={loading}
-                    >
-                      {t('cancel')}
-                    </Button>
-                    <Button type="submit" disabled={loading}>
-                      {loading ? t('creating') : t('create')}
-                    </Button>
-                  </div>
-                </form>
-              </DialogContent>
-            </Dialog>
+            <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                size="lg"
+                className="gap-2"
+                onClick={handleFileUpload}
+                disabled={loading}
+              >
+                <Upload className="h-4 w-4" />
+                {t('upload_file') || 'Upload File'}
+              </Button>
+              <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="gap-2">
+                    <Plus className="h-4 w-4" />
+                    {t('new_document')}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>{t('create_title')}</DialogTitle>
+                    <DialogDescription>
+                      {t('create_description')}
+                    </DialogDescription>
+                  </DialogHeader>
+                  <form onSubmit={handleCreateDocument} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="title">{t('doc_title')}</Label>
+                      <Input
+                        id="title"
+                        placeholder={t('title_placeholder')}
+                        value={newDocTitle}
+                        onChange={(e) => setNewDocTitle(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="flex justify-end gap-3">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsCreateDialogOpen(false)}
+                        disabled={loading}
+                      >
+                        {t('cancel')}
+                      </Button>
+                      <Button type="submit" disabled={loading}>
+                        {loading ? t('creating') : t('create')}
+                      </Button>
+                    </div>
+                  </form>
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
 
 

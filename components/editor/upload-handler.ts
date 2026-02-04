@@ -10,12 +10,17 @@ export async function uploadFile(file: File): Promise<string> {
 
     // Upload to 'media' bucket
     // Note: Ensure the 'media' bucket exists in Supabase and has public read access.
+    console.log('[Upload] Starting upload for', file.name, 'to', filePath)
     const { error: uploadError } = await supabase.storage
         .from('media')
         .upload(filePath, file)
 
     if (uploadError) {
-        console.error('Error uploading file:', uploadError)
+        console.error('[Upload] Error uploading file:', uploadError)
+        // Check for common error codes
+        if ((uploadError as any).status === 404 || uploadError.message?.includes('bucket not found')) {
+            console.error('[Upload] The "media" bucket does not exist. Please create it in Supabase storage.')
+        }
         throw uploadError
     }
 
@@ -24,6 +29,7 @@ export async function uploadFile(file: File): Promise<string> {
         .from('media')
         .getPublicUrl(filePath)
 
+    console.log('[Upload] Upload successful, public URL:', data.publicUrl)
     return data.publicUrl
 }
 

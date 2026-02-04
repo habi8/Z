@@ -218,6 +218,18 @@
   border-radius: 0.5rem;
 }
 
+.tiptap a {
+  color: #2563eb !important;
+  /* blue-600 */
+  text-decoration: underline;
+  cursor: pointer !important;
+}
+
+.tiptap a:hover {
+  color: #1d4ed8 !important;
+  /* blue-700 */
+}
+
 .tiptap .is-editor-empty:first-child::before {
   color: #adb5bd;
   content: attr(data-placeholder);

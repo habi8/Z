@@ -28,6 +28,7 @@ import {
   FileText,
   Clock,
   Download,
+  Image as ImageIcon,
 } from 'lucide-react'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 import { exportToPdf, exportToDocx } from '@/lib/export-utils'
@@ -63,6 +64,11 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
   )
   const [isSaving, setIsSaving] = useState(false)
   const [lastSaved, setLastSaved] = useState<Date | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleSignOut = async () => {
     const supabase = createClient()
@@ -163,6 +169,22 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
 
 
 
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2 hidden md:flex"
+              onClick={() => {
+                import('@/components/editor/upload-handler').then(({ triggerFileUpload }) => {
+                  triggerFileUpload('image/*', (url) => {
+                    window.dispatchEvent(new CustomEvent('editor-insert-image', { detail: { url } }))
+                  })
+                })
+              }}
+            >
+              <ImageIcon className="h-4 w-4" />
+              <span className="hidden lg:inline">{t('insert_image') || 'Insert Image'}</span>
+            </Button>
+
             <Button onClick={handleSave} disabled={isSaving} className="gap-2">
               <Save className="h-4 w-4" />
               {isSaving ? t('saving') : t('save')}
@@ -171,7 +193,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full" suppressHydrationWarning>
-                  <User className="h-5 w-5" />
+                  {mounted ? <User className="h-5 w-5" /> : <div className="h-5 w-5" />}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">

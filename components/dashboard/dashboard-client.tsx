@@ -58,6 +58,11 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
   const [newWorkspaceName, setNewWorkspaceName] = useState('')
   const [newWorkspaceDescription, setNewWorkspaceDescription] = useState('')
   const [loading, setLoading] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleSignOut = async () => {
     const supabase = createClient()
@@ -200,7 +205,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full" suppressHydrationWarning>
-                  <User className="h-5 w-5" />
+                  {mounted ? <User className="h-5 w-5" /> : <div className="h-5 w-5" />}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">

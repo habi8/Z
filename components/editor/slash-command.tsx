@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Extension } from '@tiptap/core'
-import Suggestion, { SuggestionOptions } from '@tiptap/suggestion'
+import Suggestion from '@tiptap/suggestion'
 import { ReactRenderer } from '@tiptap/react'
-import tippy, { Instance, Props } from 'tippy.js'
+import tippy, { Instance } from 'tippy.js'
 import {
     Heading1,
     Heading2,
@@ -28,11 +28,6 @@ interface CommandItemProps {
 const CommandList = React.forwardRef(({
     items,
     command,
-    editor,
-}: {
-    items: CommandItemProps[]
-    command: any
-    editor: any
 }, ref) => {
     const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -40,7 +35,6 @@ const CommandList = React.forwardRef(({
         (index: number) => {
             const item = items[index]
             if (item) {
-                console.log('[SlashCommand] execute command', item.title)
                 command(item)
             }
         },
@@ -86,7 +80,6 @@ const CommandList = React.forwardRef(({
                         </div>
                         <div className="flex flex-col items-start gap-0.5">
                             <span className="font-medium">{item.title}</span>
-                            {/* <span className="text-xs text-muted-foreground/80">{item.description}</span> */}
                         </div>
                     </button>
                 ))}
@@ -154,7 +147,7 @@ const renderItems = () => {
 }
 
 // Commands definition
-const getSuggestionItems = ({ query, editor }: { query: string; editor: any }) => {
+const getSuggestionItems = ({ query }: { query: string }) => {
     const items: CommandItemProps[] = [
         {
             title: 'Text',
@@ -251,7 +244,8 @@ const getSuggestionItems = ({ query, editor }: { query: string; editor: any }) =
             icon: File,
             command: ({ editor, range }: any) => {
                 triggerFileUpload('*/*', (url) => {
-                    editor.chain().focus().deleteRange(range).setLink({ href: url }).insertContent('File Link').run()
+                    const fileName = url.split('/').pop()?.split('_').slice(1).join('_') || 'File Link'
+                    editor.chain().focus().deleteRange(range).insertContent(`<a href="${url}" data-type="file-link" class="text-blue-600 hover:underline cursor-pointer">${fileName}</a>`).run()
                 })
             }
         }

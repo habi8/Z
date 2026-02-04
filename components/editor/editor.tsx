@@ -8,6 +8,7 @@ import Image from '@tiptap/extension-image'
 import Youtube from '@tiptap/extension-youtube'
 import Link from '@tiptap/extension-link'
 import Placeholder from '@tiptap/extension-placeholder'
+import { FileLink } from './file-link-extension'
 import { SlashCommand, suggestion } from './slash-command'
 import { cn } from '@/lib/utils'
 
@@ -37,6 +38,7 @@ export function RichTextEditor({ content, onChange, editable = true }: RichTextE
             Placeholder.configure({
                 placeholder: 'Type "/" for commands...',
             }),
+            FileLink,
             SlashCommand.configure({
                 suggestion: suggestion,
             }),
@@ -52,6 +54,18 @@ export function RichTextEditor({ content, onChange, editable = true }: RichTextE
             },
         },
     })
+
+    useEffect(() => {
+        const handleInsertImage = (e: any) => {
+            const { url } = e.detail
+            if (editor && url) {
+                editor.chain().focus().setImage({ src: url }).run()
+            }
+        }
+
+        window.addEventListener('editor-insert-image', handleInsertImage)
+        return () => window.removeEventListener('editor-insert-image', handleInsertImage)
+    }, [editor])
 
     useEffect(() => {
         if (editor && content !== editor.getHTML()) {
