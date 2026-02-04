@@ -71,8 +71,8 @@ export const ResizableImageNodeView = (props: NodeViewProps) => {
     const { cropTop, cropRight, cropBottom, cropLeft, width } = node.attrs
 
     return (
-        <NodeViewWrapper className={cn("inline-block leading-none", selected && "outline-2 outline-primary outline")}>
-            <div className="resizable-image-container group relative">
+        <NodeViewWrapper className="inline-block leading-none">
+            <div className="resizable-image-container group relative inline-block leading-[0]">
                 <div
                     className="overflow-hidden"
                     style={{
@@ -95,16 +95,21 @@ export const ResizableImageNodeView = (props: NodeViewProps) => {
 
                 {selected && (
                     <>
-                        {/* Resize Handle */}
-                        <div className="resizable-image-handle" onMouseDown={onResizeMouseDown} />
+                        {/* Resize Handle - Small Corner Indicator */}
+                        <div className="resizable-image-handle-indicator" onMouseDown={onResizeMouseDown} />
 
                         {/* Crop Button Toggle */}
-                        <button
-                            onClick={() => setCropping(!cropping)}
-                            className="absolute -top-10 left-0 bg-primary text-white text-xs px-2 py-1 rounded shadow-lg z-10"
-                        >
-                            {cropping ? 'Done Cropping' : 'Crop'}
-                        </button>
+                        <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex gap-2 bg-popover border border-border p-1 rounded-md shadow-lg z-50">
+                            <button
+                                onClick={() => setCropping(!cropping)}
+                                className={cn(
+                                    "text-[10px] font-bold px-2 py-1 rounded transition-colors",
+                                    cropping ? "bg-primary text-white" : "hover:bg-muted"
+                                )}
+                            >
+                                {cropping ? 'CROP DONE' : 'CROP'}
+                            </button>
+                        </div>
 
                         {cropping && (
                             <>

@@ -218,59 +218,72 @@
   border-radius: 0.5rem;
 }
 
-.tiptap .resizable-image-handle {
+.tiptap .resizable-image-handle-indicator {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 12px;
-  height: 12px;
-  background-color: var(--primary);
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  background-color: #94a3b8;
   border: 1px solid white;
+  border-radius: 1px;
+  /* Corner shape */
   cursor: se-resize;
-  z-index: 20;
+  z-index: 60;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.tiptap .resizable-image-container:hover .resizable-image-handle-indicator {
+  opacity: 1;
 }
 
 .tiptap .crop-handle {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid var(--primary);
-  z-index: 30;
+  background-color: white;
+  border: 1.5px solid var(--primary);
+  z-index: 70;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 .tiptap .crop-handle-top {
   top: 0;
   left: 50%;
-  width: 20px;
-  height: 6px;
+  width: 12px;
+  height: 4px;
   transform: translateX(-50%);
   cursor: ns-resize;
+  border-radius: 2px;
 }
 
 .tiptap .crop-handle-bottom {
   bottom: 0;
   left: 50%;
-  width: 20px;
-  height: 6px;
+  width: 12px;
+  height: 4px;
   transform: translateX(-50%);
   cursor: ns-resize;
+  border-radius: 2px;
 }
 
 .tiptap .crop-handle-left {
   left: 0;
   top: 50%;
-  width: 6px;
-  height: 20px;
+  width: 4px;
+  height: 12px;
   transform: translateY(-50%);
   cursor: ew-resize;
+  border-radius: 2px;
 }
 
 .tiptap .crop-handle-right {
   right: 0;
   top: 50%;
-  width: 6px;
-  height: 20px;
+  width: 4px;
+  height: 12px;
   transform: translateY(-50%);
   cursor: ew-resize;
+  border-radius: 2px;
 }
 
 .tiptap a {
