@@ -24,8 +24,15 @@ interface CommandItemProps {
     command: (editor: any) => void
 }
 
+interface CommandListProps {
+    items: CommandItemProps[]
+    command: (item: CommandItemProps) => void
+    editor: any
+    range: any
+}
+
 // Command List Component
-const CommandList = React.forwardRef(({
+const CommandList = React.forwardRef<any, CommandListProps>(({
     items,
     command,
 }, ref) => {
@@ -66,7 +73,7 @@ const CommandList = React.forwardRef(({
     return (
         <div className="z-50 h-auto max-h-[330px] w-72 overflow-y-auto rounded-md border border-border bg-popover p-1 shadow-md animate-in fade-in-0 zoom-in-95">
             <div className="flex flex-col gap-1 p-1">
-                {items.map((item, index) => (
+                {items.map((item: CommandItemProps, index: number) => (
                     <button
                         key={index}
                         onClick={() => selectItem(index)}
@@ -223,7 +230,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
             icon: ImageIcon,
             command: ({ editor, range }: any) => {
                 triggerFileUpload('image/*', (url) => {
-                    editor.chain().focus().deleteRange(range).setImage({ src: url }).run()
+                    editor.chain().focus().deleteRange(range).setResizableImage({ src: url }).run()
                 })
             },
         },

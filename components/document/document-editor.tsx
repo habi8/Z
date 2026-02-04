@@ -169,21 +169,6 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
 
 
 
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2 hidden md:flex"
-              onClick={() => {
-                import('@/components/editor/upload-handler').then(({ triggerFileUpload }) => {
-                  triggerFileUpload('image/*', (url) => {
-                    window.dispatchEvent(new CustomEvent('editor-insert-image', { detail: { url } }))
-                  })
-                })
-              }}
-            >
-              <ImageIcon className="h-4 w-4" />
-              <span className="hidden lg:inline">{t('insert_image') || 'Insert Image'}</span>
-            </Button>
 
             <Button onClick={handleSave} disabled={isSaving} className="gap-2">
               <Save className="h-4 w-4" />

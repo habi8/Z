@@ -4,11 +4,11 @@
 import { useEffect, useState } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import Image from '@tiptap/extension-image'
 import Youtube from '@tiptap/extension-youtube'
 import Link from '@tiptap/extension-link'
 import Placeholder from '@tiptap/extension-placeholder'
 import { FileLink } from './file-link-extension'
+import { ResizableImage } from './resizable-image'
 import { SlashCommand, suggestion } from './slash-command'
 import { cn } from '@/lib/utils'
 
@@ -28,7 +28,7 @@ export function RichTextEditor({ content, onChange, editable = true }: RichTextE
                     levels: [1, 2, 3],
                 },
             }),
-            Image,
+            ResizableImage,
             Youtube.configure({
                 controls: false,
             }),
@@ -59,7 +59,7 @@ export function RichTextEditor({ content, onChange, editable = true }: RichTextE
         const handleInsertImage = (e: any) => {
             const { url } = e.detail
             if (editor && url) {
-                editor.chain().focus().setImage({ src: url }).run()
+                editor.chain().focus().setResizableImage({ src: url }).run()
             }
         }
 

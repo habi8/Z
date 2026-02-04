@@ -9,7 +9,17 @@ export interface ResizableImageOptions {
 declare module '@tiptap/core' {
     interface Commands<ReturnType> {
         resizableImage: {
-            setImage: (options: { src: string; alt?: string; title?: string; width?: string | number; height?: string | number }) => ReturnType
+            setResizableImage: (options: {
+                src: string;
+                alt?: string;
+                title?: string;
+                width?: string | number;
+                height?: string | number;
+                cropTop?: number;
+                cropRight?: number;
+                cropBottom?: number;
+                cropLeft?: number;
+            }) => ReturnType
         }
     }
 }
@@ -44,6 +54,18 @@ export const ResizableImage = Node.create<ResizableImageOptions>({
             height: {
                 default: 'auto',
             },
+            cropTop: {
+                default: 0,
+            },
+            cropRight: {
+                default: 0,
+            },
+            cropBottom: {
+                default: 0,
+            },
+            cropLeft: {
+                default: 0,
+            },
         }
     },
 
@@ -65,12 +87,18 @@ export const ResizableImage = Node.create<ResizableImageOptions>({
 
     addCommands() {
         return {
-            setImage:
+            setResizableImage:
                 (options) =>
                     ({ commands }) => {
                         return commands.insertContent({
                             type: this.name,
-                            attrs: options,
+                            attrs: {
+                                ...options,
+                                cropTop: options.cropTop ?? 0,
+                                cropRight: options.cropRight ?? 0,
+                                cropBottom: options.cropBottom ?? 0,
+                                cropLeft: options.cropLeft ?? 0,
+                            },
                         })
                     },
         }
