@@ -32,24 +32,28 @@ The core goal of Z is to demonstrate how modern developer tooling can turn local
 
 ## Project Structure
 
-src/
+```text
+Z/
 ├─ app/
-│  ├─ (auth)/
-│  ├─ dashboard/
-│  ├─ workspace/
-│  └─ page.tsx
+│  ├─ layout.tsx
+│  ├─ page.tsx
+│  └─ i18n/
+│     ├─ config.ts
+│     └─ provider.tsx
 ├─ components/
-│  ├─ editor/
-│  ├─ layout/
-│  └─ ui/
+│  ├─ Editor.tsx
+│  └─ Toolbar.tsx
 ├─ lib/
-│  ├─ supabase/
-│  ├─ i18n/
-│  └─ utils.ts
+│  ├─ supabase.ts
+│  └─ lingo.ts
+├─ public/
+│  └─ logo.svg
 ├─ messages/
 │  ├─ en.json
 │  └─ bn.json
-└─ styles/
+└─ README.md
+```
+
 
 ## Internationalization vs Localization
 
