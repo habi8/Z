@@ -27,8 +27,10 @@ import {
   Languages,
   FileText,
   Clock,
+  Download,
 } from 'lucide-react'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
+import { exportToPdf, exportToDocx } from '@/lib/export-utils'
 
 interface Document {
   id: string
@@ -142,6 +144,23 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
               </div>
             )}
 
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="gap-2">
+                  <Download className="h-4 w-4" />
+                  <span className="hidden sm:inline">Export</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={() => exportToPdf('document-content', title || 'document')}>
+                  Export as PDF
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => exportToDocx(content, title || 'document')}>
+                  Export as DOCX
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
 
 
             <Button onClick={handleSave} disabled={isSaving} className="gap-2">
@@ -200,7 +219,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
 
 
           {/* Content Editor */}
-          <div className="min-h-[600px]">
+          <div className="min-h-[600px]" id="document-content">
             <RichTextEditor
               content={content}
               onChange={setContent}
