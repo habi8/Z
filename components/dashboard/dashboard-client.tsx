@@ -52,6 +52,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
   const [workspaces, setWorkspaces] = useState<Workspace[]>(initialWorkspaces)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
   const [isShareDialogOpen, setIsShareDialogOpen] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
   const [selectedWorkspace, setSelectedWorkspace] = useState<Workspace | null>(null)
   const [inviteEmail, setInviteEmail] = useState('')
   const [newWorkspaceName, setNewWorkspaceName] = useState('')
@@ -120,21 +121,47 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
 
     try {
       if (selectedWorkspace) {
-        // Generate invite link (dummy for now as requested)
         const inviteLink = `${window.location.origin}/${locale}/workspace/${selectedWorkspace.id}/join?code=dummy-invite-code`
+        const inviterName = user.user_metadata?.full_name || user.email || 'A user'
 
-        const subject = encodeURIComponent(`Join me on ${selectedWorkspace.name} in Z`)
-        const body = encodeURIComponent(`Hey,\n\nI'm inviting you to collaborate on ${selectedWorkspace.name}. Click here to join:\n\n${inviteLink}`)
+        const response = await fetch('/api/invite', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: inviteEmail,
+            workspaceName: selectedWorkspace.name,
+            inviterName,
+            link: inviteLink,
+          }),
+        })
 
-        window.open(`mailto:${inviteEmail}?subject=${subject}&body=${body}`, '_blank')
+        let data;
+        try {
+          data = await response.json()
+        } catch (e) {
+          console.error('Failed to parse response:', e)
+          throw new Error(`Server returned ${response.status} ${response.statusText}. Check server logs.`)
+        }
 
-        // Close dialog
-        setIsShareDialogOpen(false)
-        setInviteEmail('')
+        if (!response.ok) {
+          throw new Error(data.error?.message || 'Failed to send invite')
+        }
+
+        // Show success state
+        setIsSuccess(true)
+
+        // Close after delay
+        setTimeout(() => {
+          setIsShareDialogOpen(false)
+          setIsSuccess(false)
+          setInviteEmail('')
+        }, 2000)
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sharing workspace:', error)
-      alert('Failed to open email client')
+      alert(error.message || 'Failed to send invite')
     } finally {
       setLoading(false)
     }
@@ -265,40 +292,69 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
           </div> {/* This closes the div containing the welcome section and create dialog */}
 
           <Dialog open={isShareDialogOpen} onOpenChange={setIsShareDialogOpen}>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Share Workspace</DialogTitle>
-                <DialogDescription>
-                  Invite collaborators to <strong>{selectedWorkspace?.name}</strong> via email.
-                </DialogDescription>
-              </DialogHeader>
-              <form onSubmit={handleShareWorkspace} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="colleague@company.com"
-                    value={inviteEmail}
-                    onChange={(e) => setInviteEmail(e.target.value)}
-                    required
-                  />
+            <DialogContent className="sm:max-w-md transition-all duration-300">
+              {isSuccess ? (
+                <div className="flex flex-col items-center justify-center py-10 space-y-4 animate-in fade-in zoom-in duration-300">
+                  <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                    <div className="h-10 w-10 bg-green-500 rounded-full flex items-center justify-center animate-bounce">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-white"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-semibold text-center">Invite Sent!</h3>
+                  <p className="text-center text-muted-foreground text-sm">
+                    We've sent an email to <strong>{inviteEmail}</strong>
+                  </p>
                 </div>
-                <div className="flex justify-end gap-3">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setIsShareDialogOpen(false)}
-                    disabled={loading}
-                  >
-                    Cancel
-                  </Button>
-                  <Button type="submit" disabled={loading} className="gap-2">
-                    <Send className="h-4 w-4" />
-                    {loading ? 'Sending...' : 'Send Invite'}
-                  </Button>
-                </div>
-              </form>
+              ) : (
+                <>
+                  <DialogHeader>
+                    <DialogTitle>Share Workspace</DialogTitle>
+                    <DialogDescription>
+                      Invite collaborators to <strong>{selectedWorkspace?.name}</strong> via email.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <form onSubmit={handleShareWorkspace} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email Address</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="colleague@company.com"
+                        value={inviteEmail}
+                        onChange={(e) => setInviteEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="flex justify-end gap-3">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsShareDialogOpen(false)}
+                        disabled={loading}
+                      >
+                        Cancel
+                      </Button>
+                      <Button type="submit" disabled={loading} className="gap-2">
+                        <Send className="h-4 w-4" />
+                        {loading ? 'Sending...' : 'Send Invite'}
+                      </Button>
+                    </div>
+                  </form>
+                </>
+              )}
             </DialogContent>
           </Dialog>
 
