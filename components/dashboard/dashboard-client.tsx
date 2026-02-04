@@ -36,6 +36,7 @@ interface Workspace {
   name: string
   description: string | null
   created_at: string
+  documents: { count: number }[]
 }
 
 interface DashboardClientProps {
@@ -116,12 +117,27 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
   const handleShareWorkspace = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    // Mock invite sending
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    setLoading(false)
-    setIsShareDialogOpen(false)
-    setInviteEmail('')
-    alert(`Invite sent to ${inviteEmail}`)
+
+    try {
+      if (selectedWorkspace) {
+        // Generate invite link (dummy for now as requested)
+        const inviteLink = `${window.location.origin}/${locale}/workspace/${selectedWorkspace.id}/join?code=dummy-invite-code`
+
+        const subject = encodeURIComponent(`Join me on ${selectedWorkspace.name} in Z`)
+        const body = encodeURIComponent(`Hey,\n\nI'm inviting you to collaborate on ${selectedWorkspace.name}. Click here to join:\n\n${inviteLink}`)
+
+        window.open(`mailto:${inviteEmail}?subject=${subject}&body=${body}`, '_blank')
+
+        // Close dialog
+        setIsShareDialogOpen(false)
+        setInviteEmail('')
+      }
+    } catch (error) {
+      console.error('Error sharing workspace:', error)
+      alert('Failed to open email client')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const openShareDialog = (workspace: Workspace, e: React.MouseEvent) => {
@@ -359,7 +375,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <FileText className="h-4 w-4" />
-                        <span>{t('docs_count', { count: 0 })}</span>
+                        <span>{t('docs_count', { count: workspace.documents?.[0]?.count || 0 })}</span>
                       </div>
                       <div className="text-xs">
                         {t('created_at', { date: new Date(workspace.created_at).toLocaleDateString() })}

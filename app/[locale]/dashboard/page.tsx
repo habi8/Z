@@ -16,7 +16,7 @@ export default async function DashboardPage() {
   // Fetch workspaces
   const { data: workspaces, error } = await supabase
     .from('workspaces')
-    .select('*')
+    .select('*, documents(count)')
     .order('created_at', { ascending: false })
 
   if (error) {

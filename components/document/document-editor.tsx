@@ -211,6 +211,13 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
             <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault()
+                  const editor = window.document.querySelector('#document-content .ProseMirror') as HTMLElement
+                  editor?.focus()
+                }
+              }}
               placeholder={t('title_placeholder')}
               className="!text-5xl !font-black tracking-tight border-transparent px-2 !h-auto py-4 bg-transparent placeholder:text-muted-foreground/30 focus-visible:ring-2 focus-visible:border-input hover:bg-muted/30 transition-all rounded-md"
             />
