@@ -24,7 +24,8 @@
         "subtitle": "The workspace platform with translation and localization built in. Create, collaborate, and scale your content globally.",
         "cta_primary": "Start building free",
         "cta_secondary": "See how it works",
-        "no_credit_card": "No credit card required • Free forever for individuals"
+        "no_credit_card": "No credit card required • Free forever for individuals",
+        "powered_by": "powered by"
     },
     "features": {
         "heading": "Everything you need to go global",

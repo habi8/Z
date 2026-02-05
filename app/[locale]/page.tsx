@@ -119,7 +119,7 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto text-center space-y-10">
           <div className="flex flex-col items-center gap-6">
             <div className="flex items-center gap-3 text-xs sm:text-base font-semibold tracking-[0.15em] text-muted-foreground/70 items-center gap-2 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-muted-foreground/60 uppercase animate-fade-in-up opacity-0 fill-mode-forwards">
-              <span>powered by</span>
+              <span>{t('hero.powered_by')}</span>
               <Link
                 href="https://lingo.dev"
                 target="_blank"
