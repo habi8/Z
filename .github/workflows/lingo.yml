@@ -1,0 +1,41 @@
+name: Lingo.dev Translations
+
+# Trigger workflow on push to main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  translations:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run Lingo.dev CLI
+      - name: Run Lingo.dev
+        uses: lingodotdev/lingo.dev@main
+        with:
+          api-key: ${{ secrets.LINGO_API_KEY }}
+
+      # Step 5 (optional): Commit & push updated translations
+      - name: Commit and push updated translations
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add locales/*
+          git commit -m "Update translations via Lingo.dev" || echo "No changes to commit"
+          git push
