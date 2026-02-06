@@ -14,6 +14,12 @@ jobs:
       # Step 1: Checkout the repo
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+           token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Set remote URL with PAT
+        run: |
+              git remote set-url origin https://${{ secrets.PAT_TOKEN }}@github.com/habi8/Z.git
 
       # Step 2: Setup Node.js
       - name: Setup Node.js
@@ -34,8 +40,9 @@ jobs:
       # Step 5 (optional): Commit & push updated translations
       - name: Commit and push updated translations
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add locales/*
-          git commit -m "Update translations via Lingo.dev" || echo "No changes to commit"
-          git push
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add locales/*
+            git commit -m "Update translations via Lingo.dev" || echo "No changes to commit"
+            git push origin main
+
