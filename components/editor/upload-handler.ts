@@ -1,6 +1,8 @@
 import { createClient } from '@/lib/supabase/client'
 import { toast } from 'sonner'
 
+type Translator = (key: string, values?: Record<string, any>) => string
+
 export async function uploadFile(file: File): Promise<string> {
     const supabase = createClient()
 
@@ -34,20 +36,29 @@ export async function uploadFile(file: File): Promise<string> {
     return data.publicUrl
 }
 
-export function triggerFileUpload(accept: string, onUpload: (url: string) => void) {
+export function triggerFileUpload(
+    accept: string,
+    onUpload: (url: string) => void,
+    t: Translator
+) {
     const input = document.createElement('input')
     input.type = 'file'
     input.accept = accept
     input.onchange = async (e) => {
         const file = (e.target as HTMLInputElement).files?.[0]
         if (file) {
-            const toastId = toast.loading(`Uploading ${file.type.startsWith('image/') ? 'image' : 'file'}...`)
+            const toastId = toast.loading(
+                file.type.startsWith('image/')
+                    ? t('upload.uploading_image')
+                    : t('upload.uploading_file')
+            )
             try {
                 const url = await uploadFile(file)
-                toast.success('Upload complete', { id: toastId })
+                toast.success(t('upload.upload_complete'), { id: toastId })
                 onUpload(url)
             } catch (error: any) {
-                toast.error(`Upload failed: ${error.message || 'Unknown error'}`, { id: toastId })
+                const errorMessage = error?.message || t('upload.unknown_error')
+                toast.error(t('upload.upload_failed', { error: errorMessage }), { id: toastId })
             }
         }
     }

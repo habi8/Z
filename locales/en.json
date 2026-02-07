@@ -116,6 +116,14 @@
             "subtitle": "We've sent you a confirmation link. Click the link in your email to activate your account and start using Z.",
             "button": "Return to sign in",
             "footer": "Didn't receive the email? Check your spam folder or try signing up again."
+        },
+        "errors": {
+            "invalid_credentials": "Invalid email or password",
+            "user_already_registered": "This email is already registered",
+            "weak_password": "Password is too weak",
+            "email_not_confirmed": "Please confirm your email address",
+            "network_error": "Network error. Please try again.",
+            "generic": "An error occurred. Please try again."
         }
     },
     "dashboard": {
@@ -171,6 +179,54 @@
         "editor_placeholder": "Start writing your content here...",
         "words": "{count} {count, plural, =1 {word} other {words}}",
         "created_at": "Created {date}"
+    },
+    "editor": {
+        "upload": {
+            "uploading_image": "Uploading image...",
+            "uploading_file": "Uploading file...",
+            "upload_complete": "Upload complete",
+            "upload_failed": "Upload failed: {error}",
+            "unknown_error": "Unknown error"
+        },
+        "slash_commands": {
+            "text": {
+                "title": "Text",
+                "description": "Just start typing with plain text."
+            },
+            "heading1": {
+                "title": "Heading 1",
+                "description": "Big section heading."
+            },
+            "heading2": {
+                "title": "Heading 2",
+                "description": "Medium section heading."
+            },
+            "heading3": {
+                "title": "Heading 3",
+                "description": "Small section heading."
+            },
+            "bullet_list": {
+                "title": "Bullet List",
+                "description": "Create a simple bullet list."
+            },
+            "numbered_list": {
+                "title": "Numbered List",
+                "description": "Create a list with numbering."
+            },
+            "image": {
+                "title": "Image",
+                "description": "Upload or embed an image."
+            },
+            "video": {
+                "title": "Video",
+                "description": "Embed a video from YouTube.",
+                "prompt": "Enter YouTube URL"
+            },
+            "file": {
+                "title": "File",
+                "description": "Upload a file."
+            }
+        }
     },
     "settings": {
         "title": "Settings",

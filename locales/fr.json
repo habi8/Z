@@ -116,6 +116,14 @@
       "subtitle": "Nous vous avons envoyé un lien de confirmation. Cliquez sur le lien dans votre e-mail pour activer votre compte et commencer à utiliser Z.",
       "button": "Retour à la connexion",
       "footer": "Vous n'avez pas reçu l'e-mail ? Vérifiez votre dossier spam ou essayez de vous inscrire à nouveau."
+    },
+    "errors": {
+      "invalid_credentials": "E-mail ou mot de passe invalide",
+      "user_already_registered": "Cet e-mail est déjà enregistré",
+      "weak_password": "Le mot de passe est trop faible",
+      "email_not_confirmed": "Veuillez confirmer votre adresse e-mail",
+      "network_error": "Erreur réseau. Veuillez réessayer.",
+      "generic": "Une erreur s'est produite. Veuillez réessayer."
     }
   },
   "dashboard": {
@@ -171,6 +179,54 @@
     "editor_placeholder": "Commencez à rédiger votre contenu ici...",
     "words": "{count} {count, plural, one {mot} other {mots}}",
     "created_at": "Créé le {date}"
+  },
+  "editor": {
+    "upload": {
+      "uploading_image": "Téléversement de l'image...",
+      "uploading_file": "Téléversement du fichier...",
+      "upload_complete": "Téléversement terminé",
+      "upload_failed": "Échec du téléversement : {error}",
+      "unknown_error": "Erreur inconnue"
+    },
+    "slash_commands": {
+      "text": {
+        "title": "Texte",
+        "description": "Commencez simplement à taper du texte."
+      },
+      "heading1": {
+        "title": "Titre 1",
+        "description": "Grand titre de section."
+      },
+      "heading2": {
+        "title": "Titre 2",
+        "description": "Titre de section moyen."
+      },
+      "heading3": {
+        "title": "Titre 3",
+        "description": "Petit titre de section."
+      },
+      "bullet_list": {
+        "title": "Liste à puces",
+        "description": "Créez une liste à puces simple."
+      },
+      "numbered_list": {
+        "title": "Liste numérotée",
+        "description": "Créez une liste avec numérotation."
+      },
+      "image": {
+        "title": "Image",
+        "description": "Téléversez ou intégrez une image."
+      },
+      "video": {
+        "title": "Vidéo",
+        "description": "Intégrez une vidéo de YouTube.",
+        "prompt": "Saisissez l'URL YouTube"
+      },
+      "file": {
+        "title": "Fichier",
+        "description": "Téléversez un fichier."
+      }
+    }
   },
   "settings": {
     "title": "Paramètres",

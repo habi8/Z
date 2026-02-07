@@ -76,6 +76,7 @@ export function WorkspaceClient({
   const locale = useLocale()
   const t = useTranslations('workspace')
   const th = useTranslations('header')
+  const tEditor = useTranslations('editor')
   const [documents, setDocuments] = useState<Document[]>(initialDocuments)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
   const [newDocTitle, setNewDocTitle] = useState('')
@@ -154,7 +155,7 @@ export function WorkspaceClient({
       } finally {
         setLoading(false)
       }
-    })
+    }, tEditor)
   }
 
   const handleDeleteDocument = async (docId: string) => {

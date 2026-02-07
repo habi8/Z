@@ -7,9 +7,10 @@ import StarterKit from '@tiptap/starter-kit'
 import Youtube from '@tiptap/extension-youtube'
 import Link from '@tiptap/extension-link'
 import Placeholder from '@tiptap/extension-placeholder'
+import { useTranslations } from 'next-intl'
 import { FileLink } from './file-link-extension'
 import { ResizableImage } from './resizable-image'
-import { SlashCommand, suggestion } from './slash-command'
+import { SlashCommand, createSuggestion } from './slash-command'
 import { cn } from '@/lib/utils'
 
 
@@ -20,6 +21,7 @@ interface RichTextEditorProps {
 }
 
 export function RichTextEditor({ content, onChange, editable = true }: RichTextEditorProps) {
+    const t = useTranslations('editor')
     const editor = useEditor({
         immediatelyRender: false,
         extensions: [
@@ -40,7 +42,7 @@ export function RichTextEditor({ content, onChange, editable = true }: RichTextE
             }),
             FileLink,
             SlashCommand.configure({
-                suggestion: suggestion,
+                suggestion: createSuggestion(t),
             }),
         ],
         content: content,

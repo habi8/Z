@@ -13,11 +13,13 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { AnimatedBackground } from "@/components/ui/animated-background";
+import { translateAuthError } from '@/lib/auth/translate-auth-error'
 
 export default function SignUpPage() {
   const router = useRouter()
   const locale = useLocale()
   const t = useTranslations('auth.signup')
+  const tErrors = useTranslations('auth.errors')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
@@ -48,7 +50,7 @@ export default function SignUpPage() {
 
       router.push(`/${locale}/auth/sign-up-success`)
     } catch (err: any) {
-      setError(err.message || t('error_default'))
+      setError(translateAuthError(err, tErrors))
       setLoading(false)
     }
   }

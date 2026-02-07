@@ -13,11 +13,13 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { AnimatedBackground } from "@/components/ui/animated-background";
+import { translateAuthError } from '@/lib/auth/translate-auth-error'
 
 export default function LoginPage() {
   const router = useRouter()
   const locale = useLocale()
   const t = useTranslations('auth.login')
+  const tErrors = useTranslations('auth.errors')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -40,7 +42,7 @@ export default function LoginPage() {
       // Force a hard redirect to ensure auth state is properly refreshed
       window.location.href = `/${locale}/dashboard`
     } catch (err: any) {
-      setError(err.message || t('error_default'))
+      setError(translateAuthError(err, tErrors))
       setLoading(false)
     }
   }

@@ -116,6 +116,14 @@
       "subtitle": "Te hemos enviado un enlace de confirmación. Haz clic en el enlace de tu correo para activar tu cuenta y empezar a usar Z.",
       "button": "Volver al inicio de sesión",
       "footer": "¿No recibiste el correo? Revisa tu carpeta de spam o intenta registrarte de nuevo."
+    },
+    "errors": {
+      "invalid_credentials": "Correo o contraseña inválidos",
+      "user_already_registered": "Este correo ya está registrado",
+      "weak_password": "La contraseña es demasiado débil",
+      "email_not_confirmed": "Por favor confirma tu dirección de correo",
+      "network_error": "Error de red. Inténtalo de nuevo.",
+      "generic": "Ocurrió un error. Inténtalo de nuevo."
     }
   },
   "dashboard": {
@@ -171,6 +179,54 @@
     "editor_placeholder": "Empieza a escribir tu contenido aquí...",
     "words": "{count} {count, plural, =1 {palabra} other {palabras}}",
     "created_at": "Creado el {date}"
+  },
+  "editor": {
+    "upload": {
+      "uploading_image": "Subiendo imagen...",
+      "uploading_file": "Subiendo archivo...",
+      "upload_complete": "Subida completa",
+      "upload_failed": "Error al subir: {error}",
+      "unknown_error": "Error desconocido"
+    },
+    "slash_commands": {
+      "text": {
+        "title": "Texto",
+        "description": "Comienza a escribir con texto plano."
+      },
+      "heading1": {
+        "title": "Encabezado 1",
+        "description": "Encabezado de sección grande."
+      },
+      "heading2": {
+        "title": "Encabezado 2",
+        "description": "Encabezado de sección mediano."
+      },
+      "heading3": {
+        "title": "Encabezado 3",
+        "description": "Encabezado de sección pequeño."
+      },
+      "bullet_list": {
+        "title": "Lista con Viñetas",
+        "description": "Crea una lista simple con viñetas."
+      },
+      "numbered_list": {
+        "title": "Lista Numerada",
+        "description": "Crea una lista con numeración."
+      },
+      "image": {
+        "title": "Imagen",
+        "description": "Sube o incrusta una imagen."
+      },
+      "video": {
+        "title": "Video",
+        "description": "Incrusta un video de YouTube.",
+        "prompt": "Ingresa la URL de YouTube"
+      },
+      "file": {
+        "title": "Archivo",
+        "description": "Sube un archivo."
+      }
+    }
   },
   "settings": {
     "title": "Ajustes",

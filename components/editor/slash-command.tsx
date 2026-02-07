@@ -16,6 +16,8 @@ import {
 } from 'lucide-react'
 import { triggerFileUpload } from './upload-handler'
 
+type Translator = (key: string, values?: Record<string, any>) => string
+
 // Define the command interface
 interface CommandItemProps {
     title: string
@@ -154,114 +156,124 @@ const renderItems = () => {
 }
 
 // Commands definition
-const getSuggestionItems = ({ query }: { query: string }) => {
-    const items: CommandItemProps[] = [
-        {
-            title: 'Text',
-            description: 'Just start typing with plain text.',
-            icon: Type,
-            command: ({ editor, range }: any) => {
-                editor
-                    .chain()
-                    .focus()
-                    .deleteRange(range)
-                    .toggleNode('paragraph', 'paragraph')
-                    .run()
+const getSuggestionItems =
+    (t: Translator) =>
+    ({ query }: { query: string }) => {
+        const items: CommandItemProps[] = [
+            {
+                title: t('slash_commands.text.title'),
+                description: t('slash_commands.text.description'),
+                icon: Type,
+                command: ({ editor, range }: any) => {
+                    editor
+                        .chain()
+                        .focus()
+                        .deleteRange(range)
+                        .toggleNode('paragraph', 'paragraph')
+                        .run()
+                },
             },
-        },
-        {
-            title: 'Heading 1',
-            description: 'Big section heading.',
-            icon: Heading1,
-            command: ({ editor, range }: any) => {
-                editor
-                    .chain()
-                    .focus()
-                    .deleteRange(range)
-                    .setNode('heading', { level: 1 })
-                    .run()
+            {
+                title: t('slash_commands.heading1.title'),
+                description: t('slash_commands.heading1.description'),
+                icon: Heading1,
+                command: ({ editor, range }: any) => {
+                    editor
+                        .chain()
+                        .focus()
+                        .deleteRange(range)
+                        .setNode('heading', { level: 1 })
+                        .run()
+                },
             },
-        },
-        {
-            title: 'Heading 2',
-            description: 'Medium section heading.',
-            icon: Heading2,
-            command: ({ editor, range }: any) => {
-                editor
-                    .chain()
-                    .focus()
-                    .deleteRange(range)
-                    .setNode('heading', { level: 2 })
-                    .run()
+            {
+                title: t('slash_commands.heading2.title'),
+                description: t('slash_commands.heading2.description'),
+                icon: Heading2,
+                command: ({ editor, range }: any) => {
+                    editor
+                        .chain()
+                        .focus()
+                        .deleteRange(range)
+                        .setNode('heading', { level: 2 })
+                        .run()
+                },
             },
-        },
-        {
-            title: 'Heading 3',
-            description: 'Small section heading.',
-            icon: Heading3,
-            command: ({ editor, range }: any) => {
-                editor
-                    .chain()
-                    .focus()
-                    .deleteRange(range)
-                    .setNode('heading', { level: 3 })
-                    .run()
+            {
+                title: t('slash_commands.heading3.title'),
+                description: t('slash_commands.heading3.description'),
+                icon: Heading3,
+                command: ({ editor, range }: any) => {
+                    editor
+                        .chain()
+                        .focus()
+                        .deleteRange(range)
+                        .setNode('heading', { level: 3 })
+                        .run()
+                },
             },
-        },
-        {
-            title: 'Bullet List',
-            description: 'Create a simple bullet list.',
-            icon: List,
-            command: ({ editor, range }: any) => {
-                editor.chain().focus().deleteRange(range).toggleBulletList().run()
+            {
+                title: t('slash_commands.bullet_list.title'),
+                description: t('slash_commands.bullet_list.description'),
+                icon: List,
+                command: ({ editor, range }: any) => {
+                    editor.chain().focus().deleteRange(range).toggleBulletList().run()
+                },
             },
-        },
-        {
-            title: 'Numbered List',
-            description: 'Create a list with numbering.',
-            icon: ListOrdered,
-            command: ({ editor, range }: any) => {
-                editor.chain().focus().deleteRange(range).toggleOrderedList().run()
+            {
+                title: t('slash_commands.numbered_list.title'),
+                description: t('slash_commands.numbered_list.description'),
+                icon: ListOrdered,
+                command: ({ editor, range }: any) => {
+                    editor.chain().focus().deleteRange(range).toggleOrderedList().run()
+                },
             },
-        },
-        {
-            title: 'Image',
-            description: 'Upload or embed an image.',
-            icon: ImageIcon,
-            command: ({ editor, range }: any) => {
-                triggerFileUpload('image/*', (url) => {
-                    editor.chain().focus().deleteRange(range).setResizableImage({ src: url }).run()
-                })
+            {
+                title: t('slash_commands.image.title'),
+                description: t('slash_commands.image.description'),
+                icon: ImageIcon,
+                command: ({ editor, range }: any) => {
+                    triggerFileUpload(
+                        'image/*',
+                        (url) => {
+                            editor.chain().focus().deleteRange(range).setResizableImage({ src: url }).run()
+                        },
+                        t
+                    )
+                },
             },
-        },
-        {
-            title: 'Video',
-            description: 'Embed a video from YouTube.',
-            icon: Video,
-            command: ({ editor, range }: any) => {
-                const url = window.prompt('Enter YouTube URL')
-                if (url) {
-                    editor.chain().focus().deleteRange(range).setYoutubeVideo({ src: url }).run()
+            {
+                title: t('slash_commands.video.title'),
+                description: t('slash_commands.video.description'),
+                icon: Video,
+                command: ({ editor, range }: any) => {
+                    const url = window.prompt(t('slash_commands.video.prompt'))
+                    if (url) {
+                        editor.chain().focus().deleteRange(range).setYoutubeVideo({ src: url }).run()
+                    }
+                },
+            },
+            {
+                title: t('slash_commands.file.title'),
+                description: t('slash_commands.file.description'),
+                icon: File,
+                command: ({ editor, range }: any) => {
+                    triggerFileUpload(
+                        '*/*',
+                        (url) => {
+                            const fileName = url.split('/').pop()?.split('_').slice(1).join('_') || 'File Link'
+                            editor.chain().focus().deleteRange(range).insertContent(`<a href="${url}" data-type="file-link" class="text-blue-600 hover:underline cursor-pointer">${fileName}</a>`).run()
+                        },
+                        t
+                    )
                 }
-            },
-        },
-        {
-            title: 'File',
-            description: 'Upload a file.',
-            icon: File,
-            command: ({ editor, range }: any) => {
-                triggerFileUpload('*/*', (url) => {
-                    const fileName = url.split('/').pop()?.split('_').slice(1).join('_') || 'File Link'
-                    editor.chain().focus().deleteRange(range).insertContent(`<a href="${url}" data-type="file-link" class="text-blue-600 hover:underline cursor-pointer">${fileName}</a>`).run()
-                })
             }
-        }
-    ]
+        ]
 
-    return items.filter((item) =>
-        item.title.toLowerCase().includes(query.toLowerCase())
-    )
-}
+        return items.filter((item) =>
+            item.title.toLowerCase().includes(query.toLowerCase())
+        )
+    }
 
 // Slash Command Extension
 export const SlashCommand = Extension.create({
@@ -288,9 +300,9 @@ export const SlashCommand = Extension.create({
     },
 })
 
-export const suggestion = {
-    items: getSuggestionItems,
+export const createSuggestion = (t: Translator) => ({
+    items: getSuggestionItems(t),
     render: renderItems,
-}
+})
 
 export default SlashCommand
