@@ -29,7 +29,7 @@ The core goal of Z is to demonstrate how modern developer tooling can turn local
 - Supabase (Auth + Database)
 - Runtime i18n (next-intl)
 - Lingo.dev (CLI + Compiler + MCP )
-- github actions
+- Github actions
 - Tailwind CSS
 
 ## Project Structure
