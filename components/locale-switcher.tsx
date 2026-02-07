@@ -14,6 +14,7 @@ const locales = [
     { code: 'en', name: 'English' },
     { code: 'es', name: 'Español' },
     { code: 'fr', name: 'Français' },
+    { code: 'bn', name: 'বাংলা' },
 ];
 
 export function LocaleSwitcher() {
@@ -35,7 +36,7 @@ export function LocaleSwitcher() {
 
     const switchLocale = (newLocale: string) => {
         // Remove current locale from pathname if it exists
-const pathnameWithoutLocale = pathname.replace(/^\/(en|es|fr)/, '');
+        const pathnameWithoutLocale = pathname.replace(/^\/(en|es|fr|bn)/, '');
 
         // Always use explicit locale prefix to avoid routing issues
         const newPath = `/${newLocale}${pathnameWithoutLocale || '/'}`;
