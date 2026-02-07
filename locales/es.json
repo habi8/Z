@@ -1,247 +1,247 @@
 {
-  "metadata": {
-    "title": "Z - Plataforma de Espacio de Trabajo Global",
-    "description": "Construye, colabora y escala tu contenido globalmente con Z - la plataforma de espacio de trabajo con traducción y localización integradas."
-  },
-  "header": {
-    "logo_alt": "Logo de Z",
-    "workspace": "Espacio de trabajo de ZED",
-    "features": "Características",
-    "how_it_works": "Cómo funciona",
-    "pricing": "Precios",
-    "sign_in": "Iniciar sesión",
-    "get_started": "Comenzar",
-    "user_menu": {
-      "profile": "Perfil",
-      "settings": "Ajustes",
-      "sign_out": "Cerrar sesión"
+    "metadata": {
+        "title": "Z - Plataforma de Espacio de Trabajo Global",
+        "description": "Construye, colabora y escala tu contenido globalmente con Z - la plataforma de espacio de trabajo con traducción y localización integradas."
+    },
+    "header": {
+        "logo_alt": "Logo de  Z",
+        "workspace": "Espacio de trabajo de ZED",
+        "features": "Características",
+        "how_it_works": "Cómo funciona",
+        "pricing": "Precios",
+        "sign_in": "Iniciar sesión",
+        "get_started": "Comenzar",
+        "user_menu": {
+            "profile": "Perfil",
+            "settings": "Ajustes",
+            "sign_out": "Cerrar sesión"
+        }
+    },
+    "hero": {
+        "badge": "Construido para equipos globales",
+        "title_line1": "Construye una vez.",
+        "title_line2": "Envía a todas partes.",
+        "subtitle": "La plataforma de espacio de trabajo con traducción y localización integradas. Crea, colabora y escala tu contenido globalmente.",
+        "cta_primary": "Comienza a construir gratis",
+        "cta_secondary": "Ver cómo funciona",
+        "no_credit_card": "No se requiere tarjeta de crédito • Gratis para siempre para individuos",
+        "powered_by": "desarrollado por"
+    },
+    "features": {
+        "heading": "Todo lo que necesitas para ser global",
+        "subheading": "Características integradas que te ayudan a crear, traducir y gestionar contenido en diferentes idiomas y mercados.",
+        "lingo_ready": {
+            "title": "Listo para Lingo.dev",
+            "description": "Integración perfecta con Lingo.dev para flujos de trabajo de traducción potentes y gestión de glosarios."
+        },
+        "multi_language": {
+            "title": "Soporte Multi-idioma",
+            "description": "Crea contenido en un idioma y distribúyelo globalmente con herramientas de traducción integradas."
+        },
+        "real_time": {
+            "title": "Colaboración en Tiempo Real",
+            "description": "Trabaja junto con tu equipo en tiempo real, con cambios sincronizados instantáneamente entre todos los usuarios."
+        },
+        "rich_editor": {
+            "title": "Editor de Texto Enriquecido",
+            "description": "Potente editor basado en bloques con soporte para texto, imágenes, código y bloques de contenido personalizados."
+        },
+        "team_workspaces": {
+            "title": "Espacios de Trabajo en Equipo",
+            "description": "Organiza tu contenido en espacios de trabajo, colabora con miembros del equipo y gestiona permisos."
+        },
+        "secure": {
+            "title": "Seguro y Privado",
+            "description": "Seguridad de nivel empresarial con control de acceso a nivel de fila y almacenamiento de datos cifrado."
+        }
+    },
+    "how_it_works": {
+        "heading": "Flujo de trabajo simple y potente",
+        "subheading": "Desde la creación de contenido hasta la distribución global en tres sencillos pasos",
+        "step1": {
+            "number": "01",
+            "title": "Crea tu espacio de trabajo",
+            "description": "Configura tu espacio de trabajo e invita a tu equipo. Organiza tu contenido con estructuras de documentos flexibles."
+        },
+        "step2": {
+            "number": "02",
+            "title": "Construye tu contenido",
+            "description": "Usa nuestro editor enriquecido para crear documentos con texto, imágenes, bloques de código y más. Estructura lista para traducción."
+        },
+        "step3": {
+            "number": "03",
+            "title": "Hazte global con Lingo.dev",
+            "description": "Agrega la integración de Lingo.dev para habilitar flujos de trabajo de traducción, gestión de glosarios y distribución multi-idioma."
+        }
+    },
+    "cta": {
+        "heading": "¿Listo para construir para una audiencia global?",
+        "subheading": "Únete a los equipos que usan Z para crear y distribuir contenido en todo el mundo.",
+        "button": "Comenzar gratis"
+    },
+    "footer": {
+        "logo_alt": "Logo de Z",
+        "copyright": "© 2026 Z. Construido para equipos globales.",
+        "privacy": "Privacidad",
+        "terms": "Términos",
+        "contact": "Contacto"
+    },
+    "auth": {
+        "login": {
+            "title": "Bienvenido de nuevo",
+            "subtitle": "Inicia sesión en tu espacio de trabajo ZED",
+            "email": "Correo electrónico",
+            "password": "Contraseña",
+            "submit": "Iniciar sesión",
+            "submitting": "Iniciando sesión...",
+            "no_account": "¿No tienes una cuenta?",
+            "sign_up": "Regístrate",
+            "error_default": "Error al iniciar sesión"
+        },
+        "signup": {
+            "title": "Crea una cuenta",
+            "subtitle": "Comienza a construir para una audiencia global hoy mismo",
+            "full_name": "Nombre completo",
+            "email": "Correo electrónico",
+            "password": "Contraseña",
+            "submit": "Crear cuenta",
+            "submitting": "Creando cuenta...",
+            "password_hint": "Debe tener al menos {min} caracteres",
+            "has_account": "¿Ya tienes una cuenta?",
+            "sign_in": "Inicia sesión",
+            "error_default": "Error al registrarse"
+        },
+        "signup_success": {
+            "title": "Revisa tu correo",
+            "subtitle": "Te hemos enviado un enlace de confirmación. Haz clic en el enlace de tu correo para activar tu cuenta y empezar a usar Z.",
+            "button": "Volver al inicio de sesión",
+            "footer": "¿No recibiste el correo? Revisa tu carpeta de spam o intenta registrarte de nuevo."
+        },
+        "errors": {
+            "invalid_credentials": "Correo o contraseña inválidos",
+            "user_already_registered": "Este correo ya está registrado",
+            "weak_password": "La contraseña es demasiado débil",
+            "email_not_confirmed": "Por favor confirma tu dirección de correo",
+            "network_error": "Error de red. Inténtalo de nuevo.",
+            "generic": "Ocurrió un error. Inténtalo de nuevo."
+        }
+    },
+    "dashboard": {
+        "welcome": "Bienvenido de nuevo, {name}",
+        "subtitle": "Gestiona tus espacios de trabajo y colabora con tu equipo",
+        "new_workspace": "Nuevo Espacio de Trabajo",
+        "create_title": "Crear nuevo espacio de trabajo",
+        "create_description": "Los espacios de trabajo te ayudan a organizar tus documentos y colaborar con tu equipo.",
+        "workspace_name": "Nombre del espacio de trabajo",
+        "name_placeholder": "Mi Proyecto Impresionante",
+        "workspace_description": "Descripción (opcional)",
+        "desc_placeholder": "¿Para qué es este espacio de trabajo?",
+        "cancel": "Cancelar",
+        "create": "Crear espacio de trabajo",
+        "creating": "Creando...",
+        "no_workspaces": "Aún no hay espacios de trabajo",
+        "no_workspaces_description": "Crea tu primer espacio de trabajo para comenzar a organizar tus documentos y colaborar con tu equipo.",
+        "create_first": "Crea tu primer espacio de trabajo",
+        "docs_count": "{count} docs",
+        "created_at": "Creado el {date}",
+        "confirm_delete": "¿Estás seguro de que quieres eliminar este espacio de trabajo? Esta acción no se puede deshacer.",
+        "delete_failed": "Error al eliminar el espacio de trabajo"
+    },
+    "workspace": {
+        "title": "Documentos",
+        "subtitle": "{count, plural, =1 {1 documento} other {{count} documentos}}",
+        "new_document": "Nuevo Documento",
+        "create_title": "Crear nuevo documento",
+        "create_description": "Comienza a escribir tu contenido. Puedes añadir traducciones más tarde.",
+        "doc_title": "Título del documento",
+        "title_placeholder": "Documento sin título",
+        "cancel": "Cancelar",
+        "create": "Crear documento",
+        "creating": "Creando...",
+        "no_documents": "Aún no hay documentos",
+        "no_documents_description": "Crea tu primer documento para comenzar a escribir contenido listo para su distribución global.",
+        "create_first": "Crea tu primer documento",
+        "upload_file": "Subir archivo",
+        "last_updated": "Última actualización el {date}",
+        "delete": "Eliminar",
+        "delete_confirm": "¿Estás seguro de que quieres eliminar este documento?",
+        "back_to_dashboard": "Volver al Panel"
+    },
+    "document": {
+        "title_placeholder": "Documento sin título",
+        "save": "Guardar",
+        "saving": "Guardando...",
+        "saved_at": "Guardado a las {time}",
+        "save_failed": "Error al guardar el documento",
+        "insert_image": "Insertar imagen",
+        "translation_ready": "Listo para Traducción",
+        "lingo_description": "Este documento está estructurado para la integración con Lingo.dev. Agrega Lingo.dev localmente para habilitar flujos de trabajo de traducción, gestión de contexto y variantes multi-idioma.",
+        "editor_placeholder": "Empieza a escribir tu contenido aquí...",
+        "words": "{count} {count, plural, =1 {palabra} other {palabras}}",
+        "created_at": "Creado el {date}"
+    },
+    "editor": {
+        "upload": {
+            "uploading_image": "Subiendo imagen...",
+            "uploading_file": "Subiendo archivo...",
+            "upload_complete": "Subida completa",
+            "upload_failed": "Error al subir: {error}",
+            "unknown_error": "Error desconocido"
+        },
+        "slash_commands": {
+            "text": {
+                "title": "Texto",
+                "description": "Comienza a escribir con texto plano."
+            },
+            "heading1": {
+                "title": "Encabezado 1",
+                "description": "Encabezado de sección grande."
+            },
+            "heading2": {
+                "title": "Encabezado 2",
+                "description": "Encabezado de sección mediano."
+            },
+            "heading3": {
+                "title": "Encabezado 3",
+                "description": "Encabezado de sección pequeño."
+            },
+            "bullet_list": {
+                "title": "Lista con Viñetas",
+                "description": "Crea una lista simple con viñetas."
+            },
+            "numbered_list": {
+                "title": "Lista Numerada",
+                "description": "Crea una lista con numeración."
+            },
+            "image": {
+                "title": "Imagen",
+                "description": "Sube o incrusta una imagen."
+            },
+            "video": {
+                "title": "Video",
+                "description": "Incrusta un video de YouTube.",
+                "prompt": "Ingresa la URL de YouTube"
+            },
+            "file": {
+                "title": "Archivo",
+                "description": "Sube un archivo."
+            }
+        }
+    },
+    "settings": {
+        "title": "Ajustes",
+        "profile_settings": "Ajustes del Perfil",
+        "profile_description": "Gestiona la información de tu perfil y preferencias",
+        "email": "Correo electrónico",
+        "email_description": "El correo electrónico no se puede cambiar",
+        "display_name": "Nombre a mostrar",
+        "display_name_placeholder": "Tu nombre",
+        "save_changes": "Guardar cambios",
+        "saving": "Guardando...",
+        "success": "¡Ajustes guardados con éxito!",
+        "lingo_integration": "Integración con Lingo.dev",
+        "lingo_description": "Ajustes de traducción y localización",
+        "lingo_configured": "La integración con Lingo.dev está configurada a nivel de proyecto.",
+        "lingo_docs": "Consulta LINGO_INTEGRATION.md para las instrucciones de configuración."
     }
-  },
-  "hero": {
-    "badge": "Construido para equipos globales",
-    "title_line1": "Construye una vez.",
-    "title_line2": "Envía a todas partes.",
-    "subtitle": "La plataforma de espacio de trabajo con traducción y localización integradas. Crea, colabora y escala tu contenido globalmente.",
-    "cta_primary": "Comienza a construir gratis",
-    "cta_secondary": "Ver cómo funciona",
-    "no_credit_card": "No se requiere tarjeta de crédito • Gratis para siempre para individuos",
-    "powered_by": "desarrollado por"
-  },
-  "features": {
-    "heading": "Todo lo que necesitas para ser global",
-    "subheading": "Características integradas que te ayudan a crear, traducir y gestionar contenido en diferentes idiomas y mercados.",
-    "lingo_ready": {
-      "title": "Listo para Lingo.dev",
-      "description": "Integración perfecta con Lingo.dev para flujos de trabajo de traducción potentes y gestión de glosarios."
-    },
-    "multi_language": {
-      "title": "Soporte Multi-idioma",
-      "description": "Crea contenido en un idioma y distribúyelo globalmente con herramientas de traducción integradas."
-    },
-    "real_time": {
-      "title": "Colaboración en Tiempo Real",
-      "description": "Trabaja junto con tu equipo en tiempo real, con cambios sincronizados instantáneamente entre todos los usuarios."
-    },
-    "rich_editor": {
-      "title": "Editor de Texto Enriquecido",
-      "description": "Potente editor basado en bloques con soporte para texto, imágenes, código y bloques de contenido personalizados."
-    },
-    "team_workspaces": {
-      "title": "Espacios de Trabajo en Equipo",
-      "description": "Organiza tu contenido en espacios de trabajo, colabora con miembros del equipo y gestiona permisos."
-    },
-    "secure": {
-      "title": "Seguro y Privado",
-      "description": "Seguridad de nivel empresarial con control de acceso a nivel de fila y almacenamiento de datos cifrado."
-    }
-  },
-  "how_it_works": {
-    "heading": "Flujo de trabajo simple y potente",
-    "subheading": "Desde la creación de contenido hasta la distribución global en tres sencillos pasos",
-    "step1": {
-      "number": "01",
-      "title": "Crea tu espacio de trabajo",
-      "description": "Configura tu espacio de trabajo e invita a tu equipo. Organiza tu contenido con estructuras de documentos flexibles."
-    },
-    "step2": {
-      "number": "02",
-      "title": "Construye tu contenido",
-      "description": "Usa nuestro editor enriquecido para crear documentos con texto, imágenes, bloques de código y más. Estructura lista para traducción."
-    },
-    "step3": {
-      "number": "03",
-      "title": "Hazte global con Lingo.dev",
-      "description": "Agrega la integración de Lingo.dev para habilitar flujos de trabajo de traducción, gestión de glosarios y distribución multi-idioma."
-    }
-  },
-  "cta": {
-    "heading": "¿Listo para construir para una audiencia global?",
-    "subheading": "Únete a los equipos que usan Z para crear y distribuir contenido en todo el mundo.",
-    "button": "Comenzar gratis"
-  },
-  "footer": {
-    "logo_alt": "Logo de Z",
-    "copyright": "© 2026 Z. Construido para equipos globales.",
-    "privacy": "Privacidad",
-    "terms": "Términos",
-    "contact": "Contacto"
-  },
-  "auth": {
-    "login": {
-      "title": "Bienvenido de nuevo",
-      "subtitle": "Inicia sesión en tu espacio de trabajo ZED",
-      "email": "Correo electrónico",
-      "password": "Contraseña",
-      "submit": "Iniciar sesión",
-      "submitting": "Iniciando sesión...",
-      "no_account": "¿No tienes una cuenta?",
-      "sign_up": "Regístrate",
-      "error_default": "Error al iniciar sesión"
-    },
-    "signup": {
-      "title": "Crea una cuenta",
-      "subtitle": "Comienza a construir para una audiencia global hoy mismo",
-      "full_name": "Nombre completo",
-      "email": "Correo electrónico",
-      "password": "Contraseña",
-      "submit": "Crear cuenta",
-      "submitting": "Creando cuenta...",
-      "password_hint": "Debe tener al menos {min} caracteres",
-      "has_account": "¿Ya tienes una cuenta?",
-      "sign_in": "Inicia sesión",
-      "error_default": "Error al registrarse"
-    },
-    "signup_success": {
-      "title": "Revisa tu correo",
-      "subtitle": "Te hemos enviado un enlace de confirmación. Haz clic en el enlace de tu correo para activar tu cuenta y empezar a usar Z.",
-      "button": "Volver al inicio de sesión",
-      "footer": "¿No recibiste el correo? Revisa tu carpeta de spam o intenta registrarte de nuevo."
-    },
-    "errors": {
-      "invalid_credentials": "Correo o contraseña inválidos",
-      "user_already_registered": "Este correo ya está registrado",
-      "weak_password": "La contraseña es demasiado débil",
-      "email_not_confirmed": "Por favor confirma tu dirección de correo",
-      "network_error": "Error de red. Inténtalo de nuevo.",
-      "generic": "Ocurrió un error. Inténtalo de nuevo."
-    }
-  },
-  "dashboard": {
-    "welcome": "Bienvenido de nuevo, {name}",
-    "subtitle": "Gestiona tus espacios de trabajo y colabora con tu equipo",
-    "new_workspace": "Nuevo Espacio de Trabajo",
-    "create_title": "Crear nuevo espacio de trabajo",
-    "create_description": "Los espacios de trabajo te ayudan a organizar tus documentos y colaborar con tu equipo.",
-    "workspace_name": "Nombre del espacio de trabajo",
-    "name_placeholder": "Mi Proyecto Impresionante",
-    "workspace_description": "Descripción (opcional)",
-    "desc_placeholder": "¿Para qué es este espacio de trabajo?",
-    "cancel": "Cancelar",
-    "create": "Crear espacio de trabajo",
-    "creating": "Creando...",
-    "no_workspaces": "Aún no hay espacios de trabajo",
-    "no_workspaces_description": "Crea tu primer espacio de trabajo para comenzar a organizar tus documentos y colaborar con tu equipo.",
-    "create_first": "Crea tu primer espacio de trabajo",
-    "docs_count": "{count} docs",
-    "created_at": "Creado el {date}",
-    "confirm_delete": "¿Estás seguro de que quieres eliminar este espacio de trabajo? Esta acción no se puede deshacer.",
-    "delete_failed": "Error al eliminar el espacio de trabajo"
-  },
-  "workspace": {
-    "title": "Documentos",
-    "subtitle": "{count, plural, =1 {1 documento} other {{count} documentos}}",
-    "new_document": "Nuevo Documento",
-    "create_title": "Crear nuevo documento",
-    "create_description": "Comienza a escribir tu contenido. Puedes añadir traducciones más tarde.",
-    "doc_title": "Título del documento",
-    "title_placeholder": "Documento sin título",
-    "cancel": "Cancelar",
-    "create": "Crear documento",
-    "creating": "Creando...",
-    "no_documents": "Aún no hay documentos",
-    "no_documents_description": "Crea tu primer documento para comenzar a escribir contenido listo para su distribución global.",
-    "create_first": "Crea tu primer documento",
-    "upload_file": "Subir archivo",
-    "last_updated": "Última actualización el {date}",
-    "delete": "Eliminar",
-    "delete_confirm": "¿Estás seguro de que quieres eliminar este documento?",
-    "back_to_dashboard": "Volver al Panel"
-  },
-  "document": {
-    "title_placeholder": "Documento sin título",
-    "save": "Guardar",
-    "saving": "Guardando...",
-    "saved_at": "Guardado a las {time}",
-    "save_failed": "Error al guardar el documento",
-    "insert_image": "Insertar imagen",
-    "translation_ready": "Listo para Traducción",
-    "lingo_description": "Este documento está estructurado para la integración con Lingo.dev. Agrega Lingo.dev localmente para habilitar flujos de trabajo de traducción, gestión de contexto y variantes multi-idioma.",
-    "editor_placeholder": "Empieza a escribir tu contenido aquí...",
-    "words": "{count} {count, plural, =1 {palabra} other {palabras}}",
-    "created_at": "Creado el {date}"
-  },
-  "editor": {
-    "upload": {
-      "uploading_image": "Subiendo imagen...",
-      "uploading_file": "Subiendo archivo...",
-      "upload_complete": "Subida completa",
-      "upload_failed": "Error al subir: {error}",
-      "unknown_error": "Error desconocido"
-    },
-    "slash_commands": {
-      "text": {
-        "title": "Texto",
-        "description": "Comienza a escribir con texto plano."
-      },
-      "heading1": {
-        "title": "Encabezado 1",
-        "description": "Encabezado de sección grande."
-      },
-      "heading2": {
-        "title": "Encabezado 2",
-        "description": "Encabezado de sección mediano."
-      },
-      "heading3": {
-        "title": "Encabezado 3",
-        "description": "Encabezado de sección pequeño."
-      },
-      "bullet_list": {
-        "title": "Lista con Viñetas",
-        "description": "Crea una lista simple con viñetas."
-      },
-      "numbered_list": {
-        "title": "Lista Numerada",
-        "description": "Crea una lista con numeración."
-      },
-      "image": {
-        "title": "Imagen",
-        "description": "Sube o incrusta una imagen."
-      },
-      "video": {
-        "title": "Video",
-        "description": "Incrusta un video de YouTube.",
-        "prompt": "Ingresa la URL de YouTube"
-      },
-      "file": {
-        "title": "Archivo",
-        "description": "Sube un archivo."
-      }
-    }
-  },
-  "settings": {
-    "title": "Ajustes",
-    "profile_settings": "Ajustes del Perfil",
-    "profile_description": "Gestiona la información de tu perfil y preferencias",
-    "email": "Correo electrónico",
-    "email_description": "El correo electrónico no se puede cambiar",
-    "display_name": "Nombre a mostrar",
-    "display_name_placeholder": "Tu nombre",
-    "save_changes": "Guardar cambios",
-    "saving": "Guardando...",
-    "success": "¡Ajustes guardados con éxito!",
-    "lingo_integration": "Integración con Lingo.dev",
-    "lingo_description": "Ajustes de traducción y localización",
-    "lingo_configured": "La integración con Lingo.dev está configurada a nivel de proyecto.",
-    "lingo_docs": "Consulta LINGO_INTEGRATION.md para las instrucciones de configuración."
-  }
 }

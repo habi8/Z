@@ -3,7 +3,7 @@ checksums:
   55dc377b5e931bfc64e4add83e35d9ea:
     metadata/title: aeb3098540bcb01517e441441a874a69
     metadata/description: 03e901c820137ac1b6e80522e4e62ac2
-    header/logo_alt: c6bac7a1927e949d465df52a71c36604
+    header/logo_alt: 8c7e578a2a437308cce1135b3f641a4d
     header/workspace: 6692d2cbe8eb88a280b5db38961e88ca
     header/features: 341ff316a339b106a178f0b8d362951b
     header/how_it_works: 191d4f7f162cdb17f444531b7593c549
@@ -75,6 +75,12 @@ checksums:
     auth/signup_success/subtitle: 31647379fc684d1f1bd6f5b095bc7b80
     auth/signup_success/button: 493d0b4ea1a695e02e3e3768e4fc633d
     auth/signup_success/footer: 658abb4e5d1b65c43adfe9b782ec0a2e
+    auth/errors/invalid_credentials: 3744cb45cfbd81dc028790036c6ed245
+    auth/errors/user_already_registered: 51c097f9293331f2417601bf950422c5
+    auth/errors/weak_password: fc0043090f6cc96728b585cd50efc89f
+    auth/errors/email_not_confirmed: 73aa4a257a4ccbfed94d888a9e265533
+    auth/errors/network_error: 324fc3eee207eefe6188fc9e45db9a8b
+    auth/errors/generic: 04eb843eaff0839b9ba1cb243e550d89
     dashboard/welcome: ff470d1f9f5615e03640f4260070b8e7
     dashboard/subtitle: 8f6ef172c6e003f7087e9d71a8b61b99
     dashboard/new_workspace: 9c9a1fe60ed204bcb800c4e55a46322e
@@ -123,6 +129,30 @@ checksums:
     document/editor_placeholder: fdf79d7d2625b1ccf87e3d518c8a9de1
     document/words: b539ae5ebd4ed431ec55c5f8ab730398
     document/created_at: 14603ed516133ca1b5c69802d3ea4fee
+    editor/upload/uploading_image: 1b8ae284fbb86ca36dd4bdf0c2da32aa
+    editor/upload/uploading_file: b0d4a3847ed2c059386c80a2a423f6e9
+    editor/upload/upload_complete: cf9726f7bdacdee57a00fd5d2d571e4a
+    editor/upload/upload_failed: 9fbb862d056353ec9a0c71288d4bedef
+    editor/upload/unknown_error: 7a2ffaf151bef1e23cdd30a29e389e71
+    editor/slash_commands/text/title: 4ddccc1974775ed7357f9beaf9361cec
+    editor/slash_commands/text/description: d32f9788823e15e16b8f97c44549a13c
+    editor/slash_commands/heading1/title: cbd66aa1808eceecbda71e16fe05747c
+    editor/slash_commands/heading1/description: 3996bccbe6c60609a911eccf31e95e37
+    editor/slash_commands/heading2/title: 317cb373550914953c97c8f97e9b00fa
+    editor/slash_commands/heading2/description: 3c937cda1869249c68652e50a4653aa2
+    editor/slash_commands/heading3/title: a6daf7c67948ba1c0b81428bd66e4faf
+    editor/slash_commands/heading3/description: fc69e805f24a9e0c1950259ddf5d4968
+    editor/slash_commands/bullet_list/title: 10ed24b2b8d641d31231ebbc404da196
+    editor/slash_commands/bullet_list/description: 00ea3277357c4d3c5e0ac67bb871d220
+    editor/slash_commands/numbered_list/title: 83941217a925a47218311f7d231bffd0
+    editor/slash_commands/numbered_list/description: 353751bc8432551b4b614a4e538491d3
+    editor/slash_commands/image/title: 048ba7a239de0fbd883ade8558415830
+    editor/slash_commands/image/description: 294536fd113435462f163834e5252870
+    editor/slash_commands/video/title: 8050c90e4289b105a0780f0fdda6ff66
+    editor/slash_commands/video/description: 877239214998a9d7792eea5f34e7f2d8
+    editor/slash_commands/video/prompt: 149c6711f6f0f5a2016b256151a3a063
+    editor/slash_commands/file/title: 1255b55897f2be1443d3bb8c30cd9795
+    editor/slash_commands/file/description: 43d6a9167b6249e3babac0731a99521a
     settings/title: 8df6777277469c1fd88cc18dde2f1cc3
     settings/profile_settings: db0b3225a6a5cb607a711b5f6021891a
     settings/profile_description: fdee43dd8bb7cd9e1e46ceb210e91874
