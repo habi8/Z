@@ -1,4 +1,5 @@
 # Z — Global-Ready Notion-Lite Workspace
+Demo : https://drive.google.com/file/d/1h50Xq--csZOEs2Z5UtW1v3DdEDPrP2Wr/view?usp=drive_link
 
 Z is a lightweight, Notion-inspired collaborative workspace application built with a strong focus on internationalization, localization correctness, and scalable SaaS architecture.
 
