@@ -14,7 +14,8 @@
     "user_menu": {
       "profile": "প্রোফাইল",
       "settings": "সেটিংস",
-      "sign_out": "সাইন আউট"
+      "sign_out": "সাইন আউট",
+      "fallback_name": "ইউজার"
     }
   },
   "hero": {
@@ -25,7 +26,8 @@
     "cta_primary": "বিনামূল্যে শুরু করুন",
     "cta_secondary": "কীভাবে কাজ করে দেখুন",
     "no_credit_card": "ক্রেডিট কার্ড লাগবে না • ব্যক্তিদের জন্য চিরকাল ফ্রি",
-    "powered_by": "চালিত"
+    "powered_by": "চালিত",
+    "lingo_alt": "Lingo.dev"
   },
   "features": {
     "heading": "গ্লোবাল হতে যা যা দরকার",
@@ -91,7 +93,9 @@
       "title": "পুনরায় স্বাগতম",
       "subtitle": "আপনার ZED ওয়ার্কস্পেসে সাইন ইন করুন",
       "email": "ইমেইল",
+      "email_placeholder": "you@example.com",
       "password": "পাসওয়ার্ড",
+      "password_placeholder": "••••••••",
       "submit": "সাইন ইন",
       "submitting": "সাইন ইন করা হচ্ছে...",
       "no_account": "অ্যাকাউন্ট নেই?",
@@ -102,8 +106,11 @@
       "title": "অ্যাকাউন্ট তৈরি করুন",
       "subtitle": "আজই গ্লোবাল দর্শকের জন্য নির্মাণ শুরু করুন",
       "full_name": "পূর্ণ নাম",
+      "full_name_placeholder": "John Doe",
       "email": "ইমেইল",
+      "email_placeholder": "you@example.com",
       "password": "পাসওয়ার্ড",
+      "password_placeholder": "••••••••",
       "submit": "অ্যাকাউন্ট তৈরি করুন",
       "submitting": "অ্যাকাউন্ট তৈরি হচ্ছে...",
       "password_hint": "অন্তত {min} অক্ষর হতে হবে",
@@ -124,10 +131,17 @@
       "email_not_confirmed": "অনুগ্রহ করে আপনার ইমেইল ঠিকানা নিশ্চিত করুন",
       "network_error": "নেটওয়ার্ক ত্রুটি। অনুগ্রহ করে আবার চেষ্টা করুন।",
       "generic": "একটি ত্রুটি হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
+    },
+    "error_page": {
+      "title": "অথেন্টিকেশন ত্রুটি",
+      "description": "অথেন্টিকেশনের সময় কিছু ভুল হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
+      "button": "সাইন ইন-এ ফিরে যান"
     }
   },
   "dashboard": {
+    "title": "ড্যাশবোর্ড",
     "welcome": "স্বাগতম, {name}",
+    "welcome_fallback": "সেখানে",
     "subtitle": "আপনার ওয়ার্কস্পেস পরিচালনা করুন এবং টিমের সাথে সহযোগিতা করুন",
     "new_workspace": "নতুন ওয়ার্কস্পেস",
     "create_title": "নতুন ওয়ার্কস্পেস তৈরি করুন",
@@ -145,7 +159,20 @@
     "docs_count": "{count} নথি",
     "created_at": "{date}-এ তৈরি",
     "confirm_delete": "আপনি কি নিশ্চিত যে এই ওয়ার্কস্পেসটি মুছে ফেলতে চান? এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।",
-    "delete_failed": "ওয়ার্কস্পেস মুছতে ব্যর্থ"
+    "delete_failed": "ওয়ার্কস্পেস মুছতে ব্যর্থ",
+    "inviter_fallback": "একজন ইউজার",
+    "invite_server_error": "সার্ভার {status} {statusText} রিটার্ন করেছে। সার্ভার লগ চেক করুন।",
+    "invite_send_failed": "ইনভাইট পাঠাতে ব্যর্থ হয়েছে",
+    "invite_sent_title": "ইনভাইট পাঠানো হয়েছে!",
+    "invite_sent_message": "আমরা <strong>{email}</strong>-এ একটি ইমেইল পাঠিয়েছি",
+    "share_title": "ওয়ার্কস্পেস শেয়ার করুন",
+    "share_description": "ইমেইলের মাধ্যমে <strong>{workspace}</strong>-এ সহযোগীদের আমন্ত্রণ জানান।",
+    "share_email_label": "ইমেইল ঠিকানা",
+    "share_email_placeholder": "colleague@company.com",
+    "invite_sending": "পাঠানো হচ্ছে...",
+    "invite_send": "ইনভাইট পাঠান",
+    "share_action": "ওয়ার্কস্পেস শেয়ার করুন",
+    "delete_action": "ওয়ার্কস্পেস ডিলিট করুন"
   },
   "workspace": {
     "title": "নথি",
@@ -162,10 +189,13 @@
     "no_documents_description": "বিশ্বব্যাপী বিতরণের জন্য প্রস্তুত কনটেন্ট লিখতে আপনার প্রথম নথি তৈরি করুন।",
     "create_first": "আপনার প্রথম নথি তৈরি করুন",
     "upload_file": "ফাইল আপলোড করুন",
+    "uploaded_file": "আপলোড করা ফাইল",
+    "file_uploaded_prefix": "ফাইল আপলোড হয়েছে:",
     "last_updated": "সর্বশেষ আপডেট {date}",
     "delete": "মুছে ফেলুন",
     "delete_confirm": "আপনি কি নিশ্চিত যে এই নথিটি মুছে ফেলতে চান?",
-    "back_to_dashboard": "ড্যাশবোর্ডে ফিরে যান"
+    "back_to_dashboard": "ড্যাশবোর্ডে ফিরে যান",
+    "save_reference_failed": "নথি রেফারেন্স সংরক্ষণ ব্যর্থ হয়েছে: {error}"
   },
   "document": {
     "title_placeholder": "শিরোনামহীন নথি",
@@ -173,6 +203,10 @@
     "saving": "সংরক্ষণ করা হচ্ছে...",
     "saved_at": "{time}-এ সংরক্ষিত",
     "save_failed": "নথি সংরক্ষণ ব্যর্থ হয়েছে",
+    "export": "এক্সপোর্ট করুন",
+    "export_pdf": "PDF হিসেবে এক্সপোর্ট করুন",
+    "export_docx": "DOCX হিসেবে এক্সপোর্ট করুন",
+    "default_filename": "নথি",
     "insert_image": "ছবি সন্নিবেশ করুন",
     "translation_ready": "অনুবাদের জন্য প্রস্তুত",
     "lingo_description": "এই নথিটি Lingo.dev ইন্টিগ্রেশনের জন্য গঠিত। অনুবাদ ওয়ার্কফ্লো, কনটেক্সট ম্যানেজমেন্ট এবং বহুভাষিক ভ্যারিয়েন্ট সক্ষম করতে লোকালি Lingo.dev যোগ করুন।",
@@ -181,6 +215,8 @@
     "created_at": "{date}-এ তৈরি"
   },
   "editor": {
+    "placeholder": "কমান্ডের জন্য \"/\" টাইপ করুন...",
+    "file_link_fallback": "ফাইল লিংক",
     "upload": {
       "uploading_image": "ছবি আপলোড হচ্ছে...",
       "uploading_file": "ফাইল আপলোড হচ্ছে...",
@@ -228,6 +264,12 @@
       }
     }
   },
+  "locale": {
+    "english": "English",
+    "spanish": "Español",
+    "french": "Français",
+    "bengali": "বাংলা"
+  },
   "settings": {
     "title": "সেটিংস",
     "profile_settings": "প্রোফাইল সেটিংস",
@@ -239,9 +281,21 @@
     "save_changes": "পরিবর্তন সংরক্ষণ করুন",
     "saving": "সংরক্ষণ করা হচ্ছে...",
     "success": "সেটিংস সফলভাবে সংরক্ষিত!",
+    "error_saving": "সেটিংস সংরক্ষণে ত্রুটি: {error}",
     "lingo_integration": "Lingo.dev ইন্টিগ্রেশন",
     "lingo_description": "অনুবাদ ও লোকালাইজেশন সেটিংস",
     "lingo_configured": "Lingo.dev ইন্টিগ্রেশন প্রকল্প স্তরে কনফিগার করা হয়েছে।",
     "lingo_docs": "সেটআপ নির্দেশনার জন্য LINGO_INTEGRATION.md দেখুন।"
+  },
+  "invite_email": {
+    "subject": "{inviterName} থেকে ZED ওয়ার্কস্পেস আমন্ত্রণ",
+    "heading": "আপনাকে {workspaceName}-এ যোগ দিতে আমন্ত্রণ জানানো হয়েছে",
+    "intro": "{inviterName} আপনাকে {appName}-এ তাদের ওয়ার্কস্পেসে সহযোগিতা করার জন্য আমন্ত্রণ জানিয়েছেন।",
+    "cta": "ওয়ার্কস্পেসে যোগ দিন",
+    "or_copy": "অথবা এই লিংকটি কপি করুন:",
+    "internal_error": "ইন্টারনাল সার্ভার ত্রুটি"
+  },
+  "common": {
+    "close": "বন্ধ করুন"
   }
 }

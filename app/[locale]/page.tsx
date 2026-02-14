@@ -128,7 +128,7 @@ export default function LandingPage() {
               />
               <Image
                 src="/lingo.dev-logo.png"
-                alt="Lingo.dev"
+                alt={t('hero.lingo_alt')}
                 width={110}
                 height={28}
                 className="

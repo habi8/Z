@@ -14,7 +14,8 @@
     "user_menu": {
       "profile": "Profil",
       "settings": "Paramètres",
-      "sign_out": "Se déconnecter"
+      "sign_out": "Se déconnecter",
+      "fallback_name": "Utilisateur"
     }
   },
   "hero": {
@@ -25,7 +26,8 @@
     "cta_primary": "Commencer gratuitement",
     "cta_secondary": "Voir comment ça marche",
     "no_credit_card": "Aucune carte bancaire requise • Gratuit à vie pour les particuliers",
-    "powered_by": "propulsé par"
+    "powered_by": "propulsé par",
+    "lingo_alt": "Lingo.dev"
   },
   "features": {
     "heading": "Tout ce dont vous avez besoin pour vous développer à l'international",
@@ -91,7 +93,9 @@
       "title": "Bon retour",
       "subtitle": "Connectez-vous à votre espace de travail ZED",
       "email": "E-mail",
+      "email_placeholder": "vous@exemple.com",
       "password": "Mot de passe",
+      "password_placeholder": "••••••••",
       "submit": "Se connecter",
       "submitting": "Connexion en cours...",
       "no_account": "Vous n'avez pas de compte ?",
@@ -102,8 +106,11 @@
       "title": "Créer un compte",
       "subtitle": "Commencez à créer pour une audience mondiale dès aujourd'hui",
       "full_name": "Nom complet",
+      "full_name_placeholder": "Jean Dupont",
       "email": "E-mail",
+      "email_placeholder": "vous@exemple.com",
       "password": "Mot de passe",
+      "password_placeholder": "••••••••",
       "submit": "Créer un compte",
       "submitting": "Création du compte...",
       "password_hint": "Doit contenir au moins {min} caractères",
@@ -124,10 +131,17 @@
       "email_not_confirmed": "Veuillez confirmer votre adresse e-mail",
       "network_error": "Erreur réseau. Veuillez réessayer.",
       "generic": "Une erreur s'est produite. Veuillez réessayer."
+    },
+    "error_page": {
+      "title": "Erreur d'authentification",
+      "description": "Une erreur s'est produite lors de l'authentification. Veuillez réessayer.",
+      "button": "Retour à la connexion"
     }
   },
   "dashboard": {
+    "title": "Tableau de bord",
     "welcome": "Bon retour, {name}",
+    "welcome_fallback": "vous",
     "subtitle": "Gérez vos espaces de travail et collaborez avec votre équipe",
     "new_workspace": "Nouvel espace de travail",
     "create_title": "Créer un nouvel espace de travail",
@@ -145,7 +159,20 @@
     "docs_count": "{count} docs",
     "created_at": "Créé le {date}",
     "confirm_delete": "Êtes-vous sûr de vouloir supprimer cet espace de travail ? Cette action est irréversible.",
-    "delete_failed": "Échec de la suppression de l'espace de travail"
+    "delete_failed": "Échec de la suppression de l'espace de travail",
+    "inviter_fallback": "Un utilisateur",
+    "invite_server_error": "Le serveur a renvoyé {status} {statusText}. Vérifiez les journaux du serveur.",
+    "invite_send_failed": "Échec de l'envoi de l'invitation",
+    "invite_sent_title": "Invitation envoyée !",
+    "invite_sent_message": "Nous avons envoyé un e-mail à <strong>{email}</strong>",
+    "share_title": "Partager l'espace de travail",
+    "share_description": "Invitez des collaborateurs à <strong>{workspace}</strong> par e-mail.",
+    "share_email_label": "Adresse e-mail",
+    "share_email_placeholder": "collegue@entreprise.com",
+    "invite_sending": "Envoi en cours...",
+    "invite_send": "Envoyer l'invitation",
+    "share_action": "Partager l'espace de travail",
+    "delete_action": "Supprimer l'espace de travail"
   },
   "workspace": {
     "title": "Documents",
@@ -162,10 +189,13 @@
     "no_documents_description": "Créez votre premier document pour commencer à rédiger du contenu prêt pour une distribution mondiale.",
     "create_first": "Créer votre premier document",
     "upload_file": "Téléverser un fichier",
+    "uploaded_file": "Fichier téléversé",
+    "file_uploaded_prefix": "Fichier téléversé :",
     "last_updated": "Dernière mise à jour le {date}",
     "delete": "Supprimer",
     "delete_confirm": "Êtes-vous sûr de vouloir supprimer ce document ?",
-    "back_to_dashboard": "Retour au tableau de bord"
+    "back_to_dashboard": "Retour au tableau de bord",
+    "save_reference_failed": "Échec de l'enregistrement de la référence du document : {error}"
   },
   "document": {
     "title_placeholder": "Document sans titre",
@@ -173,6 +203,10 @@
     "saving": "Enregistrement en cours...",
     "saved_at": "Enregistré à {time}",
     "save_failed": "Échec de l'enregistrement du document",
+    "export": "Exporter",
+    "export_pdf": "Exporter en PDF",
+    "export_docx": "Exporter en DOCX",
+    "default_filename": "document",
     "insert_image": "Insérer une image",
     "translation_ready": "Prêt pour la traduction",
     "lingo_description": "Ce document est structuré pour l'intégration Lingo.dev. Ajoutez Lingo.dev localement pour activer les flux de traduction, la gestion du contexte et les variantes multilingues.",
@@ -181,6 +215,8 @@
     "created_at": "Créé le {date}"
   },
   "editor": {
+    "placeholder": "Tapez « / » pour les commandes...",
+    "file_link_fallback": "Lien du fichier",
     "upload": {
       "uploading_image": "Téléversement de l'image...",
       "uploading_file": "Téléversement du fichier...",
@@ -228,6 +264,12 @@
       }
     }
   },
+  "locale": {
+    "english": "Anglais",
+    "spanish": "Espagnol",
+    "french": "Français",
+    "bengali": "Bengali"
+  },
   "settings": {
     "title": "Paramètres",
     "profile_settings": "Paramètres du profil",
@@ -239,9 +281,21 @@
     "save_changes": "Enregistrer les modifications",
     "saving": "Enregistrement...",
     "success": "Paramètres enregistrés avec succès !",
+    "error_saving": "Erreur lors de l'enregistrement des paramètres : {error}",
     "lingo_integration": "Intégration Lingo.dev",
     "lingo_description": "Paramètres de traduction et de localisation",
     "lingo_configured": "L'intégration Lingo.dev est configurée au niveau du projet.",
     "lingo_docs": "Consultez LINGO_INTEGRATION.md pour les instructions de configuration."
+  },
+  "invite_email": {
+    "subject": "Invitation à l'espace de travail ZED de {inviterName}",
+    "heading": "Vous avez été invité à rejoindre {workspaceName}",
+    "intro": "{inviterName} vous a invité à collaborer sur son espace de travail dans {appName}.",
+    "cta": "Rejoindre l'espace de travail",
+    "or_copy": "Ou copiez ce lien :",
+    "internal_error": "Erreur interne du serveur"
+  },
+  "common": {
+    "close": "Fermer"
   }
 }

@@ -261,7 +261,7 @@ const getSuggestionItems =
                     triggerFileUpload(
                         '*/*',
                         (url) => {
-                            const fileName = url.split('/').pop()?.split('_').slice(1).join('_') || 'File Link'
+                            const fileName = url.split('/').pop()?.split('_').slice(1).join('_') || t('file_link_fallback')
                             editor.chain().focus().deleteRange(range).insertContent(`<a href="${url}" data-type="file-link" class="text-blue-600 hover:underline cursor-pointer">${fileName}</a>`).run()
                         },
                         t

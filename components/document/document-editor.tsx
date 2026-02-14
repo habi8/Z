@@ -129,7 +129,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
             <div className="flex items-center gap-3">
               <Image
                 src="/z-logo.png"
-                alt="Z Logo"
+                alt={th('logo_alt')}
                 width={60}
                 height={60}
                 className="object-contain"
@@ -154,15 +154,15 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="gap-2">
                   <Download className="h-4 w-4" />
-                  <span className="hidden sm:inline">Export</span>
+                  <span className="hidden sm:inline">{t('export')}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => exportToPdf('document-content', title || 'document')}>
-                  Export as PDF
+                <DropdownMenuItem onClick={() => exportToPdf('document-content', title || t('default_filename'))}>
+                  {t('export_pdf')}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => exportToDocx(content, title || 'document')}>
-                  Export as DOCX
+                <DropdownMenuItem onClick={() => exportToDocx(content, title || t('default_filename'))}>
+                  {t('export_docx')}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -185,7 +185,7 @@ export function DocumentEditor({ user, document: initialDocument }: DocumentEdit
                 <DropdownMenuLabel>
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium">
-                      {user.user_metadata?.full_name || 'User'}
+                      {user.user_metadata?.full_name || th('user_menu.fallback_name')}
                     </p>
                     <p className="text-xs text-muted-foreground">{user.email}</p>
                   </div>

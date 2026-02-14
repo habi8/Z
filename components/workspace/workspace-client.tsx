@@ -132,13 +132,14 @@ export function WorkspaceClient({
       try {
         const supabase = createClient()
         // Extract filename from URL (it has the random prefix)
-        const fileName = url.split('/').pop()?.split('_').slice(1).join('_') || 'Uploaded File'
+        const fileName = url.split('/').pop()?.split('_').slice(1).join('_') || t('uploaded_file')
+        const fileUploadedPrefix = t('file_uploaded_prefix')
 
         const { data, error } = await supabase
           .from('documents')
           .insert({
             title: fileName,
-            content: { text: `<p>File uploaded: <a href="${url}" target="_blank" data-type="file-link" class="text-blue-600 hover:underline cursor-pointer">${fileName}</a></p>` },
+            content: { text: `<p>${fileUploadedPrefix} <a href="${url}" target="_blank" data-type="file-link" class="text-blue-600 hover:underline cursor-pointer">${fileName}</a></p>` },
             workspace_id: workspace.id,
             user_id: user.id,
             source_language: 'en',
@@ -151,7 +152,7 @@ export function WorkspaceClient({
         setDocuments([data, ...documents])
       } catch (error: any) {
         console.error('Error creating document from upload:', error)
-        alert('Failed to save document reference: ' + error.message)
+        alert(t('save_reference_failed', { error: error.message }))
       } finally {
         setLoading(false)
       }
@@ -197,7 +198,7 @@ export function WorkspaceClient({
             <div className="flex items-center gap-3">
               <Image
                 src="/z-logo.png"
-                alt="Z Logo"
+                alt={th('logo_alt')}
                 width={60}
                 height={60}
                 className="object-contain"
@@ -224,7 +225,7 @@ export function WorkspaceClient({
                 <DropdownMenuLabel>
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium">
-                      {user.user_metadata?.full_name || 'User'}
+                      {user.user_metadata?.full_name || th('user_menu.fallback_name')}
                     </p>
                     <p className="text-xs text-muted-foreground">{user.email}</p>
                   </div>
@@ -270,7 +271,7 @@ export function WorkspaceClient({
                 disabled={loading}
               >
                 <Upload className="h-4 w-4" />
-                {t('upload_file') || 'Upload File'}
+                {t('upload_file')}
               </Button>
               <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
                 <DialogTrigger asChild>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import {
@@ -11,14 +11,15 @@ import {
 import { Globe } from 'lucide-react';
 
 const locales = [
-    { code: 'en', name: 'English' },
-    { code: 'es', name: 'Español' },
-    { code: 'fr', name: 'Français' },
-    { code: 'bn', name: 'বাংলা' },
+    { code: 'en', labelKey: 'english' },
+    { code: 'es', labelKey: 'spanish' },
+    { code: 'fr', labelKey: 'french' },
+    { code: 'bn', labelKey: 'bengali' },
 ];
 
 export function LocaleSwitcher() {
     const [mounted, setMounted] = useState(false);
+    const t = useTranslations('locale');
     const locale = useLocale();
     const router = useRouter();
     const pathname = usePathname();
@@ -30,7 +31,7 @@ export function LocaleSwitcher() {
     if (!mounted) return (
         <Button variant="ghost" size="sm" className="gap-2 opacity-0">
             <Globe className="h-4 w-4" />
-            <span className="hidden sm:inline">English</span>
+            <span className="hidden sm:inline">{t('english')}</span>
         </Button>
     );
 
@@ -44,14 +45,14 @@ export function LocaleSwitcher() {
         router.push(newPath);
     };
 
-    const currentLocaleName = locales.find(l => l.code === locale)?.name || 'English';
+    const currentLocaleName = locales.find(l => l.code === locale)?.labelKey || 'english';
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm" className="gap-2" suppressHydrationWarning>
                     <Globe className="h-4 w-4" />
-                    <span className="hidden sm:inline">{currentLocaleName}</span>
+                    <span className="hidden sm:inline">{t(currentLocaleName)}</span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -61,7 +62,7 @@ export function LocaleSwitcher() {
                         onClick={() => switchLocale(loc.code)}
                         className={locale === loc.code ? 'bg-accent' : ''}
                     >
-                        {loc.name}
+                        {t(loc.labelKey)}
                     </DropdownMenuItem>
                 ))}
             </DropdownMenuContent>

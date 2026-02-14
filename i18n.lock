@@ -13,6 +13,7 @@ checksums:
     header/user_menu/profile: d7878693f91303a438852d617f6d35df
     header/user_menu/settings: 8df6777277469c1fd88cc18dde2f1cc3
     header/user_menu/sign_out: 6d842546a84e919c519bf8cbffdf25a0
+    header/user_menu/fallback_name: 61073457a5c3901084b557d065f876be
     hero/badge: df301b617768af7333487ce51d212640
     hero/title_line1: b37c665cff8d432819bb148a5ca7d32b
     hero/title_line2: 8058380889147b6335bd6abb940b212e
@@ -21,6 +22,7 @@ checksums:
     hero/cta_secondary: 5a2d82ab1e05251a3c7310b04fa690ab
     hero/no_credit_card: f54dbf7619da3ab3a6eabf3acac42249
     hero/powered_by: 991fb9abe285a33341a1aaeed2eaf031
+    hero/lingo_alt: 307099c62b17ca01597fc01c2fa7b9f6
     features/heading: c934be5d0b65a7ed88060c21e467a26d
     features/subheading: ff206c52dc13b83624107aa4b706bb7a
     features/lingo_ready/title: 34eff8d684d8a6ef38e15226661552a5
@@ -54,7 +56,9 @@ checksums:
     auth/login/title: 4928884739ba559e6e4b960e80fe1452
     auth/login/subtitle: 0d83585985ca6870363b3867e61e0cda
     auth/login/email: e7f34943a0c2fb849db1839ff6ef5cb5
+    auth/login/email_placeholder: 3cbb854500cac63513492e7abbc5cff3
     auth/login/password: 223a61cf906ab9c40d22612c588dff48
+    auth/login/password_placeholder: 5ee7cd1a4a7fe6fb896e8a0c4b2d7255
     auth/login/submit: cb8757c7450e17de1e226e82fb0fa4a2
     auth/login/submitting: 8c7c297eaa8691114c8af70e53bb5fe6
     auth/login/no_account: 613efdc05ae6d04b7136d199645c56ac
@@ -63,8 +67,11 @@ checksums:
     auth/signup/title: bc53a57281d2701563f94f3169518028
     auth/signup/subtitle: e42201d612c39a5b89c071642854f36e
     auth/signup/full_name: ba3094a10db2bb9234cb7e0dc86e40fd
+    auth/signup/full_name_placeholder: febee8e9ab40b2fe5106d72675228d00
     auth/signup/email: e7f34943a0c2fb849db1839ff6ef5cb5
+    auth/signup/email_placeholder: 3cbb854500cac63513492e7abbc5cff3
     auth/signup/password: 223a61cf906ab9c40d22612c588dff48
+    auth/signup/password_placeholder: 5ee7cd1a4a7fe6fb896e8a0c4b2d7255
     auth/signup/submit: 6a11810d313098655e600e0303d455fd
     auth/signup/submitting: bc93fb85564815cb9131b8f59e98a500
     auth/signup/password_hint: 1deeb25e5e020a8d8a47b3040e8e7262
@@ -81,7 +88,12 @@ checksums:
     auth/errors/email_not_confirmed: 73aa4a257a4ccbfed94d888a9e265533
     auth/errors/network_error: 324fc3eee207eefe6188fc9e45db9a8b
     auth/errors/generic: 04eb843eaff0839b9ba1cb243e550d89
+    auth/error_page/title: f8db504523897fad229a0cfdcc34652c
+    auth/error_page/description: 362ec54b48f74f1353194d8bb563ea92
+    auth/error_page/button: 493d0b4ea1a695e02e3e3768e4fc633d
+    dashboard/title: c9380ea68c8c76ea451bd9613329a07c
     dashboard/welcome: ff470d1f9f5615e03640f4260070b8e7
+    dashboard/welcome_fallback: 7d63e12738c8b7b3bea05fa04ca86552
     dashboard/subtitle: 8f6ef172c6e003f7087e9d71a8b61b99
     dashboard/new_workspace: 9c9a1fe60ed204bcb800c4e55a46322e
     dashboard/create_title: d0c196e19cbde86872848d529cbb6196
@@ -100,6 +112,19 @@ checksums:
     dashboard/created_at: 14603ed516133ca1b5c69802d3ea4fee
     dashboard/confirm_delete: d003455cfd780bccd3f2d717ded2a1fd
     dashboard/delete_failed: 812a04ca33578cb48468e3b0fa8624c5
+    dashboard/inviter_fallback: f15ea72820faaeda4699ffd01fbe5350
+    dashboard/invite_server_error: b48c7ff06c6cd2c6c4828d144fd64010
+    dashboard/invite_send_failed: f92041ffcfdd0646d8b63d66bf6bccd5
+    dashboard/invite_sent_title: 80e1a5d6c11ad880dd11c1f3a82a3ea2
+    dashboard/invite_sent_message: 738b462fb3a69f875f62ecd328cbe9b3
+    dashboard/share_title: 958a6b6866db249f3a17c1631205d85a
+    dashboard/share_description: f36ba2ebcafa8c08266ea3eba95253fd
+    dashboard/share_email_label: 0ee22bbbe989a0c61a18023407d12dc2
+    dashboard/share_email_placeholder: 2a1cc1a6dd6b42ff64c140596e82e904
+    dashboard/invite_sending: 313baf79716ca9d57de864eaac4a602a
+    dashboard/invite_send: 24970596115a76b1947bdaa342e84e1f
+    dashboard/share_action: 958a6b6866db249f3a17c1631205d85a
+    dashboard/delete_action: 3badbc0f4b49644986fc19d8b2d8f317
     workspace/title: c3882fc98216636873ab9091f3453f0c
     workspace/subtitle: 4fc4f5872d0ef0227ee99f10174b3fcb
     workspace/new_document: ba5733913009db94b1bc7292b4819c99
@@ -114,21 +139,30 @@ checksums:
     workspace/no_documents_description: 3d7c7a181b068f4fcbff630b127dca32
     workspace/create_first: 433c9c3255ee8eabe0f8eca205c0e843
     workspace/upload_file: 189b8bd320e87a7e14fbee06b013d90f
+    workspace/uploaded_file: 2ce4b05b0d7fe158eb25be69d83cf92f
+    workspace/file_uploaded_prefix: d01d6cb3196a520a4115c430c251a111
     workspace/last_updated: cd070575631fbab89f7b538a8f55dbf1
     workspace/delete: 8bcf303dd10a645b5baacb02b47d72c9
     workspace/delete_confirm: 3672f479a7b91c24be5c3f2d449288a9
     workspace/back_to_dashboard: 3307b46d8e54605dd8bc83c17112af28
+    workspace/save_reference_failed: 1b7b39511174d87f1640263b6a3e0ea4
     document/title_placeholder: d92e0f204c12b656601bff0da49712b7
     document/save: f7a2929f33bc420195e59ac5a8bcd454
     document/saving: 7cb2d8f012d57db8a62187b65ef164dc
     document/saved_at: b5405150e1b49ebaba32e306fb5854d2
     document/save_failed: da426c10ecc48463cecf827b6172b75a
+    document/export: 709afbc86c5fdca279a111ea8e49d1c9
+    document/export_pdf: f5ad6ed04dbc07a13146e4bbd5f240f7
+    document/export_docx: 1ebaa246386cc98001718a71d6eb5818
+    document/default_filename: 0809eccb7fdbac260c6e15b11f6fef90
     document/insert_image: 305b18910c6b4b70dfadb22e8d25c5af
     document/translation_ready: 8cdf26152cdede8c3c20fa3c4563f1c3
     document/lingo_description: b9f2ea4ce6991da67a41edf28d2b5762
     document/editor_placeholder: fdf79d7d2625b1ccf87e3d518c8a9de1
     document/words: b539ae5ebd4ed431ec55c5f8ab730398
     document/created_at: 14603ed516133ca1b5c69802d3ea4fee
+    editor/placeholder: 60dde59ec9b52824dfcac39049caa7ea
+    editor/file_link_fallback: 92e47ca1de564e8a42d994ea84cc2f39
     editor/upload/uploading_image: 1b8ae284fbb86ca36dd4bdf0c2da32aa
     editor/upload/uploading_file: b0d4a3847ed2c059386c80a2a423f6e9
     editor/upload/upload_complete: cf9726f7bdacdee57a00fd5d2d571e4a
@@ -153,6 +187,10 @@ checksums:
     editor/slash_commands/video/prompt: 149c6711f6f0f5a2016b256151a3a063
     editor/slash_commands/file/title: 1255b55897f2be1443d3bb8c30cd9795
     editor/slash_commands/file/description: 43d6a9167b6249e3babac0731a99521a
+    locale/english: e1eeeb379f86a015d6e581fcbc4af7f3
+    locale/spanish: e1cd9645ddb854071941a3a23af9eaaf
+    locale/french: 965fbe07b0c6293182f71b3d09b84fda
+    locale/bengali: 69643574a955a5ce2f59ec9f46229f66
     settings/title: 8df6777277469c1fd88cc18dde2f1cc3
     settings/profile_settings: db0b3225a6a5cb607a711b5f6021891a
     settings/profile_description: fdee43dd8bb7cd9e1e46ceb210e91874
@@ -163,7 +201,15 @@ checksums:
     settings/save_changes: d895276cde226e9225eca1e74aa799f4
     settings/saving: 7cb2d8f012d57db8a62187b65ef164dc
     settings/success: cc503e2b7c0de406d7e34b2ce839d728
+    settings/error_saving: bb938ede27ee0fef5817db6ad61e7e88
     settings/lingo_integration: 0b552f93662930e5d583aef8629ad982
     settings/lingo_description: 53d49d958f02b5f489ef10e3ec5cc17a
     settings/lingo_configured: cb3483dc2992a9c2b22a41779a30d9f3
     settings/lingo_docs: d02b442f88b6b8e5e7005638cc6b1cf4
+    invite_email/subject: 338169202e22c3c666469078abcd3009
+    invite_email/heading: 9a6ad4fe157adde23a879ccc4972959d
+    invite_email/intro: 5dd2f23e198af43d09b8ccacdbe26024
+    invite_email/cta: 692b7aea86324c1a4f3c4e03ca37bf16
+    invite_email/or_copy: 8682bc7fc7033b22317ca3bd2bf686ed
+    invite_email/internal_error: 4b1ee760260ee43004cc74ccec21d4ec
+    common/close: 2c2e22f8424a1031de89063bd0022e16

@@ -20,6 +20,7 @@ export default function LoginPage() {
   const locale = useLocale()
   const t = useTranslations('auth.login')
   const tErrors = useTranslations('auth.errors')
+  const th = useTranslations('header')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -55,7 +56,7 @@ export default function LoginPage() {
           <Link href={`/${locale}`}>
             <Image
               src="/z-logo.png"
-              alt="Z Logo"
+              alt={th('logo_alt')}
               width={120}
               height={120}
               className="object-contain cursor-pointer hover:opacity-80 transition-opacity"
@@ -85,7 +86,7 @@ export default function LoginPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder={t('email_placeholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -98,7 +99,7 @@ export default function LoginPage() {
                 <Input
                   id="password"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder={t('password_placeholder')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required

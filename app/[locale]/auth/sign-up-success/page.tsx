@@ -8,6 +8,7 @@ import { CheckCircle2 } from 'lucide-react'
 export default function SignUpSuccessPage() {
   const locale = useLocale()
   const t = useTranslations('auth.signup_success')
+  const th = useTranslations('header')
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="w-full max-w-md">
@@ -15,7 +16,7 @@ export default function SignUpSuccessPage() {
           <Link href={`/${locale}`}>
             <Image
               src="/z-logo.png"
-              alt="Z Logo"
+              alt={th('logo_alt')}
               width={120}
               height={120}
               className="object-contain cursor-pointer hover:opacity-80 transition-opacity"

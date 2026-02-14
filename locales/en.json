@@ -14,7 +14,8 @@
         "user_menu": {
             "profile": "Profile",
             "settings": "Settings",
-            "sign_out": "Sign out"
+            "sign_out": "Sign out",
+            "fallback_name": "User"
         }
     },
     "hero": {
@@ -25,7 +26,8 @@
         "cta_primary": "Start building free",
         "cta_secondary": "See how it works",
         "no_credit_card": "No credit card required • Free forever for individuals",
-        "powered_by": "powered by"
+        "powered_by": "powered by",
+        "lingo_alt": "Lingo.dev"
     },
     "features": {
         "heading": "Everything you need to go global",
@@ -91,7 +93,9 @@
             "title": "Welcome back",
             "subtitle": "Sign in to your ZED workspace",
             "email": "Email",
+            "email_placeholder": "you@example.com",
             "password": "Password",
+            "password_placeholder": "••••••••",
             "submit": "Sign in",
             "submitting": "Signing in...",
             "no_account": "Don't have an account?",
@@ -102,8 +106,11 @@
             "title": "Create an account",
             "subtitle": "Start building for a global audience today",
             "full_name": "Full Name",
+            "full_name_placeholder": "John Doe",
             "email": "Email",
+            "email_placeholder": "you@example.com",
             "password": "Password",
+            "password_placeholder": "••••••••",
             "submit": "Create account",
             "submitting": "Creating account...",
             "password_hint": "Must be at least {min} characters",
@@ -124,10 +131,17 @@
             "email_not_confirmed": "Please confirm your email address",
             "network_error": "Network error. Please try again.",
             "generic": "An error occurred. Please try again."
+        },
+        "error_page": {
+            "title": "Authentication Error",
+            "description": "Something went wrong during authentication. Please try again.",
+            "button": "Return to sign in"
         }
     },
     "dashboard": {
+        "title": "Dashboard",
         "welcome": "Welcome back, {name}",
+        "welcome_fallback": "there",
         "subtitle": "Manage your workspaces and collaborate with your team",
         "new_workspace": "New Workspace",
         "create_title": "Create new workspace",
@@ -145,7 +159,20 @@
         "docs_count": "{count} docs",
         "created_at": "Created {date}",
         "confirm_delete": "Are you sure you want to delete this workspace? This action cannot be undone.",
-        "delete_failed": "Failed to delete workspace"
+        "delete_failed": "Failed to delete workspace",
+        "inviter_fallback": "A user",
+        "invite_server_error": "Server returned {status} {statusText}. Check server logs.",
+        "invite_send_failed": "Failed to send invite",
+        "invite_sent_title": "Invite Sent!",
+        "invite_sent_message": "We've sent an email to <strong>{email}</strong>",
+        "share_title": "Share Workspace",
+        "share_description": "Invite collaborators to <strong>{workspace}</strong> via email.",
+        "share_email_label": "Email Address",
+        "share_email_placeholder": "colleague@company.com",
+        "invite_sending": "Sending...",
+        "invite_send": "Send Invite",
+        "share_action": "Share Workspace",
+        "delete_action": "Delete Workspace"
     },
     "workspace": {
         "title": "Documents",
@@ -162,10 +189,13 @@
         "no_documents_description": "Create your first document to start writing content that's ready for global distribution.",
         "create_first": "Create your first document",
         "upload_file": "Upload File",
+        "uploaded_file": "Uploaded File",
+        "file_uploaded_prefix": "File uploaded:",
         "last_updated": "Last updated {date}",
         "delete": "Delete",
         "delete_confirm": "Are you sure you want to delete this document?",
-        "back_to_dashboard": "Back to Dashboard"
+        "back_to_dashboard": "Back to Dashboard",
+        "save_reference_failed": "Failed to save document reference: {error}"
     },
     "document": {
         "title_placeholder": "Untitled Document",
@@ -173,6 +203,10 @@
         "saving": "Saving...",
         "saved_at": "Saved {time}",
         "save_failed": "Failed to save document",
+        "export": "Export",
+        "export_pdf": "Export as PDF",
+        "export_docx": "Export as DOCX",
+        "default_filename": "document",
         "insert_image": "Insert Image",
         "translation_ready": "Translation Ready",
         "lingo_description": "This document is structured for Lingo.dev integration. Add Lingo.dev locally to enable translation workflows, context management, and multi-language variants.",
@@ -181,6 +215,8 @@
         "created_at": "Created {date}"
     },
     "editor": {
+        "placeholder": "Type \"/\" for commands...",
+        "file_link_fallback": "File Link",
         "upload": {
             "uploading_image": "Uploading image...",
             "uploading_file": "Uploading file...",
@@ -228,6 +264,12 @@
             }
         }
     },
+    "locale": {
+        "english": "English",
+        "spanish": "Español",
+        "french": "Français",
+        "bengali": "বাংলা"
+    },
     "settings": {
         "title": "Settings",
         "profile_settings": "Profile Settings",
@@ -239,9 +281,21 @@
         "save_changes": "Save Changes",
         "saving": "Saving...",
         "success": "Settings saved successfully!",
+        "error_saving": "Error saving settings: {error}",
         "lingo_integration": "Lingo.dev Integration",
         "lingo_description": "Translation and localization settings",
         "lingo_configured": "Lingo.dev integration is configured at the project level.",
         "lingo_docs": "See LINGO_INTEGRATION.md for setup instructions."
+    },
+    "invite_email": {
+        "subject": "ZED workspace invitation from {inviterName}",
+        "heading": "You've been invited to join {workspaceName}",
+        "intro": "{inviterName} has invited you to collaborate on their workspace in {appName}.",
+        "cta": "Join Workspace",
+        "or_copy": "Or copy this link:",
+        "internal_error": "Internal Server Error"
+    },
+    "common": {
+        "close": "Close"
     }
 }

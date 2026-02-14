@@ -38,7 +38,7 @@ export function RichTextEditor({ content, onChange, editable = true }: RichTextE
                 openOnClick: false,
             }),
             Placeholder.configure({
-                placeholder: 'Type "/" for commands...',
+                placeholder: t('placeholder'),
             }),
             FileLink,
             SlashCommand.configure({

@@ -38,14 +38,17 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
   const router = useRouter()
   const locale = useLocale()
   const t = useTranslations('settings')
+  const th = useTranslations('header')
   const [displayName, setDisplayName] = useState(profile?.full_name || user.user_metadata?.full_name || '')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const [isError, setIsError] = useState(false)
 
   const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setMessage('')
+    setIsError(false)
 
     try {
       const supabase = createClient()
@@ -60,10 +63,12 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
       if (error) throw error
 
       setMessage(t('success'))
+      setIsError(false)
       router.refresh()
     } catch (error: any) {
       console.error('[v0] Error saving settings:', error)
-      setMessage('Error saving settings: ' + error.message)
+      setMessage(t('error_saving', { error: error.message }))
+      setIsError(true)
     } finally {
       setLoading(false)
     }
@@ -89,7 +94,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
             <div className="flex items-center gap-3">
               <Image
                 src="/z-logo.png"
-                alt="Z Logo"
+                alt={th('logo_alt')}
                 width={60}
                 height={60}
                 className="object-contain"
@@ -139,7 +144,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
 
 
                 {message && (
-                  <p className={`text-sm ${message.includes('Error') ? 'text-destructive' : 'text-green-600'}`}>
+                  <p className={`text-sm ${isError ? 'text-destructive' : 'text-green-600'}`}>
                     {message}
                   </p>
                 )}

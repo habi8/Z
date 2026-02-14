@@ -127,7 +127,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
     try {
       if (selectedWorkspace) {
         const inviteLink = `${window.location.origin}/${locale}/workspace/${selectedWorkspace.id}/join?code=dummy-invite-code`
-        const inviterName = user.user_metadata?.full_name || user.email || 'A user'
+        const inviterName = user.user_metadata?.full_name || user.email || t('inviter_fallback')
 
         const response = await fetch('/api/invite', {
           method: 'POST',
@@ -139,6 +139,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
             workspaceName: selectedWorkspace.name,
             inviterName,
             link: inviteLink,
+            locale,
           }),
         })
 
@@ -147,11 +148,16 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
           data = await response.json()
         } catch (e) {
           console.error('Failed to parse response:', e)
-          throw new Error(`Server returned ${response.status} ${response.statusText}. Check server logs.`)
+          throw new Error(
+            t('invite_server_error', {
+              status: response.status,
+              statusText: response.statusText,
+            })
+          )
         }
 
         if (!response.ok) {
-          throw new Error(data.error?.message || 'Failed to send invite')
+          throw new Error(data.error?.message || t('invite_send_failed'))
         }
 
         // Show success state
@@ -166,7 +172,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
       }
     } catch (error: any) {
       console.error('Error sharing workspace:', error)
-      alert(error.message || 'Failed to send invite')
+      alert(error.message || t('invite_send_failed'))
     } finally {
       setLoading(false)
     }
@@ -192,12 +198,12 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
           <div className="flex items-center gap-3">
             <Image
               src="/z-logo.png"
-              alt="Z Logo"
+              alt={th('logo_alt')}
               width={60}
               height={60}
               className="object-contain"
             />
-            <span className="text-2xl font-bold">Dashboard</span>
+            <span className="text-2xl font-bold">{t('title')}</span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -211,7 +217,9 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium">{user.user_metadata?.full_name || 'User'}</p>
+                    <p className="text-sm font-medium">
+                      {user.user_metadata?.full_name || th('user_menu.fallback_name')}
+                    </p>
                     <p className="text-xs text-muted-foreground">{user.email}</p>
                   </div>
                 </DropdownMenuLabel>
@@ -237,7 +245,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold mb-2">
-                {t('welcome', { name: user.user_metadata?.full_name?.split(' ')[0] || 'there' })}
+                {t('welcome', { name: user.user_metadata?.full_name?.split(' ')[0] || t('welcome_fallback') })}
               </h1>
               <p className="text-muted-foreground">
                 {t('subtitle')}
@@ -318,26 +326,32 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                       </svg>
                     </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-center">Invite Sent!</h3>
+                  <h3 className="text-lg font-semibold text-center">{t('invite_sent_title')}</h3>
                   <p className="text-center text-muted-foreground text-sm">
-                    We've sent an email to <strong>{inviteEmail}</strong>
+                    {t.rich('invite_sent_message', {
+                      email: inviteEmail,
+                      strong: (chunks) => <strong>{chunks}</strong>,
+                    })}
                   </p>
                 </div>
               ) : (
                 <>
                   <DialogHeader>
-                    <DialogTitle>Share Workspace</DialogTitle>
+                    <DialogTitle>{t('share_title')}</DialogTitle>
                     <DialogDescription>
-                      Invite collaborators to <strong>{selectedWorkspace?.name}</strong> via email.
+                      {t.rich('share_description', {
+                        workspace: selectedWorkspace?.name || '',
+                        strong: (chunks) => <strong>{chunks}</strong>,
+                      })}
                     </DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleShareWorkspace} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
+                      <Label htmlFor="email">{t('share_email_label')}</Label>
                       <Input
                         id="email"
                         type="email"
-                        placeholder="colleague@company.com"
+                        placeholder={t('share_email_placeholder')}
                         value={inviteEmail}
                         onChange={(e) => setInviteEmail(e.target.value)}
                         required
@@ -350,11 +364,11 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                         onClick={() => setIsShareDialogOpen(false)}
                         disabled={loading}
                       >
-                        Cancel
+                        {t('cancel')}
                       </Button>
                       <Button type="submit" disabled={loading} className="gap-2">
                         <Send className="h-4 w-4" />
-                        {loading ? 'Sending...' : 'Send Invite'}
+                        {loading ? t('invite_sending') : t('invite_send')}
                       </Button>
                     </div>
                   </form>
@@ -409,7 +423,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem onClick={(e) => openShareDialog(workspace, e)}>
                             <Share className="mr-2 h-4 w-4" />
-                            Share Workspace
+                            {t('share_action')}
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem
@@ -420,7 +434,7 @@ export function DashboardClient({ user, initialWorkspaces }: DashboardClientProp
                             className="text-destructive focus:text-destructive"
                           >
                             <Trash className="mr-2 h-4 w-4" />
-                            Delete Workspace
+                            {t('delete_action')}
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
