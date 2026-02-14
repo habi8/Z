@@ -118,7 +118,7 @@ export default function LandingPage() {
       <section className="container mx-auto px-4 pt-16 pb-32 md:pt-20 md:pb-40">
         <div className="max-w-4xl mx-auto text-center space-y-10">
           <div className="flex flex-col items-center gap-6">
-            <div className="flex items-center gap-3 text-xs sm:text-base font-semibold tracking-[0.15em] text-muted-foreground/70 items-center gap-2 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-muted-foreground/60 uppercase animate-fade-in-up opacity-0 fill-mode-forwards">
+            <div className="flex items-center gap-3 text-sm sm:text-lg font-semibold tracking-[0.15em] text-muted-foreground/70 uppercase animate-fade-in-up opacity-0 fill-mode-forwards">
               <span>{t('hero.powered_by')}</span>
               <Link
                 href="https://lingo.dev"
@@ -142,36 +142,36 @@ export default function LandingPage() {
                     ease-out
                     "/>
             </div>
-            <div className="inline-block px-4 py-2 rounded-full bg-muted border border-border text-xs sm:text-sm font-medium animate-fade-in-up delay-150 opacity-0 fill-mode-forwards">
+            <div className="inline-block px-4 py-2 rounded-full bg-muted border border-border text-sm sm:text-base font-medium animate-fade-in-up delay-150 opacity-0 fill-mode-forwards">
               {t('hero.badge')}
             </div>
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance animate-fade-in-up delay-200 opacity-0 fill-mode-forwards">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-balance animate-fade-in-up delay-200 opacity-0 fill-mode-forwards">
             {t('hero.title_line1')}
             <br />
             <span className="text-muted-foreground">{t('hero.title_line2')}</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in-up delay-400 opacity-0 fill-mode-forwards">
+          <p className="text-2xl md:text-3xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in-up delay-400 opacity-0 fill-mode-forwards">
             {t('hero.subtitle')}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in-up delay-600 opacity-0 fill-mode-forwards">
-            <Button asChild size="lg" className="text-lg px-8 h-12">
+            <Button asChild size="lg" className="text-xl px-8 h-14">
               <Link href={`/${locale}/auth/sign-up`}>{t('hero.cta_primary')}</Link>
             </Button>
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="text-lg px-8 h-12 bg-transparent"
+              className="text-xl px-8 h-14 bg-transparent"
             >
               <Link href="#how-it-works">{t('hero.cta_secondary')}</Link>
             </Button>
           </div>
 
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             {t('hero.no_credit_card')}
           </p>
         </div>
